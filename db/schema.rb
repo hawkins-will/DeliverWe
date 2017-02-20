@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20170220192446) do
     t.string  "name"
     t.string  "personal_order"
     t.integer "personal_price"
-    t.integer "orderx_id"
-    t.index ["orderx_id"], name: "index_patrons_on_orderx_id", using: :btree
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_patrons_on_order_id", using: :btree
   end
 
   create_table "restaurants", force: :cascade do |t|

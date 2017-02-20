@@ -1,0 +1,17 @@
+<h1>Let's add a New Order from <%= @restaurant.name %></h1>
+
+<form action="/<%= @restaurant.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="order[head_patron]">What's your Name?</label>
+  <br>
+  <input name="order[head_patron]">
+
+  <input type="hidden" name="order[restaurant_id]" value="<%= @restaurant.id %>">
+
+  <br>
+  <br>
+
+  <input type="submit" value="SUBMIT">
+
+</form>

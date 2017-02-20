@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+.logo {
+  height: 100px;
+}
+
+.restaurant_box {
+  height: 200px;
+  width: 500px;
+  border: 1px solid black;
+}
+
+.order_box {
+  height: 200px;
+  width: 300px;
+  border: 1px solid red;
+  margin-left: 100px;
+}
+
+.restaurant_box, .order_box {
+  padding: 10px;
+}
+
+.restaurant_name {
+  font-size: 25px;
+}
