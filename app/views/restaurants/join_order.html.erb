@@ -1,0 +1,20 @@
+<h1>Join <%= @order.head_patron %>'s Order</h1>
+
+<form action="/join/<%= @order.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="patron[name]">What's your Name?</label>
+  <br>
+  <input name="patron[name]">
+
+  <input type="hidden" name="patron[order_id]" value="<%= @order.id %>">
+
+  <input type="hidden" name="patron[personal_order]" value="">
+
+  <input type="hidden" name="patron[personal_price]" value="0">
+  <br>
+  <br>
+
+  <input type="submit" value="JOIN">
+
+</form>

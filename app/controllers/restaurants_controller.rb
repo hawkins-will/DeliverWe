@@ -21,6 +21,18 @@ class RestaurantsController < ApplicationController
     redirect_to "/"
   end
 
+  def join_order
+    @order = Order.find(params[:id])
+    @patron = Patron.new
+  end
+
+  def create_patron
+    @order = Order.find(params[:id])
+    @patron = Patron.create!(patron_params)
+
+    redirect_to "/"
+  end
+
   private
   def restaurant_params
     params.require(:restaurant).permit(:name, :logo_url, :menu_link, :delivery_fee)

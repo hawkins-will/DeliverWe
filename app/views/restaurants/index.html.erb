@@ -1,13 +1,18 @@
-<h1>Orders!</h1>
+<h1>DeliverWe</h1>
+<h2>Orders!</h2>
 <% @orders.each do |order| %>
 <div class="order_box">
     <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"> <%= Restaurant.find(order.restaurant_id).name %></p>
     <p><%= order.head_patron %></p>
+    <% order.patrons.each do |patron| %>
+    <p><%= patron.name %></p>
+    <% end %>
+    <h4><a href="/order/<%= order.id %>/join">Join Order</a></h4>
   </div>
   <br>
 <% end %>
 <br>
-<h1>Restaurants!</h1>
+<h2>Restaurants!</h2>
 <% @restaurants.each do |restaurant| %>
   <div class="restaurant_box">
     <p><img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo"><a href="<%= restaurant.id %>"><span class ="restaurant_name"><%= restaurant.name %></span></a></p>
