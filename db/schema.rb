@@ -17,17 +17,17 @@ ActiveRecord::Schema.define(version: 20170221012827) do
 
   create_table "items", force: :cascade do |t|
     t.string  "name"
-    t.integer "price"
+    t.float   "price"
     t.string  "modifications"
-    t.integer "modifications_price"
+    t.float   "modifications_price"
     t.integer "patron_id"
     t.index ["patron_id"], name: "index_items_on_patron_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
     t.string  "head_patron"
-    t.integer "total_price"
-    t.integer "tip"
+    t.float   "total_price"
+    t.float   "tip"
     t.integer "restaurant_id"
     t.index ["restaurant_id"], name: "index_orders_on_restaurant_id", using: :btree
   end
@@ -35,16 +35,16 @@ ActiveRecord::Schema.define(version: 20170221012827) do
   create_table "patrons", force: :cascade do |t|
     t.string  "name"
     t.string  "personal_order"
-    t.integer "personal_price"
+    t.float   "personal_price"
     t.integer "order_id"
     t.index ["order_id"], name: "index_patrons_on_order_id", using: :btree
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string  "name"
-    t.string  "logo_url"
-    t.string  "menu_link"
-    t.integer "delivery_fee"
+    t.string "name"
+    t.string "logo_url"
+    t.string "menu_link"
+    t.float  "delivery_fee"
   end
 
 end

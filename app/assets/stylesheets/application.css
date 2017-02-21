@@ -31,10 +31,38 @@
   margin-left: 100px;
 }
 
+.patron_box {
+  width: 275px;
+  margin-left: 25px;
+}
+
+.item_box {
+  width: 300px;
+  border: 1px solid grey;
+  padding-top: 15px;
+  padding-right: 10px;
+  margin-left: 30px;
+
+}
+
 .restaurant_box, .order_box {
   padding: 10px;
 }
 
 .restaurant_name {
   font-size: 25px;
+}
+
+.head_patron {
+  font-weight: bold;
+}
+
+.item {
+  padding-left: 30px;
+  margin-top: -10px;
+}
+
+.price {
+  margin-top: -10px;
+  text-align: right;
 }

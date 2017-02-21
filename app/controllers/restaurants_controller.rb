@@ -30,7 +30,11 @@ class RestaurantsController < ApplicationController
     @order = Order.find(params[:id])
     @patron = Patron.create!(patron_params)
 
-    redirect_to "/"
+    redirect_to "/patrons/#{@patron.id}"
+  end
+
+  def show_patron
+    @patron = Patron.find(params[:id])
   end
 
   private

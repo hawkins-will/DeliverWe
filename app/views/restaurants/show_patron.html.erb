@@ -1,0 +1,10 @@
+<h1>Hello <%= @patron.name %></h1>
+<% @patron_price = 0.00 %>
+<% @patron.items.each do |item| %>
+  <div class="item_box">
+    <p class="item"><%= item.name %></p>
+    <p class="price">$<%= item.price %></p>
+  </div>
+  <% @patron_price = @patron_price + item.price %>
+  <br>
+<% end %>
