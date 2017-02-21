@@ -1,0 +1,46 @@
+<header>
+  <h1>DeliverWe</h1>
+</header>
+
+<h1>Add to <%= @patron.name %>'s Order</h1>
+
+<form action="/patrons/<%= @patron.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="item[name]">What would you like to order?</label>
+  <br>
+  <input name="item[name]">
+
+  <br>
+  <br>
+
+  <label for="item[price]">Price</label>
+  <br>
+  <input name="item[price]">
+
+  <br>
+  <br>
+
+  <label for="item[modifications]">Would you like to modify anything?</label>
+  <br>
+  <input name="item[modifications]">
+
+  <br>
+  <br>
+
+  <label for="item[modifications_price]">Price of modifications</label>
+  <br>
+  <input name="item[modifications_price]">
+
+
+  <input type="hidden" name="item[patron_id]" value="<%= @patron.id %>">
+
+  <br>
+  <br>
+
+  <input type="submit" value="SUBMIT">
+
+</form>
+
+
+<h4><a href="/">HOME</a></h4>

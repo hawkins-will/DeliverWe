@@ -1,0 +1,30 @@
+<header>
+  <h1>DeliverWe</h1>
+</header>
+
+<h1>Showing Order!</h1>
+<p><img class="logo" src="<%= Restaurant.find(@order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(@order.restaurant_id).name %> Logo"><a href="/order/<%= @order.id %>"><%= Restaurant.find(@order.restaurant_id).name %></a></p>
+<p><span class="head_patron">Head Patron: </span><%= @order.head_patron %></p>
+<% @order_price = 0.00 %>
+<% @order.patrons.each do |patron| %>
+<div class="patron_box">
+  <% @patron_price = 0.00 %>
+    <p><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
+    <% patron.items.each do |item| %>
+      <p class="item"><%= item.name %></p>
+      <p class="price">$<%= item.price %></p>
+      <% @order_price = @order_price + item.price %>
+      <% @patron_price = @patron_price + item.price %>
+    <% end %>
+    <br>
+    <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
+    <hr>
+</div>
+<br>
+<% end %>
+<br>
+<p class="price">Total Price: <%= number_to_currency(@order_price) %></p>
+<h4><a href="/order/<%= @order.id %>/join">Join Order</a></h4>
+</div>
+
+<h4><a href="/">HOME</a></h4>

@@ -1,3 +1,7 @@
+<header>
+  <h1>DeliverWe</h1>
+</header>
+
 <h1>Join <%= @order.head_patron %>'s Order</h1>
 
 <form action="/join/<%= @order.id %>" method="post">
@@ -18,3 +22,5 @@
   <input type="submit" value="JOIN">
 
 </form>
+
+<h4><a href="/">HOME</a></h4>

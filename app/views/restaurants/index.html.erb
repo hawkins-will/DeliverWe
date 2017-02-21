@@ -1,25 +1,20 @@
-<h1>DeliverWe</h1>
+<header>
+  <h1>DeliverWe</h1>
+</header>
+
 <h2>Orders!</h2>
 <% @orders.each do |order| %>
 <% @order_price = 0.00 %>
 <div class="order_box">
-    <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"> <%= Restaurant.find(order.restaurant_id).name %></p>
+    <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"><a href="/order/<%= order.id %>"><%= Restaurant.find(order.restaurant_id).name %></a></p>
     <p><span class="head_patron">Head Patron: </span><%= order.head_patron %></p>
     <% order.patrons.each do |patron| %>
     <div class="patron_box">
-      <% @patron_price = 0.00 %>
         <p><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
         <% patron.items.each do |item| %>
-          <p class="item"><%= item.name %></p>
-          <p class="price">$<%= item.price %></p>
           <% @order_price = @order_price + item.price %>
-          <% @patron_price = @patron_price + item.price %>
         <% end %>
-        <br>
-        <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
-        <hr>
     </div>
-    <br>
     <% end %>
     <br>
     <p class="price">Total Price: <%= number_to_currency(@order_price) %></p>
@@ -29,11 +24,13 @@
 <% end %>
 <br>
 <h2>Restaurants!</h2>
-<% @restaurants.each do |restaurant| %>
-  <div class="restaurant_box">
-    <p><img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo"><a href="<%= restaurant.id %>"><span class ="restaurant_name"><%= restaurant.name %></span></a></p>
-    <p><a href="<%= restaurant.menu_link %>">Menu</a></p>
-    <h4><a href="/<%= restaurant.id %>/new_order">SUGGEST</a></h4>
-  </div>
-  <br>
-<% end %>
+<div class="restaurant_section">
+  <% @restaurants.each do |restaurant| %>
+    <div class="restaurant_box">
+      <p><img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo"><a href="<%= restaurant.id %>"><span class ="restaurant_name"><%= restaurant.name %></span></a></p>
+      <p><a href="<%= restaurant.menu_link %>">Menu</a></p>
+      <h4><a href="/<%= restaurant.id %>/new_order">SUGGEST</a></h4>
+    </div>
+    <br>
+  <% end %>
+</div>
