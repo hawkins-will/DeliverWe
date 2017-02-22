@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170221012827) do
     t.string "logo_url"
     t.string "menu_link"
     t.float  "delivery_fee"
+    t.float  "delivery_min"
   end
 
 end

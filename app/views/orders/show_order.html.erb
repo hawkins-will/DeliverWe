@@ -4,8 +4,10 @@
 
 <h1>Showing Order!</h1>
 <p><img class="logo" src="<%= Restaurant.find(@order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(@order.restaurant_id).name %> Logo"><a href="/order/<%= @order.id %>"><%= Restaurant.find(@order.restaurant_id).name %></a></p>
+<p>Delivery Minimum: <%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %></p>
+<p>Delivery Fee: <%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_fee) %></p>
 <p><span class="head_patron">Head Patron: </span><%= @order.head_patron %></p>
-<% @order_price = 0.00 %>
+<% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
 <% @order.patrons.each do |patron| %>
 <div>
   <% @patron_price = 0.00 %>
@@ -14,7 +16,7 @@
       <p class="item"><%= item.name %></p>
       <p class="price"><%= number_to_currency(item.price) %></p>
       <% unless item.modifications == "" %>
-        <p class="modifications"><%= number_to_currency(item.modifications) %></p>
+        <p class="modifications"><%= item.modifications %></p>
         <% if item.modifications_price %>
           <p class="price">+ <%= number_to_currency(item.modifications_price) %></p>
         <% end %>
@@ -27,6 +29,9 @@
       <% end %>
     <% end %>
     <br>
+    <% @patron_fee = (Restaurant.find(@order.restaurant_id).delivery_fee)/@order.patrons.length %>
+    <p class="price">Portion of Delivery Fee: <%= number_to_currency(@patron_fee) %></p>
+    <% @patron_price = @patron_price + @patron_fee %>
     <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
     <hr>
 </div>
@@ -34,5 +39,8 @@
 <% end %>
 <br>
 <p class="price">Total Price: <%= number_to_currency(@order_price) %></p>
+<% if @order_price < Restaurant.find(@order.restaurant_id).delivery_min %>
+  <p class="price red">UNMET DELIVERY MINIMUM: <%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %></p>
+<% end %>
 <h4><a href="/order/<%= @order.id %>/join">Join Order</a></h4>
 </div>
