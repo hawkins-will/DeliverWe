@@ -12,13 +12,19 @@
     <p><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
     <% patron.items.each do |item| %>
       <p class="item"><%= item.name %></p>
-      <p class="price">$<%= item.price %></p>
+      <p class="price"><%= number_to_currency(item.price) %></p>
       <% unless item.modifications == "" %>
-        <p class="modifications"><%= item.modifications %></p>
-        <p class="price">+ $<%=item.modifications_price %></p>
+        <p class="modifications"><%= number_to_currency(item.modifications) %></p>
+        <% if item.modifications_price %>
+          <p class="price">+ <%= number_to_currency(item.modifications_price) %></p>
+        <% end %>
       <% end %>
-      <% @order_price = @order_price + item.price + item.modifications_price %>
-      <% @patron_price = @patron_price + item.price + item.modifications_price %>
+      <% @order_price = @order_price + item.price %>
+      <% @patron_price = @patron_price + item.price %>
+      <% if item.modifications_price %>
+        <% @order_price = @order_price + item.modifications_price %>
+        <% @patron_price = @patron_price + item.modifications_price %>
+      <% end %>
     <% end %>
     <br>
     <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>

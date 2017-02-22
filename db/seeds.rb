@@ -20,6 +20,6 @@ order_one = chinese.orders.create(head_patron: "Will Hawkins", total_price: 0, t
 patron_one = order_one.patrons.create(name: "Will Hawkins", personal_price: 0, personal_order: "")
 patron_two = order_one.patrons.create(name: "David Hawkins", personal_price: 0, personal_order: "")
 
-patron_one.items.create(name: "Spicy Orange Chicken Bowl", price: 7.25, modifications: "none", modifications_price: 0)
-patron_one.items.create(name: "3 Chicken Potsticker", price: 2.95, modifications: "none", modifications_price: 0)
-patron_two.items.create(name: "Black Pepper Chicken Bowl", price: 7.25, modifications: "none", modifications_price: 0)
+patron_one.items.create(name: "Spicy Orange Chicken Bowl", price: 7.25, modifications: "", modifications_price: 0)
+patron_one.items.create(name: "3 Chicken Potsticker", price: 2.95, modifications: "", modifications_price: 0)
+patron_two.items.create(name: "Black Pepper Chicken Bowl", price: 7.25, modifications: "", modifications_price: 0)
