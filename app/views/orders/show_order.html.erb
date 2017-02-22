@@ -13,8 +13,12 @@
     <% patron.items.each do |item| %>
       <p class="item"><%= item.name %></p>
       <p class="price">$<%= item.price %></p>
-      <% @order_price = @order_price + item.price %>
-      <% @patron_price = @patron_price + item.price %>
+      <% unless item.modifications == "" %>
+        <p class="modifications"><%= item.modifications %></p>
+        <p class="price">+ $<%=item.modifications_price %></p>
+      <% end %>
+      <% @order_price = @order_price + item.price + item.modifications_price %>
+      <% @patron_price = @patron_price + item.price + item.modifications_price %>
     <% end %>
     <br>
     <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
