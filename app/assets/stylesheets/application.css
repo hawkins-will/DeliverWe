@@ -211,3 +211,8 @@ header {
   margin-top: 0px;
   margin-bottom: -20px;
 }
+
+.no_underline {
+  text-decoration: none;
+  color: white;
+}

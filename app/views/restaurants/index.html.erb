@@ -1,5 +1,5 @@
 <header>
-  <h1><a href="/">DeliverWe</a></h1>
+  <h1><a class="no_underline" href="/">DeliverWe</a></h1>
 </header>
 <div class="page_break">
   <h2>Orders!</h2>
@@ -12,7 +12,7 @@
     <div class="box_header">
       <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"><p>
       <div class="box_header_right">
-        <a href="/order/<%= order.id %>"><p class="box_title"><%= Restaurant.find(order.restaurant_id).name %></p></a>
+        <a class="no_underline" href="/order/<%= order.id %>"><p class="box_title"><%= Restaurant.find(order.restaurant_id).name %></p></a>
         <div class="head_patron_box">
           <p class="head_patron_label">Head Patron:</p>
           <% if order.patrons.length >= 1 %>
@@ -51,7 +51,7 @@
     <div class="restaurant_box">
       <div class="box_header">
         <p><img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo"></p>
-        <a href="<%= restaurant.id %>"><div class="restaurant_header_right">
+        <a class="no_underline" href="<%= restaurant.id %>"><div class="restaurant_header_right">
             <p class ="restaurant_name"><%= restaurant.name %></p>
         </div></a>
       </div>
