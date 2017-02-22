@@ -7,9 +7,9 @@
 <form action="/<%= @restaurant.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label for="order[note]">Would you like to include a Note? (Maybe what time the order will be placed?)</label>
+  <label for="order[note]">Would you like to include a Note? (50 character max)</label>
   <br>
-  <textarea name="order[note]"></textarea>
+  <textarea class="note_input" name="order[note]"></textarea>
 
   <input type="hidden" name="order[restaurant_id]" value="<%= @restaurant.id %>">
 
