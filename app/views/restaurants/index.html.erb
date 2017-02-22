@@ -6,7 +6,8 @@
 </div>
 <div class="restaurant_section">
   <% @orders.each do |order| %>
-  <% @order_price = 0.00 %>
+  <% @order_tax = Restaurant.find(order.restaurant_id).tax %>
+  <% @order_price = 0.00 + Restaurant.find(order.restaurant_id).delivery_fee %>
   <div class="order_box">
     <div class="box_header">
       <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"><p>
@@ -27,10 +28,14 @@
             <p class="patron_line"><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
             <% patron.items.each do |item| %>
               <% @order_price = @order_price + item.price %>
+              <% if item.modifications_price %>
+                <% @order_price = @order_price + item.modifications_price %>
+              <% end %>
             <% end %>
         <% end %>
       </div>
       <br>
+      <% @order_price = @order_price*(1+(@order_tax/100)) %>
       <p class="price">Total Price: <%= number_to_currency(@order_price) %></p>
       <h4><a href="/order/<%= order.id %>/join">Join Order</a></h4>
     </div>
