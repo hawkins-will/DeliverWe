@@ -15,10 +15,10 @@ wings = Restaurant.create(name: "Wing Zone", logo_url: "https://s3-ap-southeast-
 sandwich = Restaurant.create(name: "Jimmy Johns", logo_url: "https://wikidownload.com/Download/2013/10/jimmy-johns-logo.jpg", menu_link: "https://www.jimmyjohns.com/menu/#/", delivery_fee: 0, delivery_min: 0.00, tax: 10)
 chinese = Restaurant.create(name: "Panda Express", logo_url: "http://vignette2.wikia.nocookie.net/logopedia/images/0/0f/Panda_Express_2014.png/revision/latest?cb=20141212185726", menu_link: "https://www.grubhub.com/restaurant/panda-express-kingstowne-6477-old-beulah-st-alexandria/332952?gclid=CjwKEAiAxKrFBRDm25f60OegtwwSJABgEC-Z-I5jS6PYXhd8NVDoxvtVJ9gO-eCyu5lgyXVjnDG00hoCydvw_wcB&utm_source=google&utm_medium=cpc&utm_campaign=Washington%20DC,%20DC%20%7C%20Alexandria,%20VA%20%7C%20Restaurants&utm_term=%2Bpanda%20%2Bexpress&efkwid=27028798565&ef_id=WHZZ7wAABLK@8Qf5:20170221013125:s", delivery_fee: 1.00, delivery_min: 16.50, tax: 10)
 
-order_one = chinese.orders.create(total_price: 0, tip: 0, comment: "This is where a Comment will go.")
+order_one = chinese.orders.create(tip: 0, note: "I'll place this order at 11:45")
 
-patron_one = order_one.patrons.create(name: "Will Hawkins", personal_price: 0, personal_order: "")
-patron_two = order_one.patrons.create(name: "David Hawkins", personal_price: 0, personal_order: "")
+patron_one = order_one.patrons.create(name: "Will Hawkins")
+patron_two = order_one.patrons.create(name: "David Hawkins")
 
 patron_one.items.create(name: "Spicy Orange Chicken Bowl", price: 7.25, modifications: "", modifications_price: 0)
 patron_one.items.create(name: "3 Chicken Potsticker", price: 2.95, modifications: "", modifications_price: 0)

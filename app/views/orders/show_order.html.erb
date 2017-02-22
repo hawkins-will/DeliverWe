@@ -14,6 +14,11 @@
 <p><span class="head_patron">Head Patron: No One Has Taken Charge</span></p>
 <% end %>
 <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
+  <% unless @order.note == "" %>
+    <div class="note_box">
+      <p><%= @order.note %></p>
+    </div>
+  <% end %>
 <% @order.patrons.each do |patron| %>
 <div>
   <% @patron_price = 0.00 %>
@@ -43,7 +48,7 @@
     <br>
     <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price*(1+(@order_tax/100))) %></p>
     <hr>
-</div>
+  </div>
 <br>
 <% end %>
 <br>
@@ -54,3 +59,7 @@
 <% end %>
 <h4><a href="/order/<%= @order.id %>/join">Join Order</a></h4>
 </div>
+
+<a href="/order/<%= @order.id %>/cancel"><div>
+  <p>CANCEL ORDER</p>
+</div></a>

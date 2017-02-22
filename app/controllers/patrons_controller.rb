@@ -1,6 +1,6 @@
 class PatronsController < ApplicationController
 
-  def join_order
+  def new_patron
     @order = Order.find(params[:id])
     @patron = Patron.new
   end
@@ -18,6 +18,6 @@ class PatronsController < ApplicationController
 
   private
   def patron_params
-    params.require(:patron).permit(:name, :personal_order, :personal_price, :order_id)
+    params.require(:patron).permit(:name, :order_id)
   end
 end

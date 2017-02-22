@@ -25,17 +25,14 @@ ActiveRecord::Schema.define(version: 20170221012827) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.float   "total_price"
     t.float   "tip"
-    t.string  "comment"
+    t.string  "note",          limit: 50
     t.integer "restaurant_id"
     t.index ["restaurant_id"], name: "index_orders_on_restaurant_id", using: :btree
   end
 
   create_table "patrons", force: :cascade do |t|
     t.string  "name"
-    t.string  "personal_order"
-    t.float   "personal_price"
     t.integer "order_id"
     t.index ["order_id"], name: "index_patrons_on_order_id", using: :btree
   end

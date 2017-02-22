@@ -16,8 +16,19 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def cancel_order
+    @order = Order.find(params[:id])
+  end
+
+  def destroy_order
+    @order = Order.find(params[:id])
+    @order.destroy
+
+    redirect_to "/"
+  end
+
   private
   def order_params
-    params.require(:order).permit(:total_price, :tip, :restaurant_id)
+    params.require(:order).permit(:tip, :note, :restaurant_id)
   end
 end

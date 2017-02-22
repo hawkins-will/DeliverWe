@@ -1,9 +1,8 @@
 class CreateOrders < ActiveRecord::Migration[5.0]
   def change
     create_table :orders do |t|
-      t.float :total_price
       t.float :tip
-      t.string :comment
+      t.string :note, limit: 50
       t.belongs_to :restaurant
     end
   end

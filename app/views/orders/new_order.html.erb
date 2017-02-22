@@ -2,10 +2,14 @@
   <h1><a class="no_underline" href="/">DeliverWe</a></h1>
 </header>
 
-<h1>Are You Sure You'd Like to Create a New Order from <%= @restaurant.name %>?</h1>
+<h1>Create a New Order from <%= @restaurant.name %></h1>
 
 <form action="/<%= @restaurant.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="order[note]">Would you like to include a Note? (Maybe what time the order will be placed?)</label>
+  <br>
+  <textarea name="order[note]"></textarea>
 
   <input type="hidden" name="order[restaurant_id]" value="<%= @restaurant.id %>">
 
