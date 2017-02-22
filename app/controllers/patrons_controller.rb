@@ -16,6 +16,17 @@ class PatronsController < ApplicationController
     @patron = Patron.find(params[:id])
   end
 
+  def cancel_patron
+    @patron = Patron.find(params[:id])
+  end
+
+  def destroy_patron
+    @patron = Patron.find(params[:id])
+    @patron.destroy
+
+    redirect_to "/"
+  end
+
   private
   def patron_params
     params.require(:patron).permit(:name, :order_id)

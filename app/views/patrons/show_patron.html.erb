@@ -16,3 +16,7 @@
 <h4><a href="/patrons/<%= @patron.id %>/add">Add Item</a></h4>
 
 <h4><a href="/order/<%= Order.find(@patron.order_id).id %>">View Order</a></h4>
+
+<a href="/patrons/<%= @patron.id %>/cancel"><div>
+  <p>CANCEL ORDER</p>
+</div></a>
