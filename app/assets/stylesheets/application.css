@@ -14,12 +14,17 @@
  *= require_self
  */
 
+html {
+  background-color: white;
+}
+
 body {
   width: 1000px;
   border: 10px solid grey;
   padding: 25px;
   margin-left: auto;
   margin-right: auto;
+  background: beige;
 }
 
 header {
@@ -36,23 +41,38 @@ header {
   height: 100px;
   margin-top: -20px;
   border: 1px solid black;
+  border-bottom: 5px solid black;
 }
 
 .restaurant_box {
-  border: 1px solid black;
-  min-width: 290px;
-  margin-bottom: 20px;
+  border: 5px solid grey;
+  width: 280px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: white;
 }
 
 .order_box {
-  width: 300px;
-  border: 1px solid red;
-  margin-left: 100px;
+  border: 5px solid grey;
+  width: 280px;
+  height: 300px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: white;
 }
 
 .patron_box {
-  width: 275px;
+  width: 225px;
+  height: 75px;
   margin-left: 25px;
+  border: 1px solid black;
+  overflow-y: scroll;
+  padding-left: 10px;
+  background-color: beige;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .item_box {
@@ -72,8 +92,16 @@ header {
   font-size: 25px;
 }
 
-.head_patron {
+.head_patron_label {
   font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: -10px;
+  padding-left: 5px;
+}
+
+.head_patron {
+  text-align: right;
+  padding-right: 10px;
 }
 
 .item {
@@ -89,7 +117,63 @@ header {
 .restaurant_section {
   border: 1px solid green;
   padding: 10px;
+  padding-left: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+}
+
+.patron_line {
+  margin-top: 2.5px;
+  margin-bottom: 2.5px;
+}
+
+.box_header {
+  display: flex;
+  margin-left: -10px;
+  margin-top: -6px;
+}
+
+.box_header_right {
+  display: flex;
+  flex-direction: column;
+}
+
+.box_title {
+  font-size: 24px;
+  margin-bottom: -10px;
+  margin-top: -4px;
+  padding-left: 5px;
+  background: rgba(0,0,128,1);
+  width: 170px;
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  color: white;
+  text-decoration: none;
+  width: 193px;
+}
+
+.box_title a:visited {
+  text-decoration: none;
+}
+
+.box_title:hover {
+  background-color: rgba(0,0,128,.5)
+}
+
+.head_patron_box {
+  background-color: grey;
+  height: 59px;
+  border-top: 2px solid black;
+  border-bottom: 5px solid black;
+  width: 198px;
+}
+
+.page_break {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+  margin-left: -25px;
+  margin-right: -25px;
 }

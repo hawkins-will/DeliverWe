@@ -1,29 +1,42 @@
 <header>
-  <h1>DeliverWe</h1>
+  <h1><a href="/">DeliverWe</a></h1>
 </header>
-
-<h2>Orders!</h2>
-<% @orders.each do |order| %>
-<% @order_price = 0.00 %>
-<div class="order_box">
-    <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"><a href="/order/<%= order.id %>"><%= Restaurant.find(order.restaurant_id).name %></a></p>
-    <p><span class="head_patron">Head Patron: </span><%= order.head_patron %></p>
-    <% order.patrons.each do |patron| %>
-    <div class="patron_box">
-        <p><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
-        <% patron.items.each do |item| %>
-          <% @order_price = @order_price + item.price %>
-        <% end %>
+<div class="page_break">
+  <h2>Orders!</h2>
+</div>
+<div class="restaurant_section">
+  <% @orders.each do |order| %>
+  <% @order_price = 0.00 %>
+  <div class="order_box">
+    <div class="box_header">
+      <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"><p>
+      <div class="box_header_right">
+        <a href="/order/<%= order.id %>"><p class="box_title"><%= Restaurant.find(order.restaurant_id).name %></p></a>
+        <div class="head_patron_box">
+          <p class="head_patron_label">Head Patron:</p>
+          <p class="head_patron"><%= order.head_patron %></p>
+        </div>
+      </div>
     </div>
-    <% end %>
+      <div class="patron_box">
+        <% order.patrons.each do |patron| %>
+            <p class="patron_line"><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
+            <% patron.items.each do |item| %>
+              <% @order_price = @order_price + item.price %>
+            <% end %>
+        <% end %>
+      </div>
+      <br>
+      <p class="price">Total Price: <%= number_to_currency(@order_price) %></p>
+      <h4><a href="/order/<%= order.id %>/join">Join Order</a></h4>
+    </div>
     <br>
-    <p class="price">Total Price: <%= number_to_currency(@order_price) %></p>
-    <h4><a href="/order/<%= order.id %>/join">Join Order</a></h4>
-  </div>
-  <br>
-<% end %>
+  <% end %>
+</div>
 <br>
-<h2>Restaurants!</h2>
+<div class="page_break">
+  <h2>Restaurants!</h2>
+</div>
 <div class="restaurant_section">
   <% @restaurants.each do |restaurant| %>
     <div class="restaurant_box">
