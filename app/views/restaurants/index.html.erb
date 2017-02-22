@@ -40,7 +40,12 @@
 <div class="restaurant_section">
   <% @restaurants.each do |restaurant| %>
     <div class="restaurant_box">
-      <p><img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo"><a href="<%= restaurant.id %>"><span class ="restaurant_name"><%= restaurant.name %></span></a></p>
+      <div class="box_header">
+        <p><img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo"></p>
+        <a href="<%= restaurant.id %>"><div class="restaurant_header_right">
+            <p class ="restaurant_name"><%= restaurant.name %></p>
+        </div></a>
+      </div>
       <p><a href="<%= restaurant.menu_link %>">Menu</a></p>
       <h4><a href="/<%= restaurant.id %>/new_order">SUGGEST</a></h4>
     </div>
