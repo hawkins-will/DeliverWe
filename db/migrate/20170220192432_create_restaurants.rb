@@ -6,6 +6,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.0]
       t.string :menu_link
       t.float :delivery_fee
       t.float :delivery_min
+      t.float :tax
     end
   end
 end

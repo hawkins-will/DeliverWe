@@ -2,7 +2,7 @@
   <h1><a href="/">DeliverWe</a></h1>
 </header>
 
-<h1>Join <%= @order.head_patron %>'s Order</h1>
+<h1>Join Order from <%= Restaurant.find(@order.restaurant_id).name %></h1>
 
 <form action="/join/<%= @order.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

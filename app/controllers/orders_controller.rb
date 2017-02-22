@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @order = Order.create!(order_params)
 
-    redirect_to "/"
+    redirect_to "/order/#{@order.id}/join"
   end
 
   def show_order
@@ -18,6 +18,6 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:head_patron, :total_price, :tip, :restaurant_id)
+    params.require(:order).permit(:total_price, :tip, :restaurant_id)
   end
 end

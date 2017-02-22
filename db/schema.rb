@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20170221012827) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string  "head_patron"
     t.float   "total_price"
     t.float   "tip"
+    t.string  "comment"
     t.integer "restaurant_id"
     t.index ["restaurant_id"], name: "index_orders_on_restaurant_id", using: :btree
   end
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170221012827) do
     t.string "menu_link"
     t.float  "delivery_fee"
     t.float  "delivery_min"
+    t.float  "tax"
   end
 
 end

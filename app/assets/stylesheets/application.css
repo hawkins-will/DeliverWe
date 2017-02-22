@@ -205,3 +205,9 @@ header {
   color: red;
   font-weight: bold;
 }
+
+.fee {
+  padding-left: 30px;
+  margin-top: 0px;
+  margin-bottom: -20px;
+}

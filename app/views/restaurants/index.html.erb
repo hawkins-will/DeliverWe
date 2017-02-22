@@ -14,7 +14,11 @@
         <a href="/order/<%= order.id %>"><p class="box_title"><%= Restaurant.find(order.restaurant_id).name %></p></a>
         <div class="head_patron_box">
           <p class="head_patron_label">Head Patron:</p>
-          <p class="head_patron"><%= order.head_patron %></p>
+          <% if order.patrons.length >= 1 %>
+            <p class="head_patron"><%= order.patrons.first.name %></p>
+          <% else %>
+            <p class="head_patron">No One Has Taken Charge</p>
+          <% end %>
         </div>
       </div>
     </div>

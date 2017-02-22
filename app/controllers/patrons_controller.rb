@@ -9,7 +9,7 @@ class PatronsController < ApplicationController
     @order = Order.find(params[:id])
     @patron = Patron.create!(patron_params)
 
-    redirect_to "/patrons/#{@patron.id}"
+    redirect_to "/patrons/#{@patron.id}/add"
   end
 
   def show_patron
