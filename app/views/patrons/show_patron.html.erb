@@ -4,6 +4,7 @@
   <div class="item_box">
     <p class="item"><%= item.name %></p>
     <p class="price">$<%= item.price %></p>
+    <p class="price"><a href="/items/<%= item.id %>">Edit</a></p>
   </div>
   <% @patron_price = @patron_price + item.price %>
   <br>

@@ -1,0 +1,44 @@
+<h1>Edit <%= @item.name %></h1>
+
+<form action="/items/<%= @item.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="put">
+
+  <label for="item[name]">What would you like to order?</label>
+  <br>
+  <input name="item[name]" value="<%= @item.name %>">
+
+  <br>
+  <br>
+
+  <label for="item[price]">Price</label>
+  <br>
+  <input name="item[price]" value="<%= @item.price %>">
+
+  <br>
+  <br>
+
+  <label for="item[modifications]">Would you like to modify anything?</label>
+  <br>
+  <input name="item[modifications]" value="<%= @item.modifications %>">
+
+  <br>
+  <br>
+
+  <label for="item[modifications_price]">Price of modifications</label>
+  <br>
+  <input name="item[modifications_price]" value="<%= @item.modifications_price %>">
+
+  <br>
+  <br>
+
+  <input type="submit" value="SUBMIT">
+
+</form>
+
+
+<form action="/items/<%= @item.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="delete">
+  <input class="button" type="submit" value="CANCEL HAPPINESS">
+</form>

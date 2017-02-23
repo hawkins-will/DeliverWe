@@ -78,7 +78,6 @@ header {
 
 .item_box {
   width: 300px;
-  border: 1px solid grey;
   padding-top: 15px;
   padding-right: 10px;
   margin-left: 30px;
@@ -258,10 +257,15 @@ header {
   width: 138px;
   background-color: rgba(201,156,110,1);
   color: black;
+  font-weight: bold;
+}
+
+a .restaurant_quadrant {
+  background-color: rgba(156,201,110,1);
 }
 
 a .restaurant_quadrant:hover {
-  background-color: rgba(201,156,110,0.5);
+  background-color: rgba(102,51,153,.8);
 }
 
 .second_header {
@@ -299,7 +303,7 @@ a .restaurant_quadrant:hover {
   height: 125px;
   border-bottom: 1px solid black;
   margin: 0px;
-  padding-left: 25px;
+  padding-left: 50px;
 }
 
 
@@ -309,9 +313,10 @@ a .restaurant_quadrant:hover {
   justify-content: center;
   flex-grow: 1;
   height: 61.5px;
-  width: 120px;
+  width: 100px;
   background-color: rgba(201,156,110,1);
   text-decoration: none;
+  font-weight: bold;
 }
 
 .border_right {
