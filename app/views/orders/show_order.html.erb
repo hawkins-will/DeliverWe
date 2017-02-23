@@ -1,23 +1,50 @@
-<h1>Showing Order!</h1>
-<p><img class="logo" src="<%= Restaurant.find(@order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(@order.restaurant_id).name %> Logo"><a href="/order/<%= @order.id %>"><%= Restaurant.find(@order.restaurant_id).name %></a></p>
-<p>Delivery Minimum: <%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %></p>
-<p>Delivery Fee: <%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_fee) %></p>
-<p><a href="<%= Restaurant.find(@order.restaurant_id).menu_link %>">See Menu</a></p>
+<div class="second_header">
+  <img class="second_header_logo" src="<%= Restaurant.find(@order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(@order.restaurant_id).name %> Logo">
+  <div class="second_header_right">
+    <p class="restaurant_title"><%= Restaurant.find(@order.restaurant_id).name %></p>
 <% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
-<p>Tax: <%= @order_tax %>%</p>
-<% if @order.patrons.length >= 1 %>
-  <p><span class="head_patron">Head Patron: </span><%= @order.patrons.first.name %></p>
-<% else %>
-<p><span class="head_patron">Head Patron: No One Has Taken Charge</span></p>
-<% end %>
-<% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
-  <% unless @order.note == "" %>
-    <div class="note_box">
-      <p><%= @order.note %></p>
+    <div class="second_header_bottom_right">
+      <div class="second_header_box border_right">
+        <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %> Minimum</p>
+      </div>
+      <div class="second_header_box border_right">
+        <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_fee) %> Fee</p>
+      </div>
+      <div class="second_header_box border_right">
+        <p>Tax: <%= @order_tax %>%</p>
+      </div>
     </div>
-  <% end %>
+    <div class="second_header_bottom_right_two">
+      <a class="second_header_box" href="<%= Restaurant.find(@order.restaurant_id).menu_link %>"><div class="second_header_box border_right">
+        <p>See Menu</p>
+      </div></a>
+      <a class="second_header_box" href="/order/<%= @order.id %>/join"><div class="second_header_box border_right">
+        <p>JOIN</p>
+      </div></a>
+      <a  class="second_header_box" href="/order/<%= @order.id %>/cancel"><div class="second_header_box">
+        <p>CANCEL</p>
+      </div></a>
+    </div>
+  </div>
+</div>
+<% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
+<br>
+<% unless @order.note == "" %>
+  <div class="note_box">
+    <p><%= @order.note %></p>
+  </div>
+<% end %>
+<br>
+<% if @order.patrons.length >= 1 %>
+  <p class="center">Head Patron: <%= @order.patrons.first.name %></p>
+<% else %>
+  <p class="center">Head Patron: No One Has Taken Charge</p>
+<% end %>
+<br>
+<hr>
+<br>
 <% @order.patrons.each do |patron| %>
-<div>
+  <div>
   <% @patron_price = 0.00 %>
     <p><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
     <% patron.items.each do |item| %>
@@ -54,8 +81,4 @@
 <% if @order_price < Restaurant.find(@order.restaurant_id).delivery_min %>
   <p class="price red">UNMET DELIVERY MINIMUM: <%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %></p>
 <% end %>
-<h4><a href="/order/<%= @order.id %>/join">Join Order</a></h4>
 </div>
-<a href="/order/<%= @order.id %>/cancel"><div>
-  <p>CANCEL ORDER</p>
-</div></a>
