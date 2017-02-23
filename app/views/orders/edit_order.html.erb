@@ -1,0 +1,12 @@
+<h1>Edit Note for order from <%= @order.restaurant.name %></h1>
+
+<form action="/order/<%= @order.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="put">
+
+  <textarea name="order[note]"><%= @order.note %></textarea>
+  <br>
+  <br>
+  <input type="submit" value="SUBMIT">
+
+</form>

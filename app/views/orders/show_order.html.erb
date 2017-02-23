@@ -35,6 +35,8 @@
   </div>
 <% end %>
 <br>
+<p><a href="/order/<%= @order.id %>/edit">Edit</a></p>
+<br>
 <% if @order.patrons.length >= 1 %>
   <p class="center">Head Patron: <%= @order.patrons.first.name %></p>
 <% else %>

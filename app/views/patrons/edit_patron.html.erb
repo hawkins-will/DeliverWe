@@ -1,0 +1,11 @@
+<h1>Let's Edit <%= @patron.name %>'s Name</h1>
+
+<form action="/patrons/<%= @patron.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="put">
+
+  <input name="patron[name]" value="<%= @patron.name %>">
+
+  <input type="submit" value="NAMECHANGE">
+
+</form>

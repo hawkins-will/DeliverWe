@@ -16,6 +16,17 @@ class PatronsController < ApplicationController
     @patron = Patron.find(params[:id])
   end
 
+  def edit_patron
+    @patron = Patron.find(params[:id])
+  end
+
+  def update_patron
+    @patron = Patron.find(params[:id])
+    @patron.update(patron_params)
+
+    redirect_to "/patrons/#{@patron.id}"
+  end
+
   def cancel_patron
     @patron = Patron.find(params[:id])
   end

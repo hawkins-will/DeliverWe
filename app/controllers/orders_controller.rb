@@ -27,6 +27,18 @@ class OrdersController < ApplicationController
     redirect_to "/"
   end
 
+  def edit_order
+    @order = Order.find(params[:id])
+  end
+
+  def update_order
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+
+    redirect_to "/order/#{@order.id}"
+  end
+
+
   private
   def order_params
     params.require(:order).permit(:tip, :note, :restaurant_id)
