@@ -1,7 +1,3 @@
-<header>
-  <h1><a class="no_underline" href="/">DeliverWe</a></h1>
-</header>
-
 <h1>Join Order from <%= Restaurant.find(@order.restaurant_id).name %></h1>
 
 <form action="/join/<%= @order.id %>" method="post">

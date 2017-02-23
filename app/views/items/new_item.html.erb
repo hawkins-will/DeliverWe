@@ -1,8 +1,6 @@
-<header>
-  <h1><a class="no_underline" href="/">DeliverWe</a></h1>
-</header>
-
 <h1>Add to <%= @patron.name %>'s Order</h1>
+
+<p><a href="<%= @patron.order.restaurant.menu_link %>"><%= @patron.order.restaurant.name %> Menu</a></p>
 
 <form action="/patrons/<%= @patron.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

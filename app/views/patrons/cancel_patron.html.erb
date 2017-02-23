@@ -1,7 +1,3 @@
-<header>
-  <h1><a class="no_underline" href="/">DeliverWe</a></h1>
-</header>
-
 <p>Are you sure you'd like to cancel this Personal Order? You'll end up hungy, and that's sad!</p>
 <form action="/patrons/<%= @patron.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

@@ -1,7 +1,3 @@
-<header>
-  <h1><a class="no_underline" href="/">DeliverWe</a></h1>
-</header>
-
 <h1>Showing Order!</h1>
 <p><img class="logo" src="<%= Restaurant.find(@order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(@order.restaurant_id).name %> Logo"><a href="/order/<%= @order.id %>"><%= Restaurant.find(@order.restaurant_id).name %></a></p>
 <p>Delivery Minimum: <%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %></p>
