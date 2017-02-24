@@ -7,6 +7,7 @@
   <% end %>
   <% @orders = @orders.reverse %>
   <% @orders.each do |order| %>
+  <% @order_min = order.restaurant.delivery_min %>
   <% @order_tax = Restaurant.find(order.restaurant_id).tax %>
   <% @order_price = 0.00 + Restaurant.find(order.restaurant_id).delivery_fee %>
   <div class="order_box">
@@ -40,6 +41,9 @@
       <% if order.note %>
         <div class="index_note">
           <p><%= order.note %></p>
+          <% if @order_min > @order_price*(1+(@order_tax/100)) %>
+            <p class="red index_min"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
+          <% end %>
         </div>
       <% end %>
     </div>
