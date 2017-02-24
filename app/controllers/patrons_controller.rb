@@ -1,37 +1,37 @@
 class PatronsController < ApplicationController
 
-  def new_patron
+  def new
     @order = Order.find(params[:id])
     @patron = Patron.new
   end
 
-  def create_patron
+  def create
     @order = Order.find(params[:id])
     @patron = Patron.create!(patron_params)
 
     redirect_to "/patrons/#{@patron.id}/add"
   end
 
-  def show_patron
+  def show
     @patron = Patron.find(params[:id])
   end
 
-  def edit_patron
+  def edit
     @patron = Patron.find(params[:id])
   end
 
-  def update_patron
+  def update
     @patron = Patron.find(params[:id])
     @patron.update(patron_params)
 
     redirect_to "/patrons/#{@patron.id}"
   end
 
-  def cancel_patron
+  def cancel
     @patron = Patron.find(params[:id])
   end
 
-  def destroy_patron
+  def destroy
     @patron = Patron.find(params[:id])
     @patron.destroy
 

@@ -1,29 +1,29 @@
 class ItemsController < ApplicationController
 
-  def new_item
+  def new
     @patron = Patron.find(params[:id])
     @item = Item.new
   end
 
-  def create_item
+  def create
     @patron = Patron.find(params[:id])
     @item = Item.create!(item_params)
 
     redirect_to "/patrons/#{@patron.id}"
   end
 
-  def edit_item
+  def edit
     @item = Item.find(params[:id])
   end
 
-  def update_item
+  def update
     @item = Item.find(params[:id])
     @item.update(item_params)
 
     redirect_to "/patrons/#{@item.patron.id}"
   end
 
-  def destroy_item
+  def destroy
     @item = Item.find(params[:id])
     @item.destroy
 
