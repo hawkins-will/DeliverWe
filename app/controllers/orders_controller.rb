@@ -1,15 +1,15 @@
 class OrdersController < ApplicationController
 
   def new
-    @restaurant = Restaurant.find(params[:id])
-    @order = Order.new
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @order = @restaurant.orders.new
   end
 
   def create
-    @restaurant = Restaurant.find(params[:id])
-    @order = Order.create!(order_params)
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @order = @restaurant.orders.create(order_params)
 
-    redirect_to "/order/#{@order.id}/join"
+    redirect_to new_order_patron_path(@order)
   end
 
   def show
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.destroy
 
-    redirect_to "/"
+    redirect_to root_path
   end
 
   def edit
@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.update(order_params)
 
-    redirect_to "/order/#{@order.id}"
+    redirect_to order_path(@order)
   end
 
 

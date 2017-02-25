@@ -1,15 +1,15 @@
 class ItemsController < ApplicationController
 
   def new
-    @patron = Patron.find(params[:id])
-    @item = Item.new
+    @patron = Patron.find(params[:patron_id])
+    @item = @patron.items.new
   end
 
   def create
-    @patron = Patron.find(params[:id])
-    @item = Item.create!(item_params)
+    @patron = Patron.find(params[:patron_id])
+    @item = @patron.items.create!(item_params)
 
-    redirect_to "/patrons/#{@patron.id}"
+    redirect_to patron_path(@patron)
   end
 
   def edit
@@ -20,14 +20,14 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.update(item_params)
 
-    redirect_to "/patrons/#{@item.patron.id}"
+    redirect_to patron_path(@item.patron)
   end
 
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
 
-      redirect_to "/patrons/#{@item.patron.id}"
+      redirect_to patron_path(@item.patron)
 
   end
 

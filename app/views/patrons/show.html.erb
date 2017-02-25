@@ -1,19 +1,19 @@
 <h1>Hello <%= @patron.name %></h1>
-<p><a href="/patrons/<%= @patron.id %>/edit">Edit</a></p>
+  <p><%= link_to "EDIT", edit_patron_path(@patron) %></p>
 <% @patron_price = 0.00 %>
 <% @patron.items.each do |item| %>
   <div class="item_box">
     <p class="item"><%= item.name %></p>
     <p class="price">$<%= item.price %></p>
-    <p class="price"><a href="/items/<%= item.id %>">Edit</a></p>
+    <p class="price"><%= link_to "EDIT", edit_item_path(item) %></p>
   </div>
   <% @patron_price = @patron_price + item.price %>
   <br>
 <% end %>
 
-<h4><a href="/patrons/<%= @patron.id %>/add">Add Item</a></h4>
+<h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>
 
-<h4><a href="/order/<%= Order.find(@patron.order_id).id %>">View Order</a></h4>
+<h4> <%= link_to "VIEW ORDER", order_path(@patron.order) %></h4>
 
 <a href="/patrons/<%= @patron.id %>/cancel"><div>
   <p>CANCEL ORDER</p>

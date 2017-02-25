@@ -1,22 +1,11 @@
 <h1>Join Order from <%= Restaurant.find(@order.restaurant_id).name %></h1>
 
-<form action="/join/<%= @order.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-  <label for="patron[name]">What's your Name?</label>
+<%= form_for [@order, @patron] do |f| %>
+  <%= f.label :name %>
   <br>
-  <input name="patron[name]">
+  <%= f.text_field :name %>
 
-  <input type="hidden" name="patron[order_id]" value="<%= @order.id %>">
-
-  <input type="hidden" name="patron[personal_order]" value="">
-
-  <input type="hidden" name="patron[personal_price]" value="0">
-  <br>
-  <br>
-
-  <input type="submit" value="JOIN">
-
-</form>
+  <%= f.submit %>
+<% end %>
 
 <h4><a href="/">HOME</a></h4>

@@ -1,15 +1,15 @@
 class PatronsController < ApplicationController
 
   def new
-    @order = Order.find(params[:id])
-    @patron = Patron.new
+    @order = Order.find(params[:order_id])
+    @patron = @order.patrons.new
   end
 
   def create
-    @order = Order.find(params[:id])
-    @patron = Patron.create!(patron_params)
+    @order = Order.find(params[:order_id])
+    @patron = @order.patrons.create!(patron_params)
 
-    redirect_to "/patrons/#{@patron.id}/add"
+    redirect_to new_patron_item_path(@patron)
   end
 
   def show
@@ -24,7 +24,7 @@ class PatronsController < ApplicationController
     @patron = Patron.find(params[:id])
     @patron.update(patron_params)
 
-    redirect_to "/patrons/#{@patron.id}"
+    redirect_to patron_path(@patron)
   end
 
   def cancel
@@ -35,7 +35,7 @@ class PatronsController < ApplicationController
     @patron = Patron.find(params[:id])
     @patron.destroy
 
-    redirect_to "/"
+    redirect_to root_path
   end
 
   private

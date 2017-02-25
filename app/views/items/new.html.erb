@@ -1,44 +1,37 @@
 <h1>Add to <%= @patron.name %>'s Order</h1>
 
-<p><a href="<%= @patron.order.restaurant.menu_link %>"><%= @patron.order.restaurant.name %> Menu</a></p>
+<p><a target="_blank" href="<%= @patron.order.restaurant.menu_link %>"><%= @patron.order.restaurant.name %> Menu</a></p>
 
-<form action="/patrons/<%= @patron.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-  <label for="item[name]">What would you like to order?</label>
+<%= form_for [@patron, @item] do |f| %>
+  <%= f.label :name %>
   <br>
-  <input name="item[name]">
+  <%= f.text_field :name %>
 
   <br>
   <br>
 
-  <label for="item[price]">Price</label>
+  <%= f.label :price %>
   <br>
-  <input name="item[price]">
-
-  <br>
-  <br>
-
-  <label for="item[modifications]">Would you like to modify anything?</label>
-  <br>
-  <input name="item[modifications]">
+  <%= f.text_field :price %>
 
   <br>
   <br>
 
-  <label for="item[modifications_price]">Price of modifications</label>
+  <%= f.label :modifications %>
   <br>
-  <input name="item[modifications_price]">
-
-
-  <input type="hidden" name="item[patron_id]" value="<%= @patron.id %>">
+  <%= f.text_area :modifications %>
 
   <br>
   <br>
 
-  <input type="submit" value="SUBMIT">
+  <%= f.label :modifications_price %>
+  <br>
+  <%= f.text_field :modifications_price %>
 
-</form>
+  <br>
+  <br>
 
+  <%= f.submit %>
+<% end %>
 
 <h4><a href="/">HOME</a></h4>

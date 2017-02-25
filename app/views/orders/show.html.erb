@@ -15,12 +15,14 @@
       </div>
     </div>
     <div class="second_header_bottom_right_two">
-      <a class="second_header_box" href="<%= Restaurant.find(@order.restaurant_id).menu_link %>"><div class="second_header_box border_right">
+      <a target="_blank" class="second_header_box" href="<%= Restaurant.find(@order.restaurant_id).menu_link %>"><div class="second_header_box border_right">
         <p>MENU</p>
       </div></a>
-      <a class="second_header_box" href="/order/<%= @order.id %>/join"><div class="second_header_box border_right">
-        <p>JOIN</p>
-      </div></a>
+      <%= link_to new_order_patron_path(@order) do %>
+          <div class="second_header_box border_right">
+          <p>JOIN</p>
+        </div>
+      <% end %>
       <a  class="second_header_box" href="/order/<%= @order.id %>/cancel"><div class="second_header_box border_right">
         <p>CANCEL</p>
       </div></a>
@@ -35,7 +37,7 @@
   </div>
 <% end %>
 <br>
-<p><a href="/order/<%= @order.id %>/edit">Edit</a></p>
+<p><%= link_to "EDIT", edit_order_path(@order) %></p>
 <br>
 <% if @order.patrons.length >= 1 %>
   <p class="center">Head Patron: <%= @order.patrons.first.name %></p>
@@ -48,7 +50,7 @@
 <% @order.patrons.each do |patron| %>
   <div>
   <% @patron_price = 0.00 %>
-    <p><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
+    <p><%= link_to patron.name, patron %></p>
     <% patron.items.each do |item| %>
       <p class="item"><%= item.name %></p>
       <p class="price"><%= number_to_currency(item.price) %></p>

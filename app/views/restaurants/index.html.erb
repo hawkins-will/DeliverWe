@@ -14,7 +14,9 @@
     <div class="box_header">
       <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"><p>
       <div class="box_header_right">
-        <a class="no_underline" href="/order/<%= order.id %>"><p class="box_title"><%= Restaurant.find(order.restaurant_id).name %></p></a>
+        <%= link_to(order) do %>
+          <p class="box_title"><%= Restaurant.find(order.restaurant_id).name %></p>
+        <% end %>
         <div class="head_patron_box">
           <p class="head_patron_label">Head Patron:</p>
           <% if order.patrons.length >= 1 %>
@@ -25,10 +27,11 @@
         </div>
       </div>
     </div>
-      <h4 class="join_order"><a href="/order/<%= order.id %>/join">Join Order</a></h4>
+      <h4 class="join_order"><%= link_to "Join Order", new_order_patron_path(order) %></h4>
       <div class="patron_box">
         <% order.patrons.each do |patron| %>
-            <p class="patron_line"><a href="/patrons/<%= patron.id %>"><%= patron.name %></a></p>
+            <p class="patron_line">
+              <%= link_to patron.name, patron %></p>
             <% patron.items.each do |item| %>
               <% @order_price = @order_price + item.price %>
               <% if item.modifications_price %>
@@ -58,17 +61,21 @@
     <div class="restaurant_box">
       <div class="box_header">
         <p><img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo"></p>
-        <a class="no_underline" href="/<%= restaurant.id %>/new_order"><div class="restaurant_header_right">
+        <%= link_to new_restaurant_order_path(restaurant) do %>
+          <div class="restaurant_header_right">
             <p class ="restaurant_name"><%= restaurant.name %></p>
-        </div></a>
+        </div>
+        <% end %>
       </div>
       <div class="restaurant_bottom_box">
-        <a class="no_underline" href="<%= restaurant.menu_link %>"><div class="restaurant_quadrant">
+        <a target="_blank" class="no_underline" href="<%= restaurant.menu_link %>"><div class="restaurant_quadrant">
           <p>Menu</p>
         </div></a>
-        <a class="no_underline" href="/<%= restaurant.id %>/new_order"><div class="restaurant_quadrant">
-          <p>SUGGEST</p>
-        </div></a>
+        <%= link_to new_restaurant_order_path(restaurant) do %>
+          <div class="restaurant_quadrant">
+            <p>SUGGEST</p>
+          </div>
+        <% end %>
         <div class="restaurant_quadrant">
           <p><%= number_to_currency(restaurant.delivery_fee) %> Fee</p>
         </div>
