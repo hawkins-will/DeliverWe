@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-      <h4 class="join_order"><%= link_to "Join Order", new_order_patron_path(order) %></h4>
+      <h4 class="join_order"><%= link_to "Join Order", order_patrons_path(order), method: :post %></h4>
       <div class="patron_box">
         <% order.patrons.each do |patron| %>
             <p class="patron_line">

@@ -8,8 +8,12 @@ class OrdersController < ApplicationController
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @order = @restaurant.orders.create(order_params)
+    @patron = @order.patrons.new
+    @patron.name = current_user.email
+    @patron.user = current_user
+    @patron.save
 
-    redirect_to new_order_patron_path(@order)
+    redirect_to new_patron_item_path(@patron)
   end
 
   def show

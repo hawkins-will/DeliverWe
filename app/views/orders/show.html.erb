@@ -18,7 +18,7 @@
       <a target="_blank" class="second_header_box" href="<%= Restaurant.find(@order.restaurant_id).menu_link %>"><div class="second_header_box border_right">
         <p>MENU</p>
       </div></a>
-      <%= link_to new_order_patron_path(@order) do %>
+      <%= link_to order_patrons_path(@order), method: :post do %>
           <div class="second_header_box border_right">
           <p>JOIN</p>
         </div>

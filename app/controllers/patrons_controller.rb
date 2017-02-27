@@ -7,7 +7,10 @@ class PatronsController < ApplicationController
 
   def create
     @order = Order.find(params[:order_id])
-    @patron = @order.patrons.create!(patron_params.merge(user: current_user))
+    @patron = @order.patrons.new
+    @patron.name = current_user.email
+    @patron.user = current_user
+    @patron.save
 
     redirect_to new_patron_item_path(@patron)
   end
