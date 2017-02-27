@@ -7,7 +7,7 @@ class PatronsController < ApplicationController
 
   def create
     @order = Order.find(params[:order_id])
-    @patron = @order.patrons.create!(patron_params)
+    @patron = @order.patrons.create!(patron_params.merge(user: current_user))
 
     redirect_to new_patron_item_path(@patron)
   end
@@ -18,6 +18,10 @@ class PatronsController < ApplicationController
 
   def edit
     @patron = Patron.find(params[:id])
+    unless @patron.user == current_user || @patron.order.patrons.first == current_user
+      flash[:alert] = "You're not authorized to Edit other peoples' orders"
+      redirect_to patron_path(@patron)
+    end
   end
 
   def update
@@ -33,9 +37,13 @@ class PatronsController < ApplicationController
 
   def destroy
     @patron = Patron.find(params[:id])
-    @patron.destroy
-
-    redirect_to root_path
+    if @patron.user == current_user || @patron.order.patrons.first == current_user
+      @patron.destroy
+      redirect_to root_path
+    else
+      flash[:alert] = "You're not authorized to Delete other peoples' orders"
+      redirect_to patron_path(@patron)
+    end
   end
 
   private
