@@ -1,5 +1,7 @@
 <h1>Hello <%= @patron.name %></h1>
-  <p><%= link_to "EDIT", edit_patron_path(@patron) %></p>
+  <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+    <p><%= link_to "EDIT", edit_patron_path(@patron) %></p>
+  <% end %>
 <% @patron_price = 0.00 %>
 <% @patron.items.each do |item| %>
   <div class="item_box">
@@ -11,7 +13,9 @@
         <p class="price"><%= number_to_currency(item.modifications_price) %></p>
       <% end %>
     <% end %>
-    <p class="price"><%= link_to "EDIT", edit_item_path(item) %></p>
+    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+      <p class="price"><%= link_to "EDIT", edit_item_path(item) %></p>
+    <% end %>
   </div>
   <% @patron_price = @patron_price + item.price %>
   <br>
@@ -27,10 +31,14 @@
 </div>
 <p><%= @patron.name %>'s Price: <%= number_to_currency(@patron_price*(1+(@patron.order.restaurant.tax/100))) %></p>
 
-<h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>
+<% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+  <h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>
+<% end %>
 
 <h4> <%= link_to "VIEW ORDER", order_path(@patron.order) %></h4>
 
 <a href="/patrons/<%= @patron.id %>/cancel"><div>
+<% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
   <p>CANCEL ORDER</p>
+<% end %>
 </div></a>

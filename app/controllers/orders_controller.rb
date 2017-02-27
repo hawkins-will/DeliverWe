@@ -18,17 +18,29 @@ class OrdersController < ApplicationController
 
   def cancel
     @order = Order.find(params[:id])
+    unless @order.patrons.first.user == current_user
+      flash[:alert] = "You're not authorized to Cancel this order"
+      redirect_to order_path(@order)
+    end
   end
 
   def destroy
     @order = Order.find(params[:id])
-    @order.destroy
-
-    redirect_to root_path
+    if @order.patrons.first.user == current_user
+      @order.destroy
+      redirect_to root_path
+    else
+      flash[:alert] = "You're not authorized to Cancel this order"
+      redirect_to order_path(@order)
+    end
   end
 
   def edit
     @order = Order.find(params[:id])
+    unless @order.patrons.first.user == current_user
+      flash[:alert] = "You're not authorized to Edit this order"
+      redirect_to order_path(@order)
+    end
   end
 
   def update

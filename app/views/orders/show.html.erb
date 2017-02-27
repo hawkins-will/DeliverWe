@@ -23,9 +23,11 @@
           <p>JOIN</p>
         </div>
       <% end %>
-      <a  class="second_header_box" href="/order/<%= @order.id %>/cancel"><div class="second_header_box border_right">
-        <p>CANCEL</p>
-      </div></a>
+      <% if @order.patrons.first.user == current_user %>
+        <a  class="second_header_box" href="/order/<%= @order.id %>/cancel"><div class="second_header_box border_right">
+          <p>CANCEL</p>
+        </div></a>
+      <% end %>
     </div>
   </div>
 </div>
@@ -36,7 +38,9 @@
   <p><%= @order.note %></p>
 </div>
 <br>
-<p><%= link_to "EDIT", edit_order_path(@order) %></p>
+<% if @order.patrons.first.user == current_user %>
+  <p><%= link_to "EDIT", edit_order_path(@order) %></p>
+<% end %>
 <br>
 <% if @order.patrons.length >= 1 %>
   <p class="center">Head Patron: <%= @order.patrons.first.name %></p>
