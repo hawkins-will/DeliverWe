@@ -5,11 +5,27 @@
   <div class="item_box">
     <p class="item"><%= item.name %></p>
     <p class="price">$<%= item.price %></p>
+    <% unless item.modifications == "" %>
+      <p class="modifications">+ <%= item.modifications %></p>
+      <% if item.modifications_price %>
+        <p class="price"><%= number_to_currency(item.modifications_price) %></p>
+      <% end %>
+    <% end %>
     <p class="price"><%= link_to "EDIT", edit_item_path(item) %></p>
   </div>
   <% @patron_price = @patron_price + item.price %>
   <br>
 <% end %>
+
+<% @patron_fee = (Restaurant.find(@patron.order.restaurant_id).delivery_fee)/@patron.order.patrons.length %>
+<div class="item_box">
+  <p class="fee">Delivery Fee</p>
+  <p class="price"><%= number_to_currency(@patron_fee) %></p>
+  <% @patron_price = @patron_price + @patron_fee %>
+  <p class="item">Tax</p>
+  <p class="price"><%= number_to_currency(@patron_price*(@patron.order.restaurant.tax/100)) %></p>
+</div>
+<p><%= @patron.name %>'s Price: <%= number_to_currency(@patron_price*(1+(@patron.order.restaurant.tax/100))) %></p>
 
 <h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>
 

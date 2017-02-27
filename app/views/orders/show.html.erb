@@ -31,11 +31,10 @@
 </div>
 <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
 <br>
-<% unless @order.note == "" %>
-  <div class="note_box">
-    <p><%= @order.note %></p>
-  </div>
-<% end %>
+<div class="note_box">
+  <p class="center">Order will be placed at <%= @order.time %></p>
+  <p><%= @order.note %></p>
+</div>
 <br>
 <p><%= link_to "EDIT", edit_order_path(@order) %></p>
 <br>
@@ -44,6 +43,8 @@
 <% else %>
   <p class="center">Head Patron: No One Has Taken Charge</p>
 <% end %>
+<br>
+<p class="center">*****Please Note that a $5.00 tip is INCLUDED on all orders*****</p>
 <br>
 <hr>
 <br>
@@ -74,15 +75,21 @@
     <p class="item">Tax</p>
     <p class="price"><%= number_to_currency(@patron_price*(@order_tax/100)) %></p>
     <br>
-    <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price*(1+(@order_tax/100))) %></p>
+    <% @patron_price = @patron_price*(1+(@order_tax/100)) %>
+    <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
+    <p class="price">with Tip: <%= number_to_currency(@patron_price+(5.00/@order.patrons.length)) %></p>
     <hr>
   </div>
 <br>
 <% end %>
 <br>
 <% @order_price = @order_price*(1+(@order_tax/100)) %>
-<p class="price">Total Price: <%= number_to_currency(@order_price) %></p>
-<% if @order_price < Restaurant.find(@order.restaurant_id).delivery_min %>
-  <p class="price red">UNMET DELIVERY MINIMUM: <%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %></p>
+<p class="price">Final Price with Tip: <%= number_to_currency(@order_price + 5.00) %></p>
+<p class="price">Before Tip: <%= number_to_currency(@order_price) %></p>
+<hr>
+<br>
+<% @order_min = Restaurant.find(@order.restaurant_id).delivery_min %>
+<% if @order_price < @order_min %>
+  <p class="price red"> <%= number_to_currency(@order_min - @order_price) %> short of Minimum</p>
 <% end %>
 </div>
