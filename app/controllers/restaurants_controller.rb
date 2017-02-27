@@ -114,28 +114,24 @@ class RestaurantsController < ApplicationController
 
     if @name
       @restaurant.name = @name
-      @restaurant.save
     end
     if @tax
       @restaurant.tax = @tax
-      @restaurant.save
     end
     if @delivery_fee
       @restaurant.delivery_fee = @delivery_fee
-      @restaurant.save
     end
     if @delivery_min
       @restaurant.delivery_min = @delivery_min
-      @restaurant.save
     end
     if @menu_link
       @restaurant.menu_link = @menu_link
-      @restaurant.save
     end
     if @restaurant_logo
       @restaurant.logo_url = @restaurant_logo
-      @restaurant.save
     end
+
+    @restaurant.save
 
     redirect_to restaurant_path(@restaurant)
   end
