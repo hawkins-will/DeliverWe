@@ -347,3 +347,15 @@ a .second_header_box {
   color: white;
   text-decoration: none;
 }
+
+.notice {
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 255, 0, 1);
+}
+
+.alert {
+  text-align: center;
+  color: white;
+  background-color: rgba(255, 0, 0, 1);
+}

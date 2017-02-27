@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root to: "restaurants#index"
 
   get "order/:id/cancel" => "orders#cancel"
