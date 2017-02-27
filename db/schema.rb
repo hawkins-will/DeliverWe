@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227172849) do
+ActiveRecord::Schema.define(version: 20170227231630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20170227172849) do
     t.integer "user_id"
     t.index ["order_id"], name: "index_patrons_on_order_id", using: :btree
     t.index ["user_id"], name: "index_patrons_on_user_id", using: :btree
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.index ["order_id"], name: "index_posts_on_order_id", using: :btree
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -66,4 +76,6 @@ ActiveRecord::Schema.define(version: 20170227172849) do
   end
 
   add_foreign_key "patrons", "users"
+  add_foreign_key "posts", "orders"
+  add_foreign_key "posts", "users"
 end

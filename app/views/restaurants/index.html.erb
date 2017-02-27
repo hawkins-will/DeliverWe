@@ -46,6 +46,7 @@
           <p><%= order.note %></p>
           <% if @order_min > @order_price*(1+(@order_tax/100)) %>
             <p class="red index_min"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
+            <p>Order will be placed at <%= order.time %></p>
           <% end %>
         </div>
       <% end %>
