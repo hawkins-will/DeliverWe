@@ -29,7 +29,10 @@
   <p class="item">Tax</p>
   <p class="price"><%= number_to_currency(@patron_price*(@patron.order.restaurant.tax/100)) %></p>
 </div>
-<p><%= @patron.name %>'s Price: <%= number_to_currency(@patron_price*(1+(@patron.order.restaurant.tax/100))) %></p>
+<% @patron_price = @patron_price*(1+(@patron.order.restaurant.tax/100)) %>
+<p><%= @patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
+<p>+ Tip: <%= number_to_currency(5.00/@patron.order.patrons.length) %></p>
+<p>with Tip: <%= number_to_currency(@patron_price+(5.00/@patron.order.patrons.length)) %></p>
 
 <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
   <h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>

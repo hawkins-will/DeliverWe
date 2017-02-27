@@ -74,6 +74,7 @@ class OrdersController < ApplicationController
         flash[:alert] = flash[:alert] + "The Note has not been changed because the Note was over 50 characters. "
       else
         flash[:alert] = "The Note has not been changed because the Note was over 50 characters. "
+      end
     end
     if order_params[:note] == ""
       @note = @order.note
