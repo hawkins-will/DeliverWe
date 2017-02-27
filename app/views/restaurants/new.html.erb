@@ -1,0 +1,47 @@
+<h1>Let's Make a New Restaurant</h1>
+
+<%= form_for @restaurant do |f| %>
+  <%= f.label "What's the Name of this Restaurant?" %>
+  <br>
+  <%= f.text_field :name %>
+
+  <br>
+  <br>
+
+  <%= f.label "The URL to a picture of the Restaurant's Logo (Square Pictures work best)" %>
+  <br>
+  <%= f.text_field :logo_url %>
+
+  <br>
+  <br>
+
+  <%= f.label "The URL to an online Menu for the Restaurant." %>
+  <br>
+  <%= f.text_field :menu_link %>
+
+  <br>
+  <br>
+
+  <%= f.label "If there is one, what's the Delivery Fee?" %>
+  <br>
+  <%= f.text_field :delivery_fee %>
+
+  <br>
+  <br>
+
+  <%= f.label "If there is one, what's the Delivery Minimum?" %>
+  <br>
+  <%= f.text_field :delivery_min %>
+
+  <br>
+  <br>
+
+  <%= f.label "What's the Tax at the restaurant? (Input 10% tax as '10')" %>
+  <br>
+  <%= f.text_field :tax %>
+
+  <br>
+  <br>
+
+  <%= f.submit %>
+<% end %>
