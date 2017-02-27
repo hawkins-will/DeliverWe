@@ -79,7 +79,7 @@
     <p class="item">Tax</p>
     <p class="price"><%= number_to_currency(@patron_price*(@order_tax/100)) %></p>
     <br>
-    <% @patron_price = @patron_price*(1+(@order_tax/100)) %>
+    <% @patron_price = @patron_price*(1.00+(@order_tax/100)) %>
     <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
     <p class="price">+ Tip: <%= number_to_currency(5.00/@order.patrons.length) %></p>
     <p class="price">with Tip: <%= number_to_currency(@patron_price+(5.00/@order.patrons.length)) %></p>
@@ -88,7 +88,7 @@
 <br>
 <% end %>
 <br>
-<% @order_price = @order_price*(1+(@order_tax/100)) %>
+<% @order_price = @order_price*(1.00+(@order_tax/100)) %>
 <p class="price">Final Price with Tip: <%= number_to_currency(@order_price + 5.00) %></p>
 <p class="price">Before Tip: <%= number_to_currency(@order_price) %></p>
 <hr>

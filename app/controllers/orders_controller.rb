@@ -70,11 +70,18 @@ class OrdersController < ApplicationController
 
     if order_params[:note].length > 50
       @note = @order.note
-      flash[:alert] = "The Note has not been changed because the Note was over 50 characters. "
+      if flash[:alert]
+        flash[:alert] = flash[:alert] + "The Note has not been changed because the Note was over 50 characters. "
+      else
+        flash[:alert] = "The Note has not been changed because the Note was over 50 characters. "
     end
     if order_params[:note] == ""
       @note = @order.note
-      flash[:alert] = "The Note has not been changed because the field was left blank. "
+      if flash[:alert]
+        flash[:alert] = flash[:alert] + "The Note has not been changed because the field was left blank. "
+      else
+        flash[:alert] = "The Note has not been changed because the field was left blank. "
+      end
     end
 
     @order.update(order_params)

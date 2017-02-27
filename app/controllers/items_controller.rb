@@ -9,14 +9,27 @@ class ItemsController < ApplicationController
 
     @item = @patron.items.new
   end
-
+##########
   def create
     @patron = Patron.find(params[:patron_id])
+
+    if item_params[:name] == ""
+      flash[:alert] = "Please enter a Name for the item you'd like to order. "
+      redirect_to new_patron_item_path(@patron)
+      return
+    end
+
+    if item_params[:price] == ""
+      flash[:alert] = "Please enter the Price of the item you'd like to order. "
+      redirect_to new_patron_item_path(@patron)
+      return
+    end
+
     @item = @patron.items.create!(item_params)
 
     redirect_to patron_path(@patron)
   end
-
+##########
   def edit
     @item = Item.find(params[:id])
     unless @item.patron.user == current_user || @item.patron.order.patrons.first.user == current_user
@@ -24,14 +37,36 @@ class ItemsController < ApplicationController
       redirect_to patron_path(@item.patron)
     end
   end
-
+##########
   def update
     @item = Item.find(params[:id])
+
+    if item_params[:name] == ""
+      @name = @item.name
+      flash[:alert] = "Name was not updated because the field was left blank. "
+    end
+
+    if item_params[:price] == ""
+      @price = @item.price
+      if flash[:alert]
+        flash[:alert] = flash[:alert] + "Price was not updated because the field was left blank."
+      else
+        flash[:alert] = "Price was not updated because the field was left blank."
+      end
+    end
+
     @item.update(item_params)
+
+    if @name
+      @time.name = @name
+    end
+    if @price
+      @item.name = @price
+    end
 
     redirect_to patron_path(@item.patron)
   end
-
+##########
   def destroy
     @item = Item.find(params[:id])
     unless @item.patron.user == current_user || @item.patron.order.patrons.first.user == current_user
@@ -42,6 +77,7 @@ class ItemsController < ApplicationController
       redirect_to patron_path(@item.patron)
     end
   end
+
 
   private
   def item_params
