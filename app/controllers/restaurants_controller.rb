@@ -45,7 +45,11 @@ class RestaurantsController < ApplicationController
 
     if @restaurant.delivery_min == nil
       @restaurant.delivery_min = 0
-      flash[:notice] = flash[:notice] + "The Delivery Minimum has been set to $0.00. Please make sure that's correct!"
+      if flash[:notice]
+        flash[:notice] = flash[:notice] + "The Delivery Minimum has been set to $0.00. Please make sure that's correct!"
+      else
+        flash[:notice] = "The Delivery Minimum has been set to $0.00. Please make sure that's correct!"
+      end
     end
 
     @restaurant.save
@@ -59,7 +63,79 @@ class RestaurantsController < ApplicationController
 ##########
   def update
     @restaurant = Restaurant.find(params[:id])
+
+    if restaurant_params[:name] == ""
+      @name = @restaurant.name
+      flash[:alert] = "Name has not been updated because the field was left blank. "
+    end
+
+    if restaurant_params[:tax] == ""
+      @tax = @restaurant.tax
+      flash[:alert] = flash[:alert] + "Tax has not been updated because the field was left blank. "
+    end
+
+    if restaurant_params[:delivery_fee] == ""
+      @delivery_fee = @restaurant.delivery_fee
+      if flash[:alert]
+        flash[:alert] = flash[:alert] + "Delivery Fee has not been updated because the field was left blank. "
+      else
+        flash[:alert] = "Delivery Fee has not been updated because the field was left blank. "
+      end
+    end
+
+    if restaurant_params[:delivery_min] == ""
+      @delivery_min = @restaurant.delivery_min
+      if flash[:alert]
+        flash[:alert] = flash[:alert] + "Delivery Minimum has not been updated because the field was left blank. "
+      else
+        flash[:alert] = "Delivery Minimum has not been updated because the field was left blank. "
+      end
+    end
+
+    if restaurant_params[:menu_link] == ""
+      @menu_link = @restaurant.menu_link
+      if flash[:alert]
+        flash[:alert] = flash[:alert] + "The Menu URL has not been updated because the field was left blank. "
+      else
+        flash[:alert] = "The Menu URL has not been updated because the field was left blank. "
+      end
+    end
+
+    if @restaurant.logo_url == ""
+      @restaurant_logo = "https://s-media-cache-ak0.pinimg.com/564x/8b/22/f8/8b22f86ebe3169ec697933156a07eeb9.jpg"
+      if flash[:alert]
+        flash[:alert] = flash[:alert] + "The Logo has been set to a default logo because the field was left blank."
+      else
+        flash[:alert] = "The Logo has been set to a default logo because the field was left blank."
+      end
+    end
+
     @restaurant.update(restaurant_params)
+
+    if @name
+      @restaurant.name = @name
+      @restaurant.save
+    end
+    if @tax
+      @restaurant.tax = @tax
+      @restaurant.save
+    end
+    if @delivery_fee
+      @restaurant.delivery_fee = @delivery_fee
+      @restaurant.save
+    end
+    if @delivery_min
+      @restaurant.delivery_min = @delivery_min
+      @restaurant.save
+    end
+    if @menu_link
+      @restaurant.menu_link = @menu_link
+      @restaurant.save
+    end
+    if @restaurant_logo
+      @restaurant.logo_url = @restaurant_logo
+      @restaurant.save
+    end
 
     redirect_to restaurant_path(@restaurant)
   end
