@@ -4,8 +4,10 @@
 
 <p><a target="_blank" href="<%= @restaurant.menu_link %>">MENU</a></p>
 
+<%= link_to "START ORDER", new_restaurant_order_path(@restaurant) %>
+
 <p>Delivery Fee: <%= number_to_currency(@restaurant.delivery_fee) %></p>
 
 <p>Delivery Minimum: <%= number_to_currency(@restaurant.delivery_min) %></p>
 
-<h4><a href="/">HOME</a></h4>
+<h4><a href="/">BACK</a></h4>

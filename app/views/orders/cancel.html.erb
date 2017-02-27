@@ -1,3 +1,8 @@
 <p>Are you sure you'd like to cancel this Entire Order? Everyone's individual order's will be lost, so make sure you can live with that.</p>
 
 <%= link_to "CANCEL HAPPINESS", @order, method: :delete, class: "delete" %>
+
+<br>
+<br>
+
+<%= link_to "BACK", order_path(@order) %>

@@ -35,10 +35,10 @@
   <h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>
 <% end %>
 
-<h4> <%= link_to "VIEW ORDER", order_path(@patron.order) %></h4>
-
 <a href="/patrons/<%= @patron.id %>/cancel"><div>
 <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
   <p>CANCEL ORDER</p>
 <% end %>
 </div></a>
+
+<h4> <%= link_to "VIEW ORDER", order_path(@patron.order) %></h4>
