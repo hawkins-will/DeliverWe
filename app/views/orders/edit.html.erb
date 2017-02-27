@@ -1,7 +1,7 @@
 <h1>Edit Note for order from <%= @order.restaurant.name %></h1>
 
 <%= form_for @order do |f| %>
-  <%= f.label :time %>
+  <%= f.label "What Time Do You Plan on Ordering?" %>
   <br>
   <%= f.text_field :time %>
 

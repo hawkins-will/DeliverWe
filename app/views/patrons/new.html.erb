@@ -1,7 +1,7 @@
 <h1>Join Order from <%= Restaurant.find(@order.restaurant_id).name %></h1>
 
 <%= form_for [@order, @patron] do |f| %>
-  <%= f.label :name %>
+  <%= f.label "What's your Name?" %>
   <br>
   <%= f.text_field :name %>
 

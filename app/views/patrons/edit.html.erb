@@ -1,7 +1,7 @@
 <h1>Let's Edit <%= @patron.name %>'s Name</h1>
 
 <%= form_for @patron do |f| %>
-  <%= f.label :name %>
+  <%= f.label "What's your name?" %>
   <%= f.text_field :name %>
 
   <%= f.submit %>
