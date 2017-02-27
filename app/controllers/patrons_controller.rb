@@ -29,6 +29,13 @@ class PatronsController < ApplicationController
 
   def update
     @patron = Patron.find(params[:id])
+
+    if patron_params[:name] == ""
+      flash[:alert] = "Name has not been changed because the field was left blank. "
+      redirect_to edit_patron_path(@patron)
+      return
+    end
+
     @patron.update(patron_params)
 
     redirect_to patron_path(@patron)
