@@ -1,3 +1,11 @@
 <h1><img class="logo" src="<%= @restaurant.logo_url %>" alt="<%= @restaurant.name %> Logo"><%= @restaurant.name %></h1>
 
+<%= link_to "EDIT", edit_restaurant_path(@restaurant) %>
+
+<p><a target="_blank" href="<%= @restaurant.menu_link %>">MENU</a></p>
+
+<p>Delivery Fee: <%= number_to_currency(@restaurant.delivery_fee) %></p>
+
+<p>Delivery Minimum: <%= number_to_currency(@restaurant.delivery_min) %></p>
+
 <h4><a href="/">HOME</a></h4>
