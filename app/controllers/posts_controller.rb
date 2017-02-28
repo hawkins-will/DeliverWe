@@ -19,8 +19,8 @@ class PostsController < ApplicationController
 ##########
   def edit
     @post = Post.find(params[:id])
-    unless @post.user == current_user || @post.order.patrons.first.user || current_user
-      flash[:alert] = "You're not authorized to Edit other peoples' posts"
+    unless @post.user == current_user || @post.order.patrons.first.user == current_user
+      flash[:alert] = "You are not authorized to Edit other peoples' posts"
       redirect_to order_path(@post.order)
     end
   end
@@ -39,9 +39,17 @@ class PostsController < ApplicationController
     redirect_to order_path(@post.order)
   end
 ##########
-  def delete
-
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.user == current_user || @post.order.patrons.first.user == current_user
+      @post.destroy
+      redirect_to order_path(@post.order)
+    else
+      flash[:alert] = "You are not authorized to Delete other peoples' posts"
+      redirect_to order_path(@post.order)
+    end
   end
+
 
   private
   def post_params
