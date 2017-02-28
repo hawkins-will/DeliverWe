@@ -143,7 +143,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-  width: calc(100vw - 354px);
+  width: calc(100vw - 320px);
   height: calc(100vh - 80px);
   overflow-y: scroll;
 }
@@ -235,6 +235,7 @@ header {
 
 
 .restaurant_header {
+  width: 302px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -245,7 +246,7 @@ header {
   border-bottom: 1px solid grey;
   border-top: 1px solid grey;
   display: flex;
-  width: 332px;
+  width: 302px;
   min-height: 100px;
   max-height: 100px;
   background-color: white;
@@ -256,7 +257,7 @@ header {
 .restaurant_box_right {
   display: flex;
   flex-direction: column;
-  width: 232px;
+  width: 202px;
   height: 100px;
 }
 
@@ -264,7 +265,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 232px;
+  width: 201px;
   height: 50px;
   color: black;
   text-decoration: none;
@@ -278,7 +279,7 @@ header {
 .restaurant_box_bottom {
   display: flex;
   flex-wrap: wrap;
-  width: 232px;
+  width: 202px;
   height: 50px;
 }
 
@@ -288,7 +289,7 @@ header {
   justify-content: center;
   border-left: 1px solid rgba(158,165,179,1);
   height: 50px;
-  width: 115px;
+  width: 100px;
   flex-grow: 1;
   color: black;
   font-weight: bold;
