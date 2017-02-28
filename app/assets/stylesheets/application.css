@@ -491,6 +491,12 @@ header {
   text-decoration: underline;
 }
 
+.restaurant_buttons {
+  display: flex;
+  height: 100px;
+  justify-content: space-around;
+  align-items: center;
+}
 
 
 
