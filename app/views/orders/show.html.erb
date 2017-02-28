@@ -2,36 +2,45 @@
   <div class="second_header">
     <img class="second_header_logo" src="<%= Restaurant.find(@order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(@order.restaurant_id).name %> Logo">
     <div class="second_header_right">
-      <p class="restaurant_title"><%= Restaurant.find(@order.restaurant_id).name %></p>
-  <% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
-      <div class="second_header_bottom_right">
-        <div class="second_header_box border_right">
-          <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %> Minimum</p>
-        </div>
-        <div class="second_header_box border_right">
-          <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_fee) %> Fee</p>
-        </div>
-        <div class="second_header_box border_right">
-          <p>Tax: <%= @order_tax %>%</p>
-        </div>
+      <div class="second_header_title">
+        <p><%= Restaurant.find(@order.restaurant_id).name %></p>
       </div>
-      <div class="second_header_bottom_right_two">
-        <a target="_blank" class="second_header_box" href="<%= Restaurant.find(@order.restaurant_id).menu_link %>"><div class="second_header_box border_right">
-          <p>MENU</p>
-        </div></a>
-        <%= link_to order_patrons_path(@order), method: :post do %>
-            <div class="second_header_box border_right">
-            <p>JOIN</p>
+      <div class="second_header_bottom">
+        <div class="second_header_bottom_left">
+          <%= link_to order_patrons_path(@order), method: :post do %>
+            <div class="second_header_quadrant grey_link">
+              <p>Join</p>
+            </div>
+          <% end %>
+          <a target="_blank" href="<%= Restaurant.find(@order.restaurant_id).menu_link %>">
+            <div class="second_header_quadrant grey_link">
+              <p>Menu</p>
+            </div>
+          </a>
+        </div>
+        <div class="second_header_bottom_right">          
+          <div class="second_header_quadrant">
+            <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_fee) %> Fee</p>
           </div>
-        <% end %>
-        <% if @order.patrons.first.user == current_user %>
-          <a  class="second_header_box" href="/order/<%= @order.id %>/cancel"><div class="second_header_box border_right">
-            <p>CANCEL</p>
-          </div></a>
-        <% end %>
+          <div class="second_header_quadrant">
+            <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %> Minimum</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="left_section">
+    <% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
+
+
+  </div>
+
+  <div class="comment_section">
+
+
+  </div>
+
   <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
   <br>
   <div class="note_box">
