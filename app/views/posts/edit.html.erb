@@ -14,10 +14,18 @@
 
   <br>
 
-  <%= link_to "Delete Post", @post, method: :delete, class: "delete" %>
+  <div class="edit_screen_buttons">
+    <%= link_to order_path(@post.order) do %>
+      <div class="blue_button blue_link">
+        <p>BACK</p>
+      </div>
+    <% end %>
+    
+    <%= link_to @post, method: :delete, class: "delete" do %>
+      <div class="orange_button orange_link">
+        <p>DELETE</p>
+      </div>
+    <% end %>
 
-  <br>
-  <br>
-
-  <%= link_to "BACK", order_path(@post.order) %>
+  </div>
 </div>

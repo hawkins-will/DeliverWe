@@ -498,7 +498,7 @@ header {
   align-items: center;
 }
 
-.edit_restaurant_buttons {
+.edit_screen_buttons {
   display: flex;
   width: 500px;
   justify-content: space-between;
