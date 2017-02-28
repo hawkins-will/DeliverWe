@@ -143,6 +143,11 @@ header {
   visibility: hidden;
 }
 
+.edit_pencil {
+  width: 15px;
+  height: 15px;
+}
+
 .index {
   display: flex;
 }

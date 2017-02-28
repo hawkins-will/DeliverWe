@@ -125,10 +125,10 @@
     <div class="forum">
       <% @order.posts.reverse.each do |post| %>
         <% if current_user && post.user == current_user %>
-          <div class="your_post">
-            <p class="post_author"><%= post.author %></p>
-            <p><%= post.content %></p>
-          </div>
+            <div class="your_post">
+              <p class="post_author"><%= post.author %> <%=link_to edit_post_path(post) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="edit_pencil"><% end %></p>
+              <p><%= post.content %></p>
+            </div>
         <% else %>
           <div class="other_post">
             <p class="post_author"><%= post.author %></p>
