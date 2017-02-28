@@ -106,7 +106,9 @@
 <% else %>
   <p><%= post.content %></p>
 <% end %>
-<%= link_to "EDIT", edit_post_path(post) %>
+<% if post.user == current_user || post.order.patrons.first.user == current_user %>
+  <%= link_to "EDIT", edit_post_path(post) %>
+<% end %>
 <hr>
 <% end %>
 
