@@ -106,19 +106,108 @@ a :hover {
   height: 50px;
 }
 
+.invisible {
+  flex-grow: 1;
+}
 
 
 
 
+
+
+
+.order_box {
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 400px;
+  height: 200px;
+  overflow: hidden;
+  padding: 0px;
+  margin-left: 10px;
+}
+
+.box_header {
+  display: flex;
+  border-bottom: 1px solid black;
+  width: 420px;
+  height: 100px;
+  margin-left: -10px;
+  margin-top: -10px;
+}
 
 .logo {
   height: 100px;
   width: 100px;
-  margin-top: -20px;
-  border: 1px solid black;
-  border-bottom: 5px solid black;
   background: white;
 }
+
+.box_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  height: 100px;
+  background-color: rgba(120,211,249,1);
+  font-size: 32px;
+}
+
+.order_bottom {
+  display: flex;
+  width: 420px;
+  height: 120px;
+  margin-left: -10px;
+  background-color: beige;
+}
+
+.order_buttons_section {
+  width: 100px;
+  height: 120px;
+  background: grey;
+}
+
+.order_button {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 39px;
+}
+
+.patron_box {
+  width: 290px;
+  height: 120px;
+  overflow-y: scroll;
+  padding-left: 10px;
+  background-color: beige;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.patron_line {
+  margin-top: 2.5px;
+  margin-bottom: 2.5px;
+}
+
+
+
+.join_order {
+  border: 1px solid red;
+}
+
+.index_note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 275px;
+  height: 50px;
+  margin-top: -5px;
+  flex-wrap: wrap;
+  border: 1px solid red;
+}
+
+
+
+
 
 .restaurant_box {
   border: 5px solid grey;
@@ -129,27 +218,12 @@ a :hover {
   background-color: white;
 }
 
-.order_box {
-  border: 5px solid grey;
-  width: 280px;
-  height: 300px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  margin-left: 5px;
-  background-color: white;
-}
 
-.patron_box {
-  width: 225px;
-  height: 75px;
-  margin-left: 25px;
-  border: 1px solid black;
-  overflow-y: scroll;
-  padding-left: 10px;
-  background-color: beige;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
+
+
+
+
+
 
 .item_box {
   width: 300px;
@@ -195,40 +269,6 @@ a :hover {
   padding-left: 20px;
   display: flex;
   flex-wrap: wrap;
-}
-
-.patron_line {
-  margin-top: 2.5px;
-  margin-bottom: 2.5px;
-}
-
-.box_header {
-  display: flex;
-  margin-left: -10px;
-  margin-top: -6px;
-}
-
-.box_header_right {
-  display: flex;
-  flex-direction: column;
-}
-
-.box_title {
-  font-size: 24px;
-  margin-bottom: -10px;
-  margin-top: -4px;
-  padding-left: 5px;
-  background: rgba(0,0,128,1);
-  height: 40px;
-  text-align: center;
-  padding-top: 10px;
-  color: white;
-  text-decoration: none;
-  width: 193px;
-}
-
-.box_title:hover {
-  background-color: rgba(0,0,128,.5)
 }
 
 .head_patron_box {
@@ -287,20 +327,6 @@ a :hover {
   margin-right: auto;
 }
 
-.join_order {
-  margin-top: -10px;
-}
-
-.index_note {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 275px;
-  height: 50px;
-  margin-top: -5px;
-  flex-wrap: wrap;
-  border: 1px solid black;
-}
 
 .note_input {
   width: 275px;

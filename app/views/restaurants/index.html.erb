@@ -2,6 +2,13 @@
   <h2>Orders!</h2>
 </div>
 <div class="restaurant_section">
+  <% unless @orders.length > 0 %>
+  <div class="invisible"></div>
+  <div class="">
+    <p>No Orders In Progress</p>
+  </div>
+  <div class="invisible"></div>
+  <% end %>
   <% @orders = @orders.sort_by do |order| %>
   <% order.patrons.length %>
   <% end %>
@@ -12,22 +19,23 @@
   <% @order_price = 0.00 + Restaurant.find(order.restaurant_id).delivery_fee %>
   <div class="order_box">
     <div class="box_header">
-      <p><img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo"><p>
-      <div class="box_header_right">
-        <%= link_to(order) do %>
-          <p class="box_title"><%= Restaurant.find(order.restaurant_id).name %></p>
-        <% end %>
-        <div class="head_patron_box">
-          <p class="head_patron_label">Head Patron:</p>
-          <% if order.patrons.length >= 1 %>
-            <p class="head_patron"><%= order.patrons.first.name %></p>
-          <% else %>
-            <p class="head_patron">No One Has Taken Charge</p>
-          <% end %>
-        </div>
+      <img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo">
+      <div class="box_title">
+        <p><%= Restaurant.find(order.restaurant_id).name %></p>
       </div>
     </div>
-      <h4 class="join_order"><%= link_to "Join Order", order_patrons_path(order), method: :post %></h4>
+    <div class="order_bottom">
+      <div class="order_buttons_section">
+        <div class="order_button">
+          <%= link_to "Join Order", order_patrons_path(order), method: :post %>
+        </div>
+        <div class="order_button">
+          <p>View Order</p>
+        </div>
+        <div class="order_button">
+          <a target="_blank" class="no_underline" href="<%= order.restaurant.menu_link %>"><p>Menu</p></a>
+        </div>
+      </div>
       <div class="patron_box">
         <% order.patrons.each do |patron| %>
             <p class="patron_line">
@@ -39,21 +47,17 @@
               <% end %>
             <% end %>
         <% end %>
+        <br>
+        <p class="patron_line">Order will be placed at <%= order.time %></p>
+        <% if @order_min > @order_price*(1+(@order_tax/100)) %>
+          <p class="red patron_line"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
+        <% end %>
+        <br>
       </div>
-      <br>
-      <% if order.note %>
-        <div class="index_note">
-          <p><%= order.note %></p>
-          <% if @order_min > @order_price*(1+(@order_tax/100)) %>
-            <p class="red index_min"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
-            <p>Order will be placed at <%= order.time %></p>
-          <% end %>
-        </div>
-      <% end %>
     </div>
+  </div>
   <% end %>
 </div>
-<br>
 <div class="page_break">
   <h2>Restaurants! (<%= link_to "+", new_restaurant_path %>)</h2>
 </div>
@@ -85,6 +89,5 @@
         </div>
       </div>
     </div>
-    <br>
   <% end %>
 </div>
