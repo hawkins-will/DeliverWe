@@ -12,7 +12,12 @@ class PostsController < ApplicationController
       redirect_to new_order_posts_path(@order)
       return
     end
-    @post = @order.posts.create(post_params.merge(user: current_user))
+    @post = @order.posts.new(post_params)
+    @post.author = current_user.email
+    @post.user = current_user
+    @post.save
+
+
 
     redirect_to order_path(@order)
   end

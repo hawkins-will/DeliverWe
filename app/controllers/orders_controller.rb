@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
 ##########
   def show
     @order = Order.find(params[:id])
+    @post = @order.posts.new
   end
 ##########
   def cancel

@@ -144,6 +144,7 @@ header {
   flex-wrap: wrap;
   flex-grow: 1;
   width: calc(100vw - 320px);
+  min-width: 500px;
   height: calc(100vh - 80px);
   overflow-y: scroll;
 }
@@ -297,20 +298,11 @@ header {
   background-color: rgba(120,211,249,1);
 }
 
-
-
-
-
-
-
-
-
 .second_header {
   height: 200px;
   width: 100vw;
   display: flex;
   border-bottom: 1px solid black;
-  margin-left: -25px;
 }
 
 .second_header_right {
@@ -371,39 +363,84 @@ header {
 
 
 
-.second_header_bottom_right{
-  display: flex;
-}
-
-.second_header_bottom_right_two {
-  display: flex;
-  border-top: 1px solid black;
-}
-
-.restaurant_title {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 50px;
-  width: 100% - 25px;
-  height: 125px;
-  border-bottom: 1px solid black;
-  margin: 0px;
-  padding-left: 50px;
-}
 
 
-.second_header_box {
+.left_section {
+  padding: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   flex-grow: 1;
-  height: 61.5px;
-  width: 100px;
-  background-color: rgba(201,156,110,1);
-  text-decoration: none;
-  font-weight: bold;
+  width: calc(100vw - 500px);
+  min-width: 500px;
+  height: calc(100vh - 80px);
+  overflow-y: scroll;
+
+
 }
+
+.comment_section {
+  width: 500px;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  overflow-y: scroll;
+  border-left: 2px solid grey;
+  background-color: rgba(158,165,179,.3);
+}
+
+.forum_header {
+  height: 100px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid grey;
+}
+
+.hidden_comment {
+  height: 25px;
+}
+
+.forum {
+  width: 400px;
+  border: 1px solid grey;
+  background-color: white;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.your_post {
+  width: 200px;
+  text-align: right;
+  margin-left: auto;
+  border-radius: 10px;
+  padding-right: 10px;
+  flex-wrap: wrap;
+  background-color: rgba(255,140,0,.5);
+  margin-bottom: -5px;
+}
+
+.other_post {
+  width: 200px;
+  margin-right: auto;
+  border-radius: 10px;
+  padding-left: 10px;
+  flex-wrap: wrap;
+  background-color: rgba(120,211,249,.5);
+  margin-bottom: -5px;
+}
+
+.post_author {
+  text-decoration: underline;
+}
+
+
+
+
+
 
 
 

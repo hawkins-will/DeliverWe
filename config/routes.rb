@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   resources :orders, except: [:new, :create] do
     resources :patrons, only: [:new, :create]
-    resource :posts, only: [:new, :create]
+    resources :posts, only: [:new, :create]
   end
   resources :restaurants do
     resources :orders, only: [:new, :create]
