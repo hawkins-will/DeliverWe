@@ -374,8 +374,19 @@ header {
   min-width: 500px;
   height: calc(100vh - 80px);
   overflow-y: scroll;
+  padding-left: 100px;
+  padding-right: 100px;
+}
 
+.announcement {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 0px;
+}
 
+.sub_announcement {
+  text-align: center;
+  font-size: 14px;
 }
 
 .comment_section {
@@ -482,6 +493,11 @@ header {
   text-align: right;
 }
 
+.empty_price {
+  margin-top: 10px;
+  margin-bottom: 25px;
+
+}
 
 .head_patron_box {
   background-color: rgba(158,165,179,1);

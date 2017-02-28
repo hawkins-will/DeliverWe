@@ -22,7 +22,7 @@ pollo = Restaurant.create(name: "Tonton Chicken", logo_url: "https://pbs.twimg.c
 
 will = User.create(email: "willhawkins@yahoo.com", password: "password1")
 
-lunch = pollo.orders.create(note: "I like food", time: "Noon")
+lunch = pollo.orders.create(time: "Noon")
 
 me = will.patrons.create(name: "willhawkins@yahoo.com", order_id: 1)
 

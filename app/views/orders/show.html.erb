@@ -34,22 +34,17 @@
     <% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
     <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
 
-    <div class="note_box">
-      <p class="center">Order will be placed at <%= @order.time %></p>
-      <p><%= @order.note %></p>
-    </div>
-    <br>
     <% if @order.patrons.first.user == current_user %>
       <p><%= link_to "EDIT", edit_order_path(@order) %></p>
     <% end %>
     <br>
     <% if @order.patrons.length >= 1 %>
-      <p class="center">Head Patron: <%= @order.patrons.first.name %></p>
+      <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %></p>
     <% else %>
-      <p class="center">Head Patron: No One Has Taken Charge</p>
+      <p class="announcement">SOMEONE will need to place this Order at <%= @order.time %></p>
     <% end %>
     <br>
-    <p class="center">*****Please Note that a $5.00 tip is INCLUDED on all orders*****</p>
+    <p class="sub_announcement">*****Please Note that a $5.00 tip is INCLUDED on all orders*****</p>
     <br>
     <hr>
     <br>
@@ -62,8 +57,10 @@
           <p class="price"><%= number_to_currency(item.price) %></p>
           <% unless item.modifications == "" %>
             <p class="modifications">+ <%= item.modifications %></p>
-            <% if item.modifications_price %>
+            <% if item.modifications_price != 0 %>
               <p class="price"><%= number_to_currency(item.modifications_price) %></p>
+            <% else %>
+              <div class="empty_price"></div>
             <% end %>
           <% end %>
           <% @order_price = @order_price + item.price %>
