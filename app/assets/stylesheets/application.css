@@ -134,6 +134,15 @@ header {
   flex-grow: 1;
 }
 
+.invisible_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  margin-top: 50px;
+  visibility: hidden;
+}
+
 .index {
   display: flex;
 }
@@ -370,7 +379,7 @@ header {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  width: calc(100vw - 500px);
+  width: calc(100vw - 540px);
   min-width: 500px;
   height: calc(100vh - 80px);
   overflow-y: scroll;
@@ -388,6 +397,40 @@ header {
   text-align: center;
   font-size: 14px;
 }
+
+.bill {
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+}
+
+.button_section {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.blue_button {
+  background-color: rgba(120,211,249,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100px;
+  border: 1px solid grey;
+}
+
+.orange_button {
+  background-color: rgba(255,140,0,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100px;
+  border: 1px solid grey;
+}
+
 
 .comment_section {
   width: 500px;

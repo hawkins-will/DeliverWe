@@ -14,12 +14,6 @@ class OrdersController < ApplicationController
       return
     end
 
-    if order_params[:note].length > 50
-      flash[:alert] = "This Note is Longer than 50 Characters"
-      redirect_to new_restaurant_order_path(@restaurant)
-      return
-    end
-
     @order = @restaurant.orders.create(order_params)
     @patron = @order.patrons.new
     @patron.name = current_user.email
@@ -69,30 +63,10 @@ class OrdersController < ApplicationController
       flash[:alert] = "The Expected Order Time has not been changed because the field was left blank. "
     end
 
-    if order_params[:note].length > 50
-      @note = @order.note
-      if flash[:alert]
-        flash[:alert] = flash[:alert] + "The Note has not been changed because the Note was over 50 characters. "
-      else
-        flash[:alert] = "The Note has not been changed because the Note was over 50 characters. "
-      end
-    end
-    if order_params[:note] == ""
-      @note = @order.note
-      if flash[:alert]
-        flash[:alert] = flash[:alert] + "The Note has not been changed because the field was left blank. "
-      else
-        flash[:alert] = "The Note has not been changed because the field was left blank. "
-      end
-    end
-
     @order.update(order_params)
 
     if @time
       @order.time = @time
-    end
-    if @note
-      @order.note = @note
     end
 
     @order.save

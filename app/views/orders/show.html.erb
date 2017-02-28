@@ -33,10 +33,6 @@
   <div class="left_section">
     <% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
     <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
-
-    <% if @order.patrons.first.user == current_user %>
-      <p><%= link_to "EDIT", edit_order_path(@order) %></p>
-    <% end %>
     <br>
     <% if @order.patrons.length >= 1 %>
       <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %></p>
@@ -48,55 +44,77 @@
     <br>
     <hr>
     <br>
-    <% @order.patrons.each do |patron| %>
-      <div>
-      <% @patron_price = 0.00 %>
-        <p><%= link_to patron.name, patron %></p>
-        <% patron.items.each do |item| %>
-          <p class="item"><%= item.name %></p>
-          <p class="price"><%= number_to_currency(item.price) %></p>
-          <% unless item.modifications == "" %>
-            <p class="modifications">+ <%= item.modifications %></p>
-            <% if item.modifications_price != 0 %>
-              <p class="price"><%= number_to_currency(item.modifications_price) %></p>
-            <% else %>
-              <div class="empty_price"></div>
+    <div class="bill">
+
+      <% @order.patrons.each do |patron| %>
+        <div>
+        <% @patron_price = 0.00 %>
+          <p><%= link_to patron.name, patron %></p>
+          <% patron.items.each do |item| %>
+            <p class="item"><%= item.name %></p>
+            <p class="price"><%= number_to_currency(item.price) %></p>
+            <% unless item.modifications == "" %>
+              <p class="modifications">+ <%= item.modifications %></p>
+              <% if item.modifications_price != 0 %>
+                <p class="price"><%= number_to_currency(item.modifications_price) %></p>
+              <% else %>
+                <div class="empty_price"></div>
+              <% end %>
+            <% end %>
+            <% @order_price = @order_price + item.price %>
+            <% @patron_price = @patron_price + item.price %>
+            <% if item.modifications_price %>
+              <% @order_price = @order_price + item.modifications_price %>
+              <% @patron_price = @patron_price + item.modifications_price %>
             <% end %>
           <% end %>
-          <% @order_price = @order_price + item.price %>
-          <% @patron_price = @patron_price + item.price %>
-          <% if item.modifications_price %>
-            <% @order_price = @order_price + item.modifications_price %>
-            <% @patron_price = @patron_price + item.modifications_price %>
-          <% end %>
-        <% end %>
-        <% @patron_fee = (Restaurant.find(@order.restaurant_id).delivery_fee)/@order.patrons.length %>
-        <p class="fee">Delivery Fee</p>
-        <p class="price"><%= number_to_currency(@patron_fee) %></p>
-        <% @patron_price = @patron_price + @patron_fee %>
-        <p class="item">Tax</p>
-        <p class="price"><%= number_to_currency(@patron_price*(@order_tax/100)) %></p>
-        <br>
-        <% @patron_price = @patron_price*(1.00+(@order_tax/100)) %>
-        <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
-        <p class="price">+ Tip: <%= number_to_currency(5.00/@order.patrons.length) %></p>
-        <p class="price">with Tip: <%= number_to_currency(@patron_price+(5.00/@order.patrons.length)) %></p>
-        <hr>
-      </div>
-    <br>
-    <% end %>
-    <br>
-    <% @order_price = @order_price*(1.00+(@order_tax/100)) %>
-    <p class="price">Final Price with Tip: <%= number_to_currency(@order_price + 5.00) %></p>
-    <p class="price">Before Tip: <%= number_to_currency(@order_price) %></p>
-    <hr>
-    <br>
-    <% @order_min = Restaurant.find(@order.restaurant_id).delivery_min %>
-    <% if @order_price < @order_min %>
-      <p class="price red"> <%= number_to_currency(@order_min - @order_price) %> short of Minimum</p>
-    <% end %>
+          <% @patron_fee = (Restaurant.find(@order.restaurant_id).delivery_fee)/@order.patrons.length %>
+          <p class="fee">Delivery Fee</p>
+          <p class="price"><%= number_to_currency(@patron_fee) %></p>
+          <% @patron_price = @patron_price + @patron_fee %>
+          <p class="item">Tax</p>
+          <p class="price"><%= number_to_currency(@patron_price*(@order_tax/100)) %></p>
+          <br>
+          <% @patron_price = @patron_price*(1.00+(@order_tax/100)) %>
+          <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
+          <p class="price">+ Tip: <%= number_to_currency(5.00/@order.patrons.length) %></p>
+          <p class="price">with Tip: <%= number_to_currency(@patron_price+(5.00/@order.patrons.length)) %></p>
+          <hr>
+        </div>
+      <br>
+      <% end %>
+      <br>
+      <% @order_price = @order_price*(1.00+(@order_tax/100)) %>
+      <p class="price">Final Price with Tip: <%= number_to_currency(@order_price + 5.00) %></p>
+      <p class="price">Before Tip: <%= number_to_currency(@order_price) %></p>
+      <hr>
+      <br>
+      <% @order_min = Restaurant.find(@order.restaurant_id).delivery_min %>
+      <% if @order_price < @order_min %>
+        <p class="price red"> <%= number_to_currency(@order_min - @order_price) %> short of Minimum</p>
+      <% end %>
+    </div>
 
-    <h4><a href="/">BACK</a></h4>
+    <div class="button_section">
+      <%= link_to root_path do %>
+        <div class="blue_button blue_link">
+          <p>BACK</p>
+        </div>
+      <% end %>
+      <% if @order.patrons.first.user == current_user %>
+        <a href="/orders/<%= @order.id %>/cancel">
+          <div class="orange_button orange_link">
+            <p>CANCEL</p>
+          </div>
+        </a>
+        <%= link_to edit_order_path(@order) do %>
+          <div class="blue_button blue_link">
+            <p>EDIT</p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="invisible_bottom">YOU FOUND ME</div>
   </div>
 
   <div class="comment_section">
