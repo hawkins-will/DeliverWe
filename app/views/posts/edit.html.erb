@@ -1,0 +1,14 @@
+<h1>Let's Edit This Post!</h1>
+
+<%= form_for [@post] do |f| %>
+  <%= f.label "What would you like to say?" %>
+  <br>
+  <%= f.text_area :content %>
+
+  <br>
+  <br>
+
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "BACK", order_path(@post.order) %>

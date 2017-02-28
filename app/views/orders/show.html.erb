@@ -99,6 +99,18 @@
 <% end %>
 </div>
 
+<% @order.posts.each do |post| %>
+<p><%= post.user.email %></p>
+<% if post.user == current_user %>
+  <p class="price"><%= post.content %></p>
+<% else %>
+  <p><%= post.content %></p>
+<% end %>
+<%= link_to "EDIT", edit_post_path(post) %>
+<hr>
+<% end %>
+
+
 <%= link_to "POST", new_order_posts_path(@order) %>
 
 <h4><a href="/">BACK</a></h4>

@@ -12,7 +12,7 @@ class PatronsController < ApplicationController
     @patron.user = current_user
     @patron.save
 
-    redirect_to new_patron_item_path(@patron)
+    redirect_to order_path(@order)
   end
 
   def show
