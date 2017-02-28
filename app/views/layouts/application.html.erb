@@ -10,20 +10,38 @@
 
   <body>
     <header>
-      <h1><a class="no_underline" href="/">DeliverWe</a></h1>
+      <a class="no_underline" href="/">
+        <div class="main_title">
+          <h1>DeliverWe</h1>
+        </div>
+      </a>
+
+      <div class="header_filler"></div>
+
+      <% unless current_user %>
+        <%= link_to new_user_registration_path do %>
+          <div class="sign_up">
+            <p>Sign Up</p>
+          </div>
+        <% end %>
+        <%= link_to new_user_session_path do %>
+          <div class="sign_in">
+            <p>Sign In</p>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to destroy_user_session_path, :method => :delete do %>
+          <div class="sign_out">
+            <p>Sign Out <%= current_user.email %></p>
+          </div>
+        <% end %>
+
+      <% end %>
+
     </header>
-    <% unless current_user %>
-      <%= link_to "Sign Up", new_user_registration_path %>
-      <%= link_to "Sign In", new_user_session_path %>
-    <% else %>
-      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-        <%= current_user.email %>
-    <% end %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
     <%= yield %>
-
   </body>
 </html>
