@@ -49,8 +49,16 @@
 
   <br>
 
-  <%= link_to "DELETE RESTAURANT", @restaurant, method: :delete, class: "delete" %>
-  <br>
-  <br>
-  <%= link_to "BACK", restaurant_path(@restaurant) %>
+  <div class="edit_restaurant_buttons">
+    <%= link_to restaurant_path(@restaurant) do %>
+      <div class="blue_button blue_link">
+        <p>BACK</p>
+      </div>
+    <% end %>
+    <%= link_to @patron, method: :delete, class: "delete" do %>
+      <div class="orange_button orange_link">
+        <p>DELETE</p>
+      </div>
+    <% end %>
+  </div>
 </div>

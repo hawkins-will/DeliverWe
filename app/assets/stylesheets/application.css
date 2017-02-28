@@ -493,8 +493,15 @@ header {
 
 .restaurant_buttons {
   display: flex;
-  height: 100px;
+  height: 200px;
   justify-content: space-around;
+  align-items: center;
+}
+
+.edit_restaurant_buttons {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
   align-items: center;
 }
 
