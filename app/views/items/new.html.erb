@@ -1,39 +1,41 @@
-<h1>Add to <%= @patron.name %>'s Order</h1>
+<div class="center_page">
+  <h1>Add to <%= @patron.name %>'s Order</h1>
 
-<p><a target="_blank" href="<%= @patron.order.restaurant.menu_link %>"><%= @patron.order.restaurant.name %> Menu</a></p>
+  <p><a target="_blank" href="<%= @patron.order.restaurant.menu_link %>"><%= @patron.order.restaurant.name %> Menu</a></p>
 
-<%= form_for [@patron, @item] do |f| %>
-  <%= f.label "What's the Name of the Item You'd Like to Order?" %>
-  <br>
-  <%= f.text_field :name %>
+  <%= form_for [@patron, @item] do |f| %>
+    <%= f.label "What's the Name of the Item You'd Like to Order?" %>
+    <br>
+    <%= f.text_field :name %>
 
-  <br>
-  <br>
+    <br>
+    <br>
 
-  <%= f.label "Price" %>
-  <br>
-  <%= f.text_field :price %>
+    <%= f.label "Price" %>
+    <br>
+    <%= f.text_field :price %>
 
-  <br>
-  <br>
+    <br>
+    <br>
 
-  <%= f.label "Would you like to make any modifications? (Optional)" %>
-  <br>
-  <%= f.text_area :modifications %>
+    <%= f.label "Would you like to make any modifications? (Optional)" %>
+    <br>
+    <%= f.text_area :modifications %>
 
-  <br>
-  <br>
+    <br>
+    <br>
 
-  <%= f.label "What's the Price of your Modifications? (Optional)" %>
-  <br>
-  <%= f.text_field :modifications_price %>
+    <%= f.label "What's the Price of your Modifications? (Optional)" %>
+    <br>
+    <%= f.text_field :modifications_price %>
 
-  <br>
-  <br>
+    <br>
+    <br>
 
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
 
-  <br>
+    <br>
 
-<%= link_to "BACK", patron_path(@patron) %>
+  <%= link_to "BACK", patron_path(@patron) %>
+</div>

@@ -1,12 +1,14 @@
-<h1>Let's Edit <%= @patron.name %>'s Name</h1>
+<div class="center_page">
+  <h1>Let's Edit <%= @patron.name %>'s Name</h1>
 
-<%= form_for @patron do |f| %>
-  <%= f.label "What's your name?" %>
-  <%= f.text_field :name %>
+  <%= form_for @patron do |f| %>
+    <%= f.label "What's your name?" %>
+    <%= f.text_field :name %>
 
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
 
-<br>
+  <br>
 
-<%= link_to "BACK", patron_path(@patron) %>
+  <%= link_to "BACK", patron_path(@patron) %>
+</div>

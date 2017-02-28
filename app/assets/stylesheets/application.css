@@ -29,6 +29,23 @@ body {
 
 a {
   text-decoration: none;
+  color: black;
+}
+
+a .restaurant_quadrant {
+  background-color: rgba(255,140,0,1);
+}
+
+a .grey_link:hover {
+  background-color: rgba(112,120,140,1);
+}
+
+a .orange_link:hover {
+  background-color: rgba(255,180,0,1);
+}
+
+a .blue_link:hover {
+  background-color: rgba(90,158,187,1);
 }
 
 header {
@@ -42,6 +59,21 @@ header {
   color: white;
   background-color: rgba(255,140,0,1);
 }
+
+.center_page {
+  width: 100vw;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.padded_page {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 
 .content {
   padding-top: 60px;
@@ -63,10 +95,6 @@ header {
   font-size: 20px;
 }
 
-a :hover {
-  background-color: rgba(255,180,0,1);
-}
-
 
 .main_title {
   display: flex;
@@ -85,11 +113,11 @@ a :hover {
 }
 
 .sign_out {
-  width: 300px;
+  width: 318px;
 }
 
 .sign_up, .sign_in {
-  width: 150px;
+  width: 158px;
   color: white;
 }
 
@@ -115,7 +143,7 @@ a :hover {
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-  max-width: calc(100vw - 354px);
+  width: calc(100vw - 354px);
   height: calc(100vh - 80px);
   overflow-y: scroll;
 }
@@ -267,13 +295,9 @@ a :hover {
   background-color: rgba(120,211,249,1);
 }
 
-a .restaurant_quadrant {
-  background-color: rgba(255,140,0,1);
-}
 
-a .restaurant_quadrant:hover {
-  background-color: rgba(255,180,0,1);
-}
+
+
 
 
 
@@ -324,10 +348,6 @@ a .restaurant_quadrant:hover {
   width: 198px;
 }
 
-
-.restaurant_header_right:hover {
-  background-color: rgba(0,0,128,.5);
-}
 
 .modifications {
   padding-left: 60px;

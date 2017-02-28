@@ -1,21 +1,23 @@
-<h1>Create a New Order from <%= @restaurant.name %></h1>
+<div class="center_page">
+  <h1>Create a New Order from <%= @restaurant.name %></h1>
 
-<%= form_for [@restaurant, @order] do |f| %>
-  <%= f.label "What Time Do You Plan on Ordering?" %>
-  <br>
-  <%= f.text_field :time %>
+  <%= form_for [@restaurant, @order] do |f| %>
+    <%= f.label "What Time Do You Plan on Ordering?" %>
+    <br>
+    <%= f.text_field :time %>
 
-  <br>
-  <br>
+    <br>
+    <br>
 
-  <%= f.label "Would you like to include a note? (50 Character Limit)" %>
-  <br>
-  <%= f.text_area :note %>
+    <%= f.label "Would you like to include a note? (50 Character Limit)" %>
+    <br>
+    <%= f.text_area :note %>
 
-  <br>
-  <br>
+    <br>
+    <br>
 
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
 
-<h4><a href="/">HOME</a></h4>
+  <h4><a href="/">HOME</a></h4>
+</div>

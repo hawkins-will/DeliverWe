@@ -1,8 +1,10 @@
-<p>Are you sure you'd like to cancel this Personal Order? You'll end up hungy, and that's sad!</p>
+<div class="center_page">
+  <p>Are you sure you'd like to cancel this Personal Order? You'll end up hungy, and that's sad!</p>
 
-<%= link_to "CANCEL HAPPINESS", @patron, method: :delete, class: "delete" %>
+  <%= link_to "CANCEL HAPPINESS", @patron, method: :delete, class: "delete" %>
 
-  <br>
-  <br>
+    <br>
+    <br>
 
-<%= link_to "BACK", patron_path(@patron) %>
+  <%= link_to "BACK", patron_path(@patron) %>
+</div>

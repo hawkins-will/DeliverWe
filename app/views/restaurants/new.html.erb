@@ -1,49 +1,52 @@
-<h1>Let's Make a New Restaurant</h1>
+<div class="center_page">
 
-<%= form_for @restaurant do |f| %>
-  <%= f.label "What's the Name of this Restaurant?" %>
-  <br>
-  <%= f.text_field :name %>
+  <h1>Let's Make a New Restaurant</h1>
 
-  <br>
-  <br>
+  <%= form_for @restaurant do |f| %>
+    <%= f.label "What's the Name of this Restaurant?" %>
+    <br>
+    <%= f.text_field :name %>
 
-  <%= f.label "The URL to a picture of the Restaurant's Logo (Square Pictures work best)" %>
-  <br>
-  <%= f.text_field :logo_url %>
+    <br>
+    <br>
 
-  <br>
-  <br>
+    <%= f.label "The URL to a picture of the Restaurant's Logo (Square Pictures work best)" %>
+    <br>
+    <%= f.text_field :logo_url %>
 
-  <%= f.label "The URL to an online Menu for the Restaurant." %>
-  <br>
-  <%= f.text_field :menu_link %>
+    <br>
+    <br>
 
-  <br>
-  <br>
+    <%= f.label "The URL to an online Menu for the Restaurant." %>
+    <br>
+    <%= f.text_field :menu_link %>
 
-  <%= f.label "If there is one, what's the Delivery Fee?" %>
-  <br>
-  <%= f.text_field :delivery_fee %>
+    <br>
+    <br>
 
-  <br>
-  <br>
+    <%= f.label "If there is one, what's the Delivery Fee?" %>
+    <br>
+    <%= f.text_field :delivery_fee %>
 
-  <%= f.label "If there is one, what's the Delivery Minimum?" %>
-  <br>
-  <%= f.text_field :delivery_min %>
+    <br>
+    <br>
 
-  <br>
-  <br>
+    <%= f.label "If there is one, what's the Delivery Minimum?" %>
+    <br>
+    <%= f.text_field :delivery_min %>
 
-  <%= f.label "What's the Tax at the restaurant? (Input 10% tax as '10')" %>
-  <br>
-  <%= f.text_field :tax %>
+    <br>
+    <br>
 
-  <br>
-  <br>
+    <%= f.label "What's the Tax at the restaurant? (Input 10% tax as '10')" %>
+    <br>
+    <%= f.text_field :tax %>
 
-  <%= f.submit %>
-<% end %>
+    <br>
+    <br>
 
-<h4><a href="/">BACK</a></h4>
+    <%= f.submit %>
+  <% end %>
+
+  <h4><a href="/">BACK</a></h4>
+</div>

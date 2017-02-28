@@ -1,118 +1,119 @@
-<div class="second_header">
-  <img class="second_header_logo" src="<%= Restaurant.find(@order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(@order.restaurant_id).name %> Logo">
-  <div class="second_header_right">
-    <p class="restaurant_title"><%= Restaurant.find(@order.restaurant_id).name %></p>
-<% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
-    <div class="second_header_bottom_right">
-      <div class="second_header_box border_right">
-        <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %> Minimum</p>
-      </div>
-      <div class="second_header_box border_right">
-        <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_fee) %> Fee</p>
-      </div>
-      <div class="second_header_box border_right">
-        <p>Tax: <%= @order_tax %>%</p>
-      </div>
-    </div>
-    <div class="second_header_bottom_right_two">
-      <a target="_blank" class="second_header_box" href="<%= Restaurant.find(@order.restaurant_id).menu_link %>"><div class="second_header_box border_right">
-        <p>MENU</p>
-      </div></a>
-      <%= link_to order_patrons_path(@order), method: :post do %>
-          <div class="second_header_box border_right">
-          <p>JOIN</p>
+<div class="padded_page">
+  <div class="second_header">
+    <img class="second_header_logo" src="<%= Restaurant.find(@order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(@order.restaurant_id).name %> Logo">
+    <div class="second_header_right">
+      <p class="restaurant_title"><%= Restaurant.find(@order.restaurant_id).name %></p>
+  <% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
+      <div class="second_header_bottom_right">
+        <div class="second_header_box border_right">
+          <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_min) %> Minimum</p>
         </div>
-      <% end %>
-      <% if @order.patrons.first.user == current_user %>
-        <a  class="second_header_box" href="/order/<%= @order.id %>/cancel"><div class="second_header_box border_right">
-          <p>CANCEL</p>
+        <div class="second_header_box border_right">
+          <p><%= number_to_currency(Restaurant.find(@order.restaurant_id).delivery_fee) %> Fee</p>
+        </div>
+        <div class="second_header_box border_right">
+          <p>Tax: <%= @order_tax %>%</p>
+        </div>
+      </div>
+      <div class="second_header_bottom_right_two">
+        <a target="_blank" class="second_header_box" href="<%= Restaurant.find(@order.restaurant_id).menu_link %>"><div class="second_header_box border_right">
+          <p>MENU</p>
         </div></a>
-      <% end %>
+        <%= link_to order_patrons_path(@order), method: :post do %>
+            <div class="second_header_box border_right">
+            <p>JOIN</p>
+          </div>
+        <% end %>
+        <% if @order.patrons.first.user == current_user %>
+          <a  class="second_header_box" href="/order/<%= @order.id %>/cancel"><div class="second_header_box border_right">
+            <p>CANCEL</p>
+          </div></a>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
-<% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
-<br>
-<div class="note_box">
-  <p class="center">Order will be placed at <%= @order.time %></p>
-  <p><%= @order.note %></p>
-</div>
-<br>
-<% if @order.patrons.first.user == current_user %>
-  <p><%= link_to "EDIT", edit_order_path(@order) %></p>
-<% end %>
-<br>
-<% if @order.patrons.length >= 1 %>
-  <p class="center">Head Patron: <%= @order.patrons.first.name %></p>
-<% else %>
-  <p class="center">Head Patron: No One Has Taken Charge</p>
-<% end %>
-<br>
-<p class="center">*****Please Note that a $5.00 tip is INCLUDED on all orders*****</p>
-<br>
-<hr>
-<br>
-<% @order.patrons.each do |patron| %>
-  <div>
-  <% @patron_price = 0.00 %>
-    <p><%= link_to patron.name, patron %></p>
-    <% patron.items.each do |item| %>
-      <p class="item"><%= item.name %></p>
-      <p class="price"><%= number_to_currency(item.price) %></p>
-      <% unless item.modifications == "" %>
-        <p class="modifications">+ <%= item.modifications %></p>
+  <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
+  <br>
+  <div class="note_box">
+    <p class="center">Order will be placed at <%= @order.time %></p>
+    <p><%= @order.note %></p>
+  </div>
+  <br>
+  <% if @order.patrons.first.user == current_user %>
+    <p><%= link_to "EDIT", edit_order_path(@order) %></p>
+  <% end %>
+  <br>
+  <% if @order.patrons.length >= 1 %>
+    <p class="center">Head Patron: <%= @order.patrons.first.name %></p>
+  <% else %>
+    <p class="center">Head Patron: No One Has Taken Charge</p>
+  <% end %>
+  <br>
+  <p class="center">*****Please Note that a $5.00 tip is INCLUDED on all orders*****</p>
+  <br>
+  <hr>
+  <br>
+  <% @order.patrons.each do |patron| %>
+    <div>
+    <% @patron_price = 0.00 %>
+      <p><%= link_to patron.name, patron %></p>
+      <% patron.items.each do |item| %>
+        <p class="item"><%= item.name %></p>
+        <p class="price"><%= number_to_currency(item.price) %></p>
+        <% unless item.modifications == "" %>
+          <p class="modifications">+ <%= item.modifications %></p>
+          <% if item.modifications_price %>
+            <p class="price"><%= number_to_currency(item.modifications_price) %></p>
+          <% end %>
+        <% end %>
+        <% @order_price = @order_price + item.price %>
+        <% @patron_price = @patron_price + item.price %>
         <% if item.modifications_price %>
-          <p class="price"><%= number_to_currency(item.modifications_price) %></p>
+          <% @order_price = @order_price + item.modifications_price %>
+          <% @patron_price = @patron_price + item.modifications_price %>
         <% end %>
       <% end %>
-      <% @order_price = @order_price + item.price %>
-      <% @patron_price = @patron_price + item.price %>
-      <% if item.modifications_price %>
-        <% @order_price = @order_price + item.modifications_price %>
-        <% @patron_price = @patron_price + item.modifications_price %>
-      <% end %>
-    <% end %>
-    <% @patron_fee = (Restaurant.find(@order.restaurant_id).delivery_fee)/@order.patrons.length %>
-    <p class="fee">Delivery Fee</p>
-    <p class="price"><%= number_to_currency(@patron_fee) %></p>
-    <% @patron_price = @patron_price + @patron_fee %>
-    <p class="item">Tax</p>
-    <p class="price"><%= number_to_currency(@patron_price*(@order_tax/100)) %></p>
-    <br>
-    <% @patron_price = @patron_price*(1.00+(@order_tax/100)) %>
-    <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
-    <p class="price">+ Tip: <%= number_to_currency(5.00/@order.patrons.length) %></p>
-    <p class="price">with Tip: <%= number_to_currency(@patron_price+(5.00/@order.patrons.length)) %></p>
-    <hr>
-  </div>
-<br>
-<% end %>
-<br>
-<% @order_price = @order_price*(1.00+(@order_tax/100)) %>
-<p class="price">Final Price with Tip: <%= number_to_currency(@order_price + 5.00) %></p>
-<p class="price">Before Tip: <%= number_to_currency(@order_price) %></p>
-<hr>
-<br>
-<% @order_min = Restaurant.find(@order.restaurant_id).delivery_min %>
-<% if @order_price < @order_min %>
-  <p class="price red"> <%= number_to_currency(@order_min - @order_price) %> short of Minimum</p>
-<% end %>
+      <% @patron_fee = (Restaurant.find(@order.restaurant_id).delivery_fee)/@order.patrons.length %>
+      <p class="fee">Delivery Fee</p>
+      <p class="price"><%= number_to_currency(@patron_fee) %></p>
+      <% @patron_price = @patron_price + @patron_fee %>
+      <p class="item">Tax</p>
+      <p class="price"><%= number_to_currency(@patron_price*(@order_tax/100)) %></p>
+      <br>
+      <% @patron_price = @patron_price*(1.00+(@order_tax/100)) %>
+      <p class="price"><%= patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
+      <p class="price">+ Tip: <%= number_to_currency(5.00/@order.patrons.length) %></p>
+      <p class="price">with Tip: <%= number_to_currency(@patron_price+(5.00/@order.patrons.length)) %></p>
+      <hr>
+    </div>
+  <br>
+  <% end %>
+  <br>
+  <% @order_price = @order_price*(1.00+(@order_tax/100)) %>
+  <p class="price">Final Price with Tip: <%= number_to_currency(@order_price + 5.00) %></p>
+  <p class="price">Before Tip: <%= number_to_currency(@order_price) %></p>
+  <hr>
+  <br>
+  <% @order_min = Restaurant.find(@order.restaurant_id).delivery_min %>
+  <% if @order_price < @order_min %>
+    <p class="price red"> <%= number_to_currency(@order_min - @order_price) %> short of Minimum</p>
+  <% end %>
+
+  <% @order.posts.each do |post| %>
+  <p><%= post.user.email %></p>
+  <% if post.user == current_user %>
+    <p class="price"><%= post.content %></p>
+  <% else %>
+    <p><%= post.content %></p>
+  <% end %>
+  <% if post.user == current_user || post.order.patrons.first.user == current_user %>
+    <%= link_to "EDIT", edit_post_path(post) %>
+  <% end %>
+  <hr>
+  <% end %>
+
+
+  <%= link_to "POST", new_order_posts_path(@order) %>
+
+  <h4><a href="/">BACK</a></h4>
 </div>
-
-<% @order.posts.each do |post| %>
-<p><%= post.user.email %></p>
-<% if post.user == current_user %>
-  <p class="price"><%= post.content %></p>
-<% else %>
-  <p><%= post.content %></p>
-<% end %>
-<% if post.user == current_user || post.order.patrons.first.user == current_user %>
-  <%= link_to "EDIT", edit_post_path(post) %>
-<% end %>
-<hr>
-<% end %>
-
-
-<%= link_to "POST", new_order_posts_path(@order) %>
-
-<h4><a href="/">BACK</a></h4>

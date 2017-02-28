@@ -11,7 +11,7 @@
   <body>
     <header>
       <a class="no_underline" href="/">
-        <div class="main_title">
+        <div class="main_title orange_link">
           <h1>DeliverWe</h1>
         </div>
       </a>
@@ -20,18 +20,18 @@
 
       <% unless current_user %>
         <%= link_to new_user_registration_path do %>
-          <div class="sign_up">
+          <div class="sign_up orange_link">
             <p>Sign Up</p>
           </div>
         <% end %>
         <%= link_to new_user_session_path do %>
-          <div class="sign_in">
+          <div class="sign_in orange_link">
             <p>Sign In</p>
           </div>
         <% end %>
       <% else %>
         <%= link_to destroy_user_session_path, :method => :delete do %>
-          <div class="sign_out">
+          <div class="sign_out orange_link">
             <p>Sign Out <%= current_user.email %></p>
           </div>
         <% end %>

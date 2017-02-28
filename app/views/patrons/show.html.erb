@@ -1,47 +1,49 @@
-<h1>Hello <%= @patron.name %></h1>
-  <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-    <p><%= link_to "EDIT", edit_patron_path(@patron) %></p>
-  <% end %>
-<% @patron_price = 0.00 %>
-<% @patron.items.each do |item| %>
-  <div class="item_box">
-    <p class="item"><%= item.name %></p>
-    <p class="price">$<%= item.price %></p>
-    <% unless item.modifications == "" %>
-      <p class="modifications">+ <%= item.modifications %></p>
-      <% if item.modifications_price %>
-        <p class="price"><%= number_to_currency(item.modifications_price) %></p>
-      <% end %>
-    <% end %>
+<div class="padded_page">
+  <h1>Hello <%= @patron.name %></h1>
     <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-      <p class="price"><%= link_to "EDIT", edit_item_path(item) %></p>
+      <p><%= link_to "EDIT", edit_patron_path(@patron) %></p>
     <% end %>
+  <% @patron_price = 0.00 %>
+  <% @patron.items.each do |item| %>
+    <div class="item_box">
+      <p class="item"><%= item.name %></p>
+      <p class="price">$<%= item.price %></p>
+      <% unless item.modifications == "" %>
+        <p class="modifications">+ <%= item.modifications %></p>
+        <% if item.modifications_price %>
+          <p class="price"><%= number_to_currency(item.modifications_price) %></p>
+        <% end %>
+      <% end %>
+      <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+        <p class="price"><%= link_to "EDIT", edit_item_path(item) %></p>
+      <% end %>
+    </div>
+    <% @patron_price = @patron_price + item.price %>
+    <br>
+  <% end %>
+
+  <% @patron_fee = (Restaurant.find(@patron.order.restaurant_id).delivery_fee)/@patron.order.patrons.length %>
+  <div class="item_box">
+    <p class="fee">Delivery Fee</p>
+    <p class="price"><%= number_to_currency(@patron_fee) %></p>
+    <% @patron_price = @patron_price + @patron_fee %>
+    <p class="item">Tax</p>
+    <p class="price"><%= number_to_currency(@patron_price*(@patron.order.restaurant.tax/100)) %></p>
   </div>
-  <% @patron_price = @patron_price + item.price %>
-  <br>
-<% end %>
+  <% @patron_price = @patron_price*(1+(@patron.order.restaurant.tax/100)) %>
+  <p><%= @patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
+  <p>+ Tip: <%= number_to_currency(5.00/@patron.order.patrons.length) %></p>
+  <p>with Tip: <%= number_to_currency(@patron_price+(5.00/@patron.order.patrons.length)) %></p>
 
-<% @patron_fee = (Restaurant.find(@patron.order.restaurant_id).delivery_fee)/@patron.order.patrons.length %>
-<div class="item_box">
-  <p class="fee">Delivery Fee</p>
-  <p class="price"><%= number_to_currency(@patron_fee) %></p>
-  <% @patron_price = @patron_price + @patron_fee %>
-  <p class="item">Tax</p>
-  <p class="price"><%= number_to_currency(@patron_price*(@patron.order.restaurant.tax/100)) %></p>
+  <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+    <h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>
+  <% end %>
+
+  <a href="/patrons/<%= @patron.id %>/cancel"><div>
+  <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+    <p>CANCEL ORDER</p>
+  <% end %>
+  </div></a>
+
+  <h4> <%= link_to "VIEW ORDER", order_path(@patron.order) %></h4>
 </div>
-<% @patron_price = @patron_price*(1+(@patron.order.restaurant.tax/100)) %>
-<p><%= @patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
-<p>+ Tip: <%= number_to_currency(5.00/@patron.order.patrons.length) %></p>
-<p>with Tip: <%= number_to_currency(@patron_price+(5.00/@patron.order.patrons.length)) %></p>
-
-<% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-  <h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>
-<% end %>
-
-<a href="/patrons/<%= @patron.id %>/cancel"><div>
-<% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-  <p>CANCEL ORDER</p>
-<% end %>
-</div></a>
-
-<h4> <%= link_to "VIEW ORDER", order_path(@patron.order) %></h4>

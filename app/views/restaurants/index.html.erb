@@ -24,15 +24,21 @@
       </div>
       <div class="order_bottom">
         <div class="order_buttons_section">
-          <div class="order_button">
-            <%= link_to "Join Order", order_patrons_path(order), method: :post %>
-          </div>
-          <div class="order_button">
-            <p>View Order</p>
-          </div>
-          <div class="order_button">
-            <a target="_blank" class="no_underline" href="<%= order.restaurant.menu_link %>"><p>Menu</p></a>
-          </div>
+          <%= link_to order_patrons_path(order), method: :post do %>
+            <div class="order_button grey_link">
+              <p>Join Order</p>
+            </div>
+          <% end %>
+          <%= link_to order_path(order) do %>
+            <div class="order_button grey_link">
+              <p>View Order</p>
+            </div>
+          <% end %>
+          <a target="_blank" href="<%= order.restaurant.menu_link %>">
+            <div class="order_button grey_link">
+              <p>Menu</p>
+            </div>
+          </a>
         </div>
         <div class="patron_box">
           <p class="patron_line">Order will be placed at <%= order.time %></p>
@@ -58,25 +64,27 @@
   </div>
 
   <div class="restaurant_section">
-    <div class="restaurant_header">
-      <h2>Restaurants! (<%= link_to "+", new_restaurant_path %>)</h2>
-    </div>
+    <%= link_to new_restaurant_path do %>
+      <div class="restaurant_header blue_link">
+        <h2>Add Restaurant</h2>
+      </div>
+    <% end %>
     <% @restaurants.each do |restaurant| %>
       <div class="restaurant_box">
         <img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo">
         <div class="restaurant_box_right">
           <%= link_to restaurant_path(restaurant) do %>
-            <div class="restaurant_box_title">
+            <div class="restaurant_box_title grey_link">
               <p><%= restaurant.name %></p>
             </div>
           <% end %>
           <div class="restaurant_box_bottom">
             <%= link_to new_restaurant_order_path(restaurant) do %>
-              <div class="restaurant_quadrant">
+              <div class="restaurant_quadrant orange_link">
                 <p>Start Order</p>
               </div>
             <% end %>
-            <a target="_blank" href="<%= restaurant.menu_link %>"><div class="restaurant_quadrant">
+            <a target="_blank" href="<%= restaurant.menu_link %>"><div class="restaurant_quadrant orange_link">
               <p>Menu</p>
             </div></a>
           </div>

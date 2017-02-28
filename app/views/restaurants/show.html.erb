@@ -1,13 +1,15 @@
-<h1><img class="logo" src="<%= @restaurant.logo_url %>" alt="<%= @restaurant.name %> Logo"><%= @restaurant.name %></h1>
+<div class="padded_page">
+  <h1><img class="logo" src="<%= @restaurant.logo_url %>" alt="<%= @restaurant.name %> Logo"><%= @restaurant.name %></h1>
 
-<%= link_to "EDIT", edit_restaurant_path(@restaurant) %>
+  <%= link_to "EDIT", edit_restaurant_path(@restaurant) %>
 
-<p><a target="_blank" href="<%= @restaurant.menu_link %>">MENU</a></p>
+  <p><a target="_blank" href="<%= @restaurant.menu_link %>">MENU</a></p>
 
-<%= link_to "START ORDER", new_restaurant_order_path(@restaurant) %>
+  <%= link_to "START ORDER", new_restaurant_order_path(@restaurant) %>
 
-<p>Delivery Fee: <%= number_to_currency(@restaurant.delivery_fee) %></p>
+  <p>Delivery Fee: <%= number_to_currency(@restaurant.delivery_fee) %></p>
 
-<p>Delivery Minimum: <%= number_to_currency(@restaurant.delivery_min) %></p>
+  <p>Delivery Minimum: <%= number_to_currency(@restaurant.delivery_min) %></p>
 
-<h4><a href="/">BACK</a></h4>
+  <h4><a href="/">BACK</a></h4>
+</div>

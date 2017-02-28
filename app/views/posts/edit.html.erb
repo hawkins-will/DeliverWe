@@ -1,21 +1,23 @@
-<h1>Let's Edit This Post!</h1>
+<div class="center_page">
+  <h1>Let's Edit This Post!</h1>
 
-<%= form_for [@post] do |f| %>
-  <%= f.label "What would you like to say?" %>
+  <%= form_for [@post] do |f| %>
+    <%= f.label "What would you like to say?" %>
+    <br>
+    <%= f.text_area :content %>
+
+    <br>
+    <br>
+
+    <%= f.submit %>
+  <% end %>
+
   <br>
-  <%= f.text_area :content %>
+
+  <%= link_to "Delete Post", @post, method: :delete, class: "delete" %>
 
   <br>
   <br>
 
-  <%= f.submit %>
-<% end %>
-
-<br>
-
-<%= link_to "Delete Post", @post, method: :delete, class: "delete" %>
-
-<br>
-<br>
-
-<%= link_to "BACK", order_path(@post.order) %>
+  <%= link_to "BACK", order_path(@post.order) %>
+</div>
