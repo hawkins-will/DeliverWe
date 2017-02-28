@@ -1,15 +1,36 @@
 <div class="padded_page">
-  <h1><img class="logo" src="<%= @restaurant.logo_url %>" alt="<%= @restaurant.name %> Logo"><%= @restaurant.name %></h1>
+  <div class="second_header">
+    <img class="second_header_logo" src="<%= @restaurant.logo_url %>" alt="<%= @restaurant.name %> Logo">
+    <div class="second_header_right">
+      <div class="second_header_title">
+        <p><%= @restaurant.name %></p>
+      </div>
+      <div class="second_header_bottom">
+        <div class="second_header_bottom_left">
+          <%= link_to new_restaurant_order_path(@restaurant) do %>
+            <div class="second_header_quadrant grey_link">
+              <p>Start Order</p>
+            </div>
+          <% end %>
+          <a target="_blank" href="<%= @restaurant.menu_link %>">
+            <div class="second_header_quadrant grey_link">
+              <p>Menu</p>
+            </div>
+          </a>
+        </div>
+        <div class="second_header_bottom_right">
+          <div class="second_header_quadrant">
+            <p><%= number_to_currency(@restaurant.delivery_fee) %> Fee</p>
+          </div>
+          <div class="second_header_quadrant">
+            <p><%= number_to_currency(@restaurant.delivery_min) %> Minimum</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <%= link_to "EDIT", edit_restaurant_path(@restaurant) %>
-
-  <p><a target="_blank" href="<%= @restaurant.menu_link %>">MENU</a></p>
-
-  <%= link_to "START ORDER", new_restaurant_order_path(@restaurant) %>
-
-  <p>Delivery Fee: <%= number_to_currency(@restaurant.delivery_fee) %></p>
-
-  <p>Delivery Minimum: <%= number_to_currency(@restaurant.delivery_min) %></p>
 
   <h4><a href="/">BACK</a></h4>
 </div>
