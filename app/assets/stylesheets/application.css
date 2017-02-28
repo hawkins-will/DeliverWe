@@ -48,6 +48,11 @@ a .blue_link:hover {
   background-color: rgba(90,158,187,1);
 }
 
+.name_link {
+  color: blue;
+  text-decoration: underline;
+}
+
 header {
   display: flex;
   align-items: center;
