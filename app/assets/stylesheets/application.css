@@ -115,13 +115,13 @@ a :hover {
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-  max-width: calc(100vw - 452px);
+  max-width: calc(100vw - 354px);
   height: calc(100vh - 80px);
   overflow-y: scroll;
 }
 
 .restaurant_section {
-  width: 400px;
+  width: 302px;
   height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
@@ -138,7 +138,9 @@ a :hover {
   height: 200px;
   overflow: hidden;
   padding: 10px;
-  margin-left: 10px;
+  margin-left: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .box_header {
@@ -177,7 +179,7 @@ a :hover {
 .order_buttons_section {
   width: 100px;
   height: 120px;
-  background: grey;
+  background: rgba(158,165,179,1);
 }
 
 .order_button {
@@ -215,16 +217,17 @@ a :hover {
   border-bottom: 1px solid grey;
   border-top: 1px solid grey;
   display: flex;
-  width: 430px;
+  width: 332px;
   max-height: 100px;
   background-color: white;
   padding: 0px;
+  margin-top: 10px;
 }
 
 .restaurant_box_right {
   display: flex;
   flex-direction: column;
-  width: 330px;
+  width: 232px;
   height: 100px;
 }
 
@@ -232,20 +235,21 @@ a :hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 330px;
+  width: 232px;
   height: 50px;
   color: black;
   text-decoration: none;
   padding: 0px;
   border-left: 1px solid grey;
   border-bottom: 1px solid grey;
-  background-color: rgba(255,140,0,1);
+  font-size: 24px;
+  background-color: rgba(158,165,179,1)
 }
 
 .restaurant_box_bottom {
   display: flex;
   flex-wrap: wrap;
-  width: 330px;
+  width: 232px;
   height: 50px;
 }
 
@@ -253,12 +257,22 @@ a :hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid grey;
+  border-left: 1px solid rgba(158,165,179,1);
   height: 50px;
-  width: 81px;
+  width: 115px;
+  flex-grow: 1;
   color: black;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
+  background-color: rgba(120,211,249,1);
+}
+
+a .restaurant_quadrant {
+  background-color: rgba(255,140,0,1);
+}
+
+a .restaurant_quadrant:hover {
+  background-color: rgba(255,180,0,1);
 }
 
 
@@ -303,7 +317,7 @@ a :hover {
 
 
 .head_patron_box {
-  background-color: grey;
+  background-color: rgba(158,165,179,1);
   height: 59px;
   border-top: 2px solid black;
   border-bottom: 5px solid black;

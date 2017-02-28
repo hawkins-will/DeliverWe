@@ -35,6 +35,11 @@
           </div>
         </div>
         <div class="patron_box">
+          <p class="patron_line">Order will be placed at <%= order.time %></p>
+          <% if @order_min > @order_price*(1+(@order_tax/100)) %>
+            <p class="red patron_line"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
+          <% end %>
+          <br>
           <% order.patrons.each do |patron| %>
               <p class="patron_line">
                 <%= link_to patron.name, patron %></p>
@@ -44,11 +49,6 @@
                   <% @order_price = @order_price + item.modifications_price %>
                 <% end %>
               <% end %>
-          <% end %>
-          <br>
-          <p class="patron_line">Order will be placed at <%= order.time %></p>
-          <% if @order_min > @order_price*(1+(@order_tax/100)) %>
-            <p class="red patron_line"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
           <% end %>
           <br>
         </div>
@@ -73,21 +73,13 @@
           <div class="restaurant_box_bottom">
             <%= link_to new_restaurant_order_path(restaurant) do %>
               <div class="restaurant_quadrant">
-                <p>SUGGEST</p>
+                <p>Start Order</p>
               </div>
             <% end %>
             <a target="_blank" href="<%= restaurant.menu_link %>"><div class="restaurant_quadrant">
               <p>Menu</p>
             </div></a>
-
-            <div class="restaurant_quadrant">
-              <p><%= number_to_currency(restaurant.delivery_fee) %> Fee</p>
-            </div>
-            <div class="restaurant_quadrant">
-              <p><%= number_to_currency(restaurant.delivery_min) %> Min</p>
-            </div>
           </div>
-
         </div>
 
 
