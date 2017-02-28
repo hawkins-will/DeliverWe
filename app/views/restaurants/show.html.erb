@@ -1,4 +1,3 @@
-<div class="padded_page">
   <div class="second_header">
     <img class="second_header_logo" src="<%= @restaurant.logo_url %>" alt="<%= @restaurant.name %> Logo">
     <div class="second_header_right">
@@ -30,7 +29,25 @@
     </div>
   </div>
 
-  <%= link_to "EDIT", edit_restaurant_path(@restaurant) %>
+  <div class="restaurant_buttons">
 
-  <h4><a href="/">BACK</a></h4>
-</div>
+    <%= link_to root_path do %>
+      <div class="blue_button blue_link">
+        <p>BACK</p>
+      </div>
+    <% end %>
+
+    <%= link_to @patron, method: :delete, class: "delete" do %>
+      <div class="orange_button orange_link">
+        <p>DELETE</p>
+      </div>
+    <% end %>
+
+    <%= link_to edit_restaurant_path(@restaurant) do %>
+      <div class="blue_button blue_link">
+        <p>EDIT</p>
+      </div>
+    <% end %>
+
+
+  </div>

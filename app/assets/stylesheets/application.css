@@ -408,7 +408,7 @@ header {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  height: 50px;
+  height: 35px;
 }
 
 .blue_button {
@@ -416,8 +416,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  width: 100px;
+  height: 35px;
+  width: 70px;
   border: 1px solid grey;
 }
 
@@ -426,8 +426,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  width: 100px;
+  height: 35px;
+  width: 70px;
   border: 1px solid grey;
 }
 
