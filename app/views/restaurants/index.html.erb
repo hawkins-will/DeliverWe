@@ -1,93 +1,99 @@
-<div class="page_break">
-  <h2>Orders!</h2>
-</div>
-<div class="restaurant_section">
-  <% unless @orders.length > 0 %>
-  <div class="invisible"></div>
-  <div class="">
-    <p>No Orders In Progress</p>
-  </div>
-  <div class="invisible"></div>
-  <% end %>
-  <% @orders = @orders.sort_by do |order| %>
-  <% order.patrons.length %>
-  <% end %>
-  <% @orders = @orders.reverse %>
-  <% @orders.each do |order| %>
-  <% @order_min = order.restaurant.delivery_min %>
-  <% @order_tax = Restaurant.find(order.restaurant_id).tax %>
-  <% @order_price = 0.00 + Restaurant.find(order.restaurant_id).delivery_fee %>
-  <div class="order_box">
-    <div class="box_header">
-      <img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo">
-      <div class="box_title">
-        <p><%= Restaurant.find(order.restaurant_id).name %></p>
-      </div>
+<div class="index">
+  <div class="order_section">
+    <% unless @orders.length > 0 %>
+    <div class="invisible"></div>
+    <div class="">
+      <p>No Orders In Progress</p>
     </div>
-    <div class="order_bottom">
-      <div class="order_buttons_section">
-        <div class="order_button">
-          <%= link_to "Join Order", order_patrons_path(order), method: :post %>
-        </div>
-        <div class="order_button">
-          <p>View Order</p>
-        </div>
-        <div class="order_button">
-          <a target="_blank" class="no_underline" href="<%= order.restaurant.menu_link %>"><p>Menu</p></a>
-        </div>
-      </div>
-      <div class="patron_box">
-        <% order.patrons.each do |patron| %>
-            <p class="patron_line">
-              <%= link_to patron.name, patron %></p>
-            <% patron.items.each do |item| %>
-              <% @order_price = @order_price + item.price %>
-              <% if item.modifications_price %>
-                <% @order_price = @order_price + item.modifications_price %>
-              <% end %>
-            <% end %>
-        <% end %>
-        <br>
-        <p class="patron_line">Order will be placed at <%= order.time %></p>
-        <% if @order_min > @order_price*(1+(@order_tax/100)) %>
-          <p class="red patron_line"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
-        <% end %>
-        <br>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</div>
-<div class="page_break">
-  <h2>Restaurants! (<%= link_to "+", new_restaurant_path %>)</h2>
-</div>
-<div class="restaurant_section">
-  <% @restaurants.each do |restaurant| %>
-    <div class="restaurant_box">
+    <div class="invisible"></div>
+    <% end %>
+    <% @orders = @orders.sort_by do |order| %>
+    <% order.patrons.length %>
+    <% end %>
+    <% @orders = @orders.reverse %>
+    <% @orders.each do |order| %>
+    <% @order_min = order.restaurant.delivery_min %>
+    <% @order_tax = Restaurant.find(order.restaurant_id).tax %>
+    <% @order_price = 0.00 + Restaurant.find(order.restaurant_id).delivery_fee %>
+    <div class="order_box">
       <div class="box_header">
-        <p><img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo"></p>
-        <%= link_to restaurant_path(restaurant) do %>
-          <div class="restaurant_header_right">
-            <p class ="restaurant_name"><%= restaurant.name %></p>
+        <img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo">
+        <div class="box_title">
+          <p><%= Restaurant.find(order.restaurant_id).name %></p>
         </div>
-        <% end %>
       </div>
-      <div class="restaurant_bottom_box">
-        <a target="_blank" class="no_underline" href="<%= restaurant.menu_link %>"><div class="restaurant_quadrant">
-          <p>Menu</p>
-        </div></a>
-        <%= link_to new_restaurant_order_path(restaurant) do %>
-          <div class="restaurant_quadrant">
-            <p>SUGGEST</p>
+      <div class="order_bottom">
+        <div class="order_buttons_section">
+          <div class="order_button">
+            <%= link_to "Join Order", order_patrons_path(order), method: :post %>
           </div>
-        <% end %>
-        <div class="restaurant_quadrant">
-          <p><%= number_to_currency(restaurant.delivery_fee) %> Fee</p>
+          <div class="order_button">
+            <p>View Order</p>
+          </div>
+          <div class="order_button">
+            <a target="_blank" class="no_underline" href="<%= order.restaurant.menu_link %>"><p>Menu</p></a>
+          </div>
         </div>
-        <div class="restaurant_quadrant">
-          <p><%= number_to_currency(restaurant.delivery_min) %> Minimum</p>
+        <div class="patron_box">
+          <% order.patrons.each do |patron| %>
+              <p class="patron_line">
+                <%= link_to patron.name, patron %></p>
+              <% patron.items.each do |item| %>
+                <% @order_price = @order_price + item.price %>
+                <% if item.modifications_price %>
+                  <% @order_price = @order_price + item.modifications_price %>
+                <% end %>
+              <% end %>
+          <% end %>
+          <br>
+          <p class="patron_line">Order will be placed at <%= order.time %></p>
+          <% if @order_min > @order_price*(1+(@order_tax/100)) %>
+            <p class="red patron_line"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
+          <% end %>
+          <br>
         </div>
       </div>
     </div>
-  <% end %>
+    <% end %>
+  </div>
+
+  <div class="restaurant_section">
+    <div class="restaurant_header">
+      <h2>Restaurants! (<%= link_to "+", new_restaurant_path %>)</h2>
+    </div>
+    <% @restaurants.each do |restaurant| %>
+      <div class="restaurant_box">
+        <img class="logo" src="<%= restaurant.logo_url %>" alt="<%= restaurant.name %> Logo">
+        <div class="restaurant_box_right">
+          <%= link_to restaurant_path(restaurant) do %>
+            <div class="restaurant_box_title">
+              <p><%= restaurant.name %></p>
+            </div>
+          <% end %>
+          <div class="restaurant_box_bottom">
+            <%= link_to new_restaurant_order_path(restaurant) do %>
+              <div class="restaurant_quadrant">
+                <p>SUGGEST</p>
+              </div>
+            <% end %>
+            <a target="_blank" href="<%= restaurant.menu_link %>"><div class="restaurant_quadrant">
+              <p>Menu</p>
+            </div></a>
+
+            <div class="restaurant_quadrant">
+              <p><%= number_to_currency(restaurant.delivery_fee) %> Fee</p>
+            </div>
+            <div class="restaurant_quadrant">
+              <p><%= number_to_currency(restaurant.delivery_min) %> Min</p>
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </div>
+    <% end %>
+
+  </div>
 </div>

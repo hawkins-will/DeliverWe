@@ -19,8 +19,8 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 body {
@@ -35,11 +35,16 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  position: fixed;
   height: 60px;
   width: 100%;
   font-size: 25px;
   color: white;
   background-color: rgba(255,140,0,1);
+}
+
+.content {
+  padding-top: 60px;
 }
 
 .notice {
@@ -97,24 +102,34 @@ a :hover {
   flex-grow: 1;
 }
 
-.page_break {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  background-color: rgba(120,211,249,1);
-  height: 50px;
-}
-
 .invisible {
   flex-grow: 1;
 }
 
+.index {
+  display: flex;
+}
 
+.order_section {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  max-width: calc(100vw - 452px);
+  height: calc(100vh - 80px);
+  overflow-y: scroll;
+}
 
-
-
-
+.restaurant_section {
+  width: 400px;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: scroll;
+  border-left: 2px solid grey;
+  background-color: rgba(120,211,249,.2);
+}
 
 .order_box {
   border: 1px solid black;
@@ -122,7 +137,7 @@ a :hover {
   width: 400px;
   height: 200px;
   overflow: hidden;
-  padding: 0px;
+  padding: 10px;
   margin-left: 10px;
 }
 
@@ -189,33 +204,61 @@ a :hover {
 }
 
 
-
-.join_order {
-  border: 1px solid red;
+.restaurant_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(120,211,249,1);
 }
 
-.index_note {
+.restaurant_box {
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  display: flex;
+  width: 430px;
+  max-height: 100px;
+  background-color: white;
+  padding: 0px;
+}
+
+.restaurant_box_right {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+  height: 100px;
+}
+
+.restaurant_box_title {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 275px;
+  width: 330px;
   height: 50px;
-  margin-top: -5px;
-  flex-wrap: wrap;
-  border: 1px solid red;
+  color: black;
+  text-decoration: none;
+  padding: 0px;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+  background-color: rgba(255,140,0,1);
 }
 
+.restaurant_box_bottom {
+  display: flex;
+  flex-wrap: wrap;
+  width: 330px;
+  height: 50px;
+}
 
-
-
-
-.restaurant_box {
-  border: 5px solid grey;
-  width: 280px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  margin-left: 5px;
-  background-color: white;
+.restaurant_quadrant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid grey;
+  height: 50px;
+  width: 81px;
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 
@@ -230,15 +273,9 @@ a :hover {
   padding-top: 15px;
   padding-right: 10px;
   margin-left: 30px;
-
 }
 
 .restaurant_box, .order_box {
-  padding: 10px;
-}
-
-.restaurant_name {
-  font-size: 25px;
 }
 
 .head_patron_label {
@@ -264,12 +301,6 @@ a :hover {
   text-align: right;
 }
 
-.restaurant_section {
-  padding: 10px;
-  padding-left: 20px;
-  display: flex;
-  flex-wrap: wrap;
-}
 
 .head_patron_box {
   background-color: grey;
@@ -279,19 +310,6 @@ a :hover {
   width: 198px;
 }
 
-.restaurant_header_right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0,0,128,1);
-  width: 198px;
-  margin-top: -4px;
-  margin-right: -20px;
-  height: 101px;
-  border-bottom: 5px solid black;
-  color: white;
-  text-decoration: none;
-}
 
 .restaurant_header_right:hover {
   background-color: rgba(0,0,128,.5);
@@ -333,33 +351,6 @@ a :hover {
   height: 50px;
 }
 
-.restaurant_bottom_box {
-  margin-top: -10px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 280px;
-  height: 100px;
-}
-
-.restaurant_quadrant {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  height: 48px;
-  width: 138px;
-  background-color: rgba(201,156,110,1);
-  color: black;
-  font-weight: bold;
-}
-
-a .restaurant_quadrant {
-  background-color: rgba(156,201,110,1);
-}
-
-a .restaurant_quadrant:hover {
-  background-color: rgba(102,51,153,.8);
-}
 
 .second_header {
   height: 250px;
