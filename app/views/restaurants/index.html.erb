@@ -1,11 +1,10 @@
 <div class="index">
   <div class="order_section">
     <% unless @orders.length > 0 %>
-    <div class="invisible"></div>
-    <div class="">
-      <p>No Orders In Progress</p>
-    </div>
-    <div class="invisible"></div>
+      <div class="no_orders">
+        <p>No Orders In Progress</p>
+        <p>Start One Over Here ----></p>
+      </div>
     <% end %>
     <% @orders = @orders.sort_by do |order| %>
     <% order.patrons.length %>

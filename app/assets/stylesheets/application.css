@@ -184,6 +184,22 @@ header {
   background-color: rgba(120,211,249,.2);
 }
 
+.no_orders {
+  margin: -10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: calc(100vw - 320px);
+  min-width: 500px;
+  height: calc(100vh - 80px);
+  overflow-y: scroll;
+  font-size: 42px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+
 .order_box {
   border: 1px solid black;
   border-radius: 20px;
