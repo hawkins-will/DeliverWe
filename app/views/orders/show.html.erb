@@ -33,6 +33,7 @@
   <div class="left_section">
     <% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
     <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
+    <% @price_check = 0.00 %>
     <br>
     <% if @order.patrons.length >= 1 && @order.patrons.first.user == current_user %>
       <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %><%=link_to edit_order_path(@order) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="large_pencil"><% end %></p>
@@ -70,9 +71,11 @@
               <% end %>
             <% end %>
             <% @order_price = @order_price + item.price %>
+            <% @price_check = @price_check + item.price %>
             <% @patron_price = @patron_price + item.price %>
             <% if item.modifications_price %>
               <% @order_price = @order_price + item.modifications_price %>
+              <% @price_check = @price_check + item.modifications_price %>
               <% @patron_price = @patron_price + item.modifications_price %>
             <% end %>
           <% end %>
@@ -97,8 +100,8 @@
       <p class="price">Before Tip: <%= number_to_currency(@order_price) %></p>
       <br>
       <% @order_min = Restaurant.find(@order.restaurant_id).delivery_min %>
-      <% if @order_price < @order_min %>
-        <p class="price red"> <%= number_to_currency(@order_min - @order_price) %> short of Minimum</p>
+      <% if @price_check < @order_min %>
+        <p class="price red"> <%= number_to_currency(@order_min - @price_check) %> short of Minimum</p>
       <% end %>
     </div>
 
