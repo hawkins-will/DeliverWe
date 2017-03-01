@@ -43,8 +43,7 @@
           <p class="patron_line">Order will be placed at <%= order.time %></p>
           <br>
           <% order.patrons.each do |patron| %>
-              <p class="patron_line">
-                <%= link_to patron.name, patron %></p>
+              <p class="patron_line name_link"><%= link_to patron.name, patron %></p>
               <% patron.items.each do |item| %>
                 <% @order_price = @order_price + item.price %>
                 <% if item.modifications_price %>
