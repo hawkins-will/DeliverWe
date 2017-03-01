@@ -153,6 +153,11 @@ header {
   height: 15px;
 }
 
+.large_pencil {
+  width: 30px;
+  height: 30px;
+}
+
 .index {
   display: flex;
 }
@@ -427,8 +432,10 @@ header {
   justify-content: center;
   align-items: center;
   height: 35px;
-  width: 70px;
+  width: 80px;
   border: 1px solid grey;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .orange_button {
@@ -437,8 +444,10 @@ header {
   justify-content: center;
   align-items: center;
   height: 35px;
-  width: 70px;
+  width: 80px;
   border: 1px solid grey;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 

@@ -1,10 +1,16 @@
 <div class="center_page">
   <p>Are you sure you'd like to cancel this Personal Order? You'll end up hungy, and that's sad!</p>
+  <div class="edit_screen_buttons">
+    <%= link_to patron_path(@patron) do %>
+      <div class="blue_button blue_link">
+        <p>BACK</p>
+      </div>
+    <% end %>
 
-  <%= link_to "CANCEL HAPPINESS", @patron, method: :delete, class: "delete" %>
-
-    <br>
-    <br>
-
-  <%= link_to "BACK", patron_path(@patron) %>
+    <%= link_to @patron, method: :delete, class: "delete" do %>
+      <div class="orange_button orange_link">
+        <p>CONFIRM</p>
+      </div>
+    <% end %>
+  </div>
 </div>

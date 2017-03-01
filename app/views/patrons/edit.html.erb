@@ -10,5 +10,9 @@
 
   <br>
 
-  <%= link_to "BACK", patron_path(@patron) %>
+  <%= link_to patron_path(@patron) do %>
+    <div class="blue_button blue_link">
+      <p>BACK</p>
+    </div>
+  <% end %>
 </div>

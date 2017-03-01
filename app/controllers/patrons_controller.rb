@@ -4,7 +4,7 @@ class PatronsController < ApplicationController
     @order = Order.find(params[:order_id])
     @patron = @order.patrons.new
   end
-
+##########
   def create
     @order = Order.find(params[:order_id])
     @patron = @order.patrons.new
@@ -14,11 +14,11 @@ class PatronsController < ApplicationController
 
     redirect_to new_patron_item_path(@patron)
   end
-
+##########
   def show
     @patron = Patron.find(params[:id])
   end
-
+##########
   def edit
     @patron = Patron.find(params[:id])
     unless @patron.user == current_user || @patron.order.patrons.first.user == current_user
@@ -26,7 +26,7 @@ class PatronsController < ApplicationController
       redirect_to patron_path(@patron)
     end
   end
-
+##########
   def update
     @patron = Patron.find(params[:id])
 
@@ -40,7 +40,7 @@ class PatronsController < ApplicationController
 
     redirect_to patron_path(@patron)
   end
-
+##########
   def cancel
     @patron = Patron.find(params[:id])
     unless @patron.user == current_user || @patron.order.patrons.first.user == current_user
@@ -48,12 +48,12 @@ class PatronsController < ApplicationController
       redirect_to patron_path(@patron)
     end
   end
-
+##########
   def destroy
     @patron = Patron.find(params[:id])
     if @patron.user == current_user || @patron.order.patrons.first.user == current_user
       @patron.destroy
-      redirect_to root_path
+      redirect_to order_path(@patron.order)
     else
       flash[:alert] = "You're not authorized to Cancel other peoples' orders"
       redirect_to patron_path(@patron)

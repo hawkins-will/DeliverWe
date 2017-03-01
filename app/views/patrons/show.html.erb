@@ -1,8 +1,9 @@
 <div class="padded_page">
-  <h1>Hello <%= @patron.name %></h1>
-    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-      <p><%= link_to "EDIT", edit_patron_path(@patron) %></p>
-    <% end %>
+  <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+    <h1><%= @patron.name %>'s Order <%=link_to edit_patron_path(@patron) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="large_pencil"><% end %></h1>
+  <% else %>
+    <h1><%= @patron.name %>'s Order</h1>
+  <% end %>
   <% @patron_price = 0.00 %>
   <% @patron.items.each do |item| %>
     <div class="item_box">
@@ -35,15 +36,29 @@
   <p>+ Tip: <%= number_to_currency(5.00/@patron.order.patrons.length) %></p>
   <p>with Tip: <%= number_to_currency(@patron_price+(5.00/@patron.order.patrons.length)) %></p>
 
-  <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-    <h4><%= link_to "ADD ITEM", new_patron_item_path(@patron) %></h4>
-  <% end %>
+  <div class="edit_screen_buttons">
 
-  <a href="/patrons/<%= @patron.id %>/cancel"><div>
-  <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-    <p>CANCEL ORDER</p>
-  <% end %>
-  </div></a>
 
-  <h4> <%= link_to "VIEW ORDER", order_path(@patron.order) %></h4>
+    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+      <%= link_to new_patron_item_path(@patron) do %>
+        <div class="blue_button blue_link">
+          <p>ADD ITEM</p>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+      <a href="/patrons/<%= @patron.id %>/cancel">
+        <div class="orange_button orange_link">
+          <p>CANCEL</p>
+        </div>
+      </a>
+    <% end %>
+
+    <%= link_to order_path(@patron.order) do %>
+      <div class="blue_button blue_link">
+        <p>VIEW ORDER</p>
+      </div>
+    <% end %>
+  </div>
 </div>
