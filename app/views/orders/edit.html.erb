@@ -1,16 +1,28 @@
 <div class="center_page">
   <h1>Edit Order Time for order from <%= @order.restaurant.name %></h1>
 
-  <%= form_for @order do |f| %>
-    <%= f.label "What Time Do You Plan on Ordering?" %>
-    <br>
-    <%= f.text_field :time %>
+  <div class="form">
+    <%= form_for @order do |f| %>
+      <%= f.label "What Time Do You Plan on Ordering?" %>
+      <br>
+      <%= f.text_field :time %>
 
-    <br>
-    <br>
+      <br>
+      <br>
+      <div class="form_buttons">
 
-    <%= f.submit %>
-  <% end %>
+      <div class="form_button_blue">
+        <%= f.submit %>
+      </div>
+    <% end %>
+    <br>
+    <a href="/order/<%= @order.id %>/cancel">
+      <div class="orange_button orange_link">
+        <p>Cancel Order</p>
+      </div>
+    </a>
+    </div>
+  </div>
   <br>
-  <%= link_to "BACK", order_path(@order) %>
+  <%= link_to "<< BACK", order_path(@order) %>
 </div>

@@ -29,13 +29,9 @@
     </div>
   </div>
 
-  <div class="restaurant_buttons">
+  <%= link_to "<< Home", root_path %>
 
-    <%= link_to root_path do %>
-      <div class="blue_button blue_link">
-        <p>BACK</p>
-      </div>
-    <% end %>
+  <div class="restaurant_buttons">
 
     <%= link_to edit_restaurant_path(@restaurant) do %>
       <div class="blue_button blue_link">

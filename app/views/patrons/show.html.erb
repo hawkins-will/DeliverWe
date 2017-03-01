@@ -1,4 +1,6 @@
 <div class="padded_page">
+  <br>
+  <%= link_to "<< Order", order_path(@patron.order) %>
   <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
     <h1><%= @patron.name %>'s Order <%=link_to edit_patron_path(@patron) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="large_pencil"><% end %></h1>
   <% else %>
@@ -7,16 +9,17 @@
   <% @patron_price = 0.00 %>
   <% @patron.items.each do |item| %>
     <div class="item_box">
-      <p class="item"><%= item.name %></p>
-      <p class="price">$<%= item.price %></p>
+      <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+        <p class="item"><%= item.name %><%=link_to edit_item_path(item) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="edit_pencil"><% end %></p>
+      <% else %>
+        <p class="item"><%= item.name %></p>
+      <% end %>
+      <p class="price"><%= number_to_currency(item.price) %></p>
       <% unless item.modifications == "" %>
         <p class="modifications">+ <%= item.modifications %></p>
         <% if item.modifications_price %>
           <p class="price"><%= number_to_currency(item.modifications_price) %></p>
         <% end %>
-      <% end %>
-      <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-        <p class="price"><%= link_to "EDIT", edit_item_path(item) %></p>
       <% end %>
     </div>
     <% @patron_price = @patron_price + item.price %>
@@ -30,35 +33,16 @@
     <% @patron_price = @patron_price + @patron_fee %>
     <p class="item">Tax</p>
     <p class="price"><%= number_to_currency(@patron_price*(@patron.order.restaurant.tax/100)) %></p>
+    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+      <%= link_to new_patron_item_path(@patron) do %>
+        <div class="blue_button blue_link">
+          <p>New Item</p>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <% @patron_price = @patron_price*(1+(@patron.order.restaurant.tax/100)) %>
   <p><%= @patron.name %>'s Total: <%= number_to_currency(@patron_price) %></p>
   <p>+ Tip: <%= number_to_currency(5.00/@patron.order.patrons.length) %></p>
   <p>with Tip: <%= number_to_currency(@patron_price+(5.00/@patron.order.patrons.length)) %></p>
-
-  <div class="edit_screen_buttons">
-
-
-    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-      <%= link_to new_patron_item_path(@patron) do %>
-        <div class="blue_button blue_link">
-          <p>ADD ITEM</p>
-        </div>
-      <% end %>
-    <% end %>
-
-    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
-      <a href="/patrons/<%= @patron.id %>/cancel">
-        <div class="orange_button orange_link">
-          <p>CANCEL</p>
-        </div>
-      </a>
-    <% end %>
-
-    <%= link_to order_path(@patron.order) do %>
-      <div class="blue_button blue_link">
-        <p>VIEW ORDER</p>
-      </div>
-    <% end %>
-  </div>
 </div>

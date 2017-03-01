@@ -1,31 +1,25 @@
 <div class="center_page">
   <h1>Let's Edit This Post!</h1>
+  <div class="form">
+    <%= form_for [@post] do |f| %>
+      <%= f.label "What would you like to say?" %>
+      <br>
+      <%= f.text_area :content %>
 
-  <%= form_for [@post] do |f| %>
-    <%= f.label "What would you like to say?" %>
-    <br>
-    <%= f.text_area :content %>
-
-    <br>
-    <br>
-
-    <%= f.submit %>
-  <% end %>
-
-  <br>
-
-  <div class="edit_screen_buttons">
-    <%= link_to order_path(@post.order) do %>
-      <div class="blue_button blue_link">
-        <p>BACK</p>
+      <br>
+      <br>
+      <div class="form_buttons">
+        <div class="form_button_blue">
+          <%= f.submit %>
+        <% end %>
       </div>
-    <% end %>
-    
-    <%= link_to @post, method: :delete, class: "delete" do %>
-      <div class="orange_button orange_link">
-        <p>DELETE</p>
-      </div>
-    <% end %>
-
+      <%= link_to @post, method: :delete, class: "delete" do %>
+        <div class="orange_button orange_link">
+          <p>Delete</p>
+        </div>
+      <% end %>
+    </div>
   </div>
+  <br>
+  <%= link_to "<< Back", order_path(@post.order) %>
 </div>

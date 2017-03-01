@@ -34,7 +34,9 @@
     <% @order_tax = Restaurant.find(@order.restaurant_id).tax %>
     <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
     <br>
-    <% if @order.patrons.length >= 1 %>
+    <% if @order.patrons.length >= 1 && @order.patrons.first.user == current_user %>
+      <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %><%=link_to edit_order_path(@order) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="large_pencil"><% end %></p>
+    <% elsif @order.patrons.length >= 1 %>
       <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %></p>
     <% else %>
       <p class="announcement">SOMEONE will need to place this Order at <%= @order.time %></p>
@@ -93,7 +95,6 @@
       <% @order_price = @order_price*(1.00+(@order_tax/100)) %>
       <p class="price">Final Price with Tip: <%= number_to_currency(@order_price + 5.00) %></p>
       <p class="price">Before Tip: <%= number_to_currency(@order_price) %></p>
-      <hr>
       <br>
       <% @order_min = Restaurant.find(@order.restaurant_id).delivery_min %>
       <% if @order_price < @order_min %>
@@ -101,25 +102,8 @@
       <% end %>
     </div>
 
-    <div class="button_section">
-      <%= link_to root_path do %>
-        <div class="blue_button blue_link">
-          <p>BACK</p>
-        </div>
-      <% end %>
-      <% if @order.patrons.first.user == current_user %>
-        <a href="/order/<%= @order.id %>/cancel">
-          <div class="orange_button orange_link">
-            <p>CANCEL</p>
-          </div>
-        </a>
-        <%= link_to edit_order_path(@order) do %>
-          <div class="blue_button blue_link">
-            <p>EDIT</p>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+    <%= link_to "<< BACK", root_path %>
+
     <div class="invisible_bottom">YOU FOUND ME</div>
   </div>
 
@@ -152,9 +136,10 @@
 
         <br>
         <br>
-
-        <%= f.submit %>
-      <% end %>
+        <div class="form_button_blue">
+          <%= f.submit %>
+        <% end %>
+        </div>
     </div>
     <br>
   </div>

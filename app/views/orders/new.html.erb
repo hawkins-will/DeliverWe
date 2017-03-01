@@ -1,22 +1,21 @@
 <div class="center_page">
   <h1>Create a New Order from <%= @restaurant.name %></h1>
 
-  <%= form_for [@restaurant, @order] do |f| %>
-    <%= f.label "What Time Do You Plan on Ordering?" %>
-    <br>
-    <%= f.text_field :time %>
+  <div class="form">
+    <%= form_for [@restaurant, @order] do |f| %>
+      <%= f.label "What Time Do You Plan on Ordering?" %>
+      <br>
+      <%= f.text_field :time %>
 
-    <br>
-    <br>
-
-    <%= f.submit %>
-  <% end %>
-
-  <br>
-
-  <%= link_to root_path do %>
-    <div class="blue_button blue_link">
-      <p>HOME</p>
-    </div>
-  <% end %>
+      <br>
+      <br>
+      <div class="form_buttons">
+        <div class="form_button_blue">
+        <%= f.submit %>
+      <% end %>
+        </div>
+      </div>
+      <br>
+    <%= link_to "<< Home", root_path %>
+  </div>
 </div>

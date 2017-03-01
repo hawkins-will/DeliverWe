@@ -1,39 +1,41 @@
 <div class="center_page">
   <h1>Edit <%= @item.name %></h1>
-
+  <div class="form">
     <%= form_for @item do |f| %>
-    <%= f.label "What's the Name of the Item You'd Like to Order?" %>
-    <br>
-    <%= f.text_field :name %>
+      <%= f.label "What's the Name of the Item You'd Like to Order?" %>
+      <br>
+      <%= f.text_field :name %>
 
-    <br>
-    <br>
+      <br>
+      <br>
 
-    <%= f.label "Price?" %>
-    <br>
-    <%= f.text_field :price %>
+      <%= f.label "Price?" %>
+      <br>
+      <%= f.text_field :price %>
 
-    <br>
-    <br>
+      <br>
+      <br>
 
-    <%= f.label "Would you like to make any modifications? (Optional)" %>
-    <br>
-    <%= f.text_area :modifications %>
+      <%= f.label "Would you like to make any modifications? (Optional)" %>
+      <br>
+      <%= f.text_area :modifications %>
 
-    <br>
-    <br>
+      <br>
+      <br>
 
-    <%= f.label "What's the Price of your Modifications? (Optional)" %>
-    <br>
-    <%= f.text_field :modifications_price %>
+      <%= f.label "What's the Price of your Modifications? (Optional)" %>
+      <br>
+      <%= f.text_field :modifications_price %>
 
+      <br>
+      <br>
+      <div class="form_buttons">
+        <div class="form_button_blue">
+          <%= f.submit %>
+        <% end %>
+        </div>
+      </div>
+  </div>
     <br>
-    <br>
-
-    <%= f.submit %>
-  <% end %>
-
-    <br>
-
-  <%= link_to "BACK", patron_path(@item.patron) %>
+  <%= link_to "<< Back", patron_path(@item.patron) %>
 </div>

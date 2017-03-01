@@ -1,18 +1,28 @@
 <div class="center_page">
   <h1>Let's Edit <%= @patron.name %>'s Name</h1>
 
-  <%= form_for @patron do |f| %>
-    <%= f.label "What's your name?" %>
-    <%= f.text_field :name %>
-
-    <%= f.submit %>
-  <% end %>
-
-  <br>
-
-  <%= link_to patron_path(@patron) do %>
-    <div class="blue_button blue_link">
-      <p>BACK</p>
+  <div class="form">
+    <%= form_for @patron do |f| %>
+      <%= f.label "What's your name?" %>
+      <br>
+      <%= f.text_field :name %>
+      <br>
+      <br>
+    <div class="form_buttons">
+      <div class="form_button_blue">
+        <%= f.submit %>
+      <% end %>
     </div>
-  <% end %>
+    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+      <a href="/patrons/<%= @patron.id %>/cancel">
+        <div class="orange_button orange_link">
+          <p>Cancel Order</p>
+        </div>
+      </a>
+    <% end %>
+    </div>
+    <br>
+
+    <%= link_to "<< Back", patron_path(@patron) %>
+  </div>
 </div>

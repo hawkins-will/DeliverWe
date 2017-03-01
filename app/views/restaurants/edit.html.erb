@@ -1,64 +1,60 @@
 <div class="center_page">
   <h1>Edit <%= @restaurant.name %></h1>
+  <form class="form">
+    <%= form_for @restaurant do |f| %>
+      <%= f.label "What's the Name of this Restaurant?" %>
+      <br>
+      <%= f.text_field :name %>
 
-  <%= form_for @restaurant do |f| %>
-    <%= f.label "What's the Name of this Restaurant?" %>
-    <br>
-    <%= f.text_field :name %>
+      <br>
+      <br>
 
-    <br>
-    <br>
+      <%= f.label "The URL to a picture of the Restaurant's Logo (Square Pictures work best)" %>
+      <br>
+      <%= f.text_field :logo_url %>
 
-    <%= f.label "The URL to a picture of the Restaurant's Logo (Square Pictures work best)" %>
-    <br>
-    <%= f.text_field :logo_url %>
+      <br>
+      <br>
 
-    <br>
-    <br>
+      <%= f.label "The URL to an online Menu for the Restaurant." %>
+      <br>
+      <%= f.text_field :menu_link %>
 
-    <%= f.label "The URL to an online Menu for the Restaurant." %>
-    <br>
-    <%= f.text_field :menu_link %>
+      <br>
+      <br>
 
-    <br>
-    <br>
+      <%= f.label "If there is one, what's the Delivery Fee?" %>
+      <br>
+      <%= f.text_field :delivery_fee %>
 
-    <%= f.label "If there is one, what's the Delivery Fee?" %>
-    <br>
-    <%= f.text_field :delivery_fee %>
+      <br>
+      <br>
 
-    <br>
-    <br>
+      <%= f.label "If there is one, what's the Delivery Minimum?" %>
+      <br>
+      <%= f.text_field :delivery_min %>
 
-    <%= f.label "If there is one, what's the Delivery Minimum?" %>
-    <br>
-    <%= f.text_field :delivery_min %>
+      <br>
+      <br>
 
-    <br>
-    <br>
+      <%= f.label "What's the Tax at the restaurant? (Input 10% tax as '10')" %>
+      <br>
+      <%= f.text_field :tax %>
 
-    <%= f.label "What's the Tax at the restaurant? (Input 10% tax as '10')" %>
-    <br>
-    <%= f.text_field :tax %>
-
-    <br>
-    <br>
-
-    <%= f.submit %>
-  <% end %>
-
-  <br>
-
-  <div class="edit_screen_buttons">
-    <%= link_to restaurant_path(@restaurant) do %>
-      <div class="blue_button blue_link">
-        <p>BACK</p>
+      <br>
+      <br>
+      <div class="form_buttons">
+        <div class="form_button_blue">
+          <%= f.submit %>
+        <% end %>
+        </div>
+        <%= link_to @patron, method: :delete, class: "delete" do %>
+          <div class="orange_button orange_link">
+            <p>Delete Restaurant</p>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-    <%= link_to @patron, method: :delete, class: "delete" do %>
-      <div class="orange_button orange_link">
-        <p>DELETE</p>
-      </div>
-    <% end %>
+      <br>
+      <%= link_to "<< Back", restaurant_path(@restaurant) %>
   </div>
-</div>
+  <br>
