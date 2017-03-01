@@ -36,14 +36,4 @@ Restaurant.create(name: "Zoup", logo_url: "http://www.zoup.com/images/zoup-logo.
 Restaurant.create(name: "Buredo", logo_url: "https://www.zagat.com/proxy/v1.4?m=image&a=resize&url=http%3A//storage.googleapis.com/zgt-photos/0x89b7b795dc2c001b_0x6a43ba14c1267126/2880edf4ad3d3cfac1c5f7841590fed8.jpg&max_height=600&max_width=800&key=abbc09b7c840c10937a4db331422c98b", menu_link: "https://www.grubhub.com/restaurant/buredo-1213-connecticut-ave-nw-washington/342092", delivery_fee: 2.99, delivery_min: 10.00, tax: 10)
 Restaurant.create(name: "Soupergirl", logo_url: "http://jbforrest.com/wp-content/themes/echo/timthumb.php?src=http://jbforrest.com/wp-content/uploads/2011/08/soupergirl-logo.jpg&h=9999&w=660&q=60", menu_link: "https://www.grubhub.com/restaurant/soupergirl-1829-m-st-nw-washington/331706", delivery_fee: 2.99, delivery_min: 10.00, tax: 10)
 Restaurant.create(name: "Subway", logo_url: "http://www.gogoosecreek.com/portals/0/images/Subway%20Logo.png", menu_link: "https://www.grubhub.com/restaurant/subway-57669-1010-massachusetts-ave-nw-washington/339650", delivery_fee: 2.99, delivery_min: 10.00, tax: 10)
-pollo = Restaurant.create(name: "Tonton Chicken", logo_url: "https://pbs.twimg.com/profile_images/509447639201374209/0I-3LzOK_400x400.png", menu_link: "https://www.grubhub.com/restaurant/tonton-chicken-1018-vermont-ave-nw-washington/296252", delivery_fee: 2.99, delivery_min: 15.00, tax: 10)
-
-will = User.create(email: "willhawkins@yahoo.com", password: "password1")
-
-lunch = pollo.orders.create(time: "Noon")
-
-me = will.patrons.create(name: "willhawkins@yahoo.com", order_id: 1)
-
-food = me.items.create(name: "Sandwich", price: "9.95", modifications: "Mayonnaise", modifications_price: 0)
-
-comment = will.posts.create(content: "This is my test post", author: "willhawkins@yahoo.com", order_id: 1)
+Restaurant.create(name: "Tonton Chicken", logo_url: "https://pbs.twimg.com/profile_images/509447639201374209/0I-3LzOK_400x400.png", menu_link: "https://www.grubhub.com/restaurant/tonton-chicken-1018-vermont-ave-nw-washington/296252", delivery_fee: 2.99, delivery_min: 15.00, tax: 10)
