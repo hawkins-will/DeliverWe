@@ -15,14 +15,15 @@
         <p class="item"><%= item.name %></p>
       <% end %>
       <p class="price"><%= number_to_currency(item.price) %></p>
+      <% @patron_price = @patron_price + item.price %>
       <% unless item.modifications == "" %>
         <p class="modifications">+ <%= item.modifications %></p>
         <% if item.modifications_price %>
           <p class="price"><%= number_to_currency(item.modifications_price) %></p>
+          <% @patron_price = @patron_price + item.modifications_price %>
         <% end %>
       <% end %>
     </div>
-    <% @patron_price = @patron_price + item.price %>
     <br>
   <% end %>
 

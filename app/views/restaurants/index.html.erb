@@ -13,7 +13,7 @@
     <% @orders.each do |order| %>
     <% @order_min = order.restaurant.delivery_min %>
     <% @order_tax = Restaurant.find(order.restaurant_id).tax %>
-    <% @order_price = 0.00 + Restaurant.find(order.restaurant_id).delivery_fee %>
+    <% @order_price = 0.00 %>
     <div class="order_box">
       <div class="box_header">
         <img class="logo" src="<%= Restaurant.find(order.restaurant_id).logo_url %>" alt="<%= Restaurant.find(order.restaurant_id).name %> Logo">
@@ -51,9 +51,9 @@
                 <% end %>
               <% end %>
           <% end %>
-          <% if @order_min > @order_price*(1+(@order_tax/100)) %>
+          <% if @order_min > @order_price %>
             <br>
-            <p class="red patron_line"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
+            <p class="red patron_line"><%= number_to_currency(@order_min - @order_price) %> short of Minimum</p>
           <% end %>
           <br>
         </div>
