@@ -74,7 +74,11 @@
         <div class="restaurant_box_right">
           <%= link_to restaurant_path(restaurant) do %>
             <div class="restaurant_box_title grey_link">
-              <p><%= restaurant.name %></p>
+              <% if restaurant.name.length > 20 %>
+                <p><%= restaurant.name[0..18] %>...</p>
+              <% else %>
+                <p><%= restaurant.name %></p>
+              <% end %>
             </div>
           <% end %>
           <div class="restaurant_box_bottom">
