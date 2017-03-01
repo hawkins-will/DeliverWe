@@ -36,11 +36,11 @@
     <% @price_check = 0.00 %>
     <br>
     <% if @order.patrons.length >= 1 && @order.patrons.first.user == current_user %>
-      <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time.strftime("%I:%M%p") %><%=link_to edit_order_path(@order) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="large_pencil"><% end %></p>
+      <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %><%=link_to edit_order_path(@order) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="large_pencil"><% end %></p>
     <% elsif @order.patrons.length >= 1 %>
-      <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time.strftime("%I:%M%p") %></p>
+      <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %></p>
     <% else %>
-      <p class="announcement">SOMEONE will need to place this Order at <%= @order.time.strftime("%I:%M%p") %></p>
+      <p class="announcement">SOMEONE will need to place this Order at <%= @order.time %></p>
     <% end %>
     <br>
     <p class="sub_announcement">*****Please Note that a $5.00 tip is INCLUDED on all orders*****</p>
