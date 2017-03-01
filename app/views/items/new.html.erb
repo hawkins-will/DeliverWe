@@ -4,14 +4,14 @@
     <%= form_for [@patron, @item] do |f| %>
       <%= f.label "What's the Name of the Item You'd Like to Order?" %>
       <br>
-      <%= f.text_field :name %>
+      <%= f.text_area :name %>
 
       <br>
       <br>
 
       <%= f.label "Price" %>
       <br>
-      <%= f.text_field :price %>
+      <%= f.text_area :price %>
 
       <br>
       <br>
@@ -25,7 +25,7 @@
 
       <%= f.label "What's the Price of your Modifications? (Optional)" %>
       <br>
-      <%= f.text_field :modifications_price %>
+      <%= f.text_area :modifications_price %>
 
       <br>
       <br>

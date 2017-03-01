@@ -1,46 +1,46 @@
 <div class="center_page">
 
-  <h1>Let's Make a New Restaurant</h1>
+  <h1>Add New Restaurant</h1>
   <div class="form">
     <%= form_for @restaurant do |f| %>
       <%= f.label "What's the Name of this Restaurant?" %>
       <br>
-      <%= f.text_field :name %>
+      <%= f.text_area :name %>
 
       <br>
       <br>
 
       <%= f.label "The URL to a picture of the Restaurant's Logo (Square Pictures work best)" %>
       <br>
-      <%= f.text_field :logo_url %>
+      <%= f.text_area :logo_url %>
 
       <br>
       <br>
 
       <%= f.label "The URL to an online Menu for the Restaurant." %>
       <br>
-      <%= f.text_field :menu_link %>
+      <%= f.text_area :menu_link %>
 
       <br>
       <br>
 
-      <%= f.label "If there is one, what's the Delivery Fee?" %>
+      <%= f.label "What's the Delivery Fee? (Optional)" %>
       <br>
-      <%= f.text_field :delivery_fee %>
+      <%= f.text_area :delivery_fee %>
 
       <br>
       <br>
 
-      <%= f.label "If there is one, what's the Delivery Minimum?" %>
+      <%= f.label "What's the Delivery Minimum? (Optional)" %>
       <br>
-      <%= f.text_field :delivery_min %>
+      <%= f.text_area :delivery_min %>
 
       <br>
       <br>
 
-      <%= f.label "What's the Tax at the restaurant? (Input 10% tax as '10')" %>
+      <%= f.label "What's the Tax at the restaurant? (ex: Input 10% tax as '10')" %>
       <br>
-      <%= f.text_field :tax %>
+      <%= f.text_area :tax %>
 
       <br>
       <br>

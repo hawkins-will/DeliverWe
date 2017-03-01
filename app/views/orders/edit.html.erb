@@ -1,11 +1,11 @@
 <div class="center_page">
-  <h1>Edit Order Time for order from <%= @order.restaurant.name %></h1>
+  <h1>Edit Order from <%= @order.restaurant.name %></h1>
 
   <div class="form">
     <%= form_for @order do |f| %>
       <%= f.label "What Time Do You Plan on Ordering?" %>
       <br>
-      <%= f.text_field :time %>
+      <%= f.text_area :time %>
 
       <br>
       <br>

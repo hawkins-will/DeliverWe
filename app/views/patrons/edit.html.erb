@@ -1,11 +1,11 @@
 <div class="center_page">
-  <h1>Let's Edit <%= @patron.name %>'s Name</h1>
+  <h1>Edit <%= @patron.name %></h1>
 
   <div class="form">
     <%= form_for @patron do |f| %>
       <%= f.label "What's your name?" %>
       <br>
-      <%= f.text_field :name %>
+      <%= f.text_area :name %>
       <br>
       <br>
     <div class="form_buttons">
