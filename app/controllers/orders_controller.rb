@@ -8,8 +8,8 @@ class OrdersController < ApplicationController
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
 
-    if order_params[:time] == ""
-      flash[:alert] = "Please enter the time you expect to place this order. "
+    unless order_params[:time].to_time
+      flash[:alert] = "Please enter a valid time."
       redirect_to new_restaurant_order_path(@restaurant)
       return
     end

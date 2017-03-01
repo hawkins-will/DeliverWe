@@ -5,12 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
 Restaurant.destroy_all
 Order.destroy_all
 Patron.destroy_all
 Item.destroy_all
 Post.destroy_all
+User.destroy_all
 
 Restaurant.create(name: "Wok and Roll", logo_url: "https://res.cloudinary.com/grubhub/image/upload/w_400,h_300,f_auto,fl_lossy,q_80,c_fit/gopwvi5tbcacgeuz7grp", menu_link: "https://www.grubhub.com/restaurant/wok--roll-chinatown-604-h-st-nw-washington/69386", delivery_fee: 1.00, delivery_min: 15.00, tax: 10)
 Restaurant.create(name: "Qdoba", logo_url: "http://morethanthecurve.com/wp-content/uploads/2014/12/qdoba-logo.png", menu_link: "https://www.grubhub.com/restaurant/qdoba-mexican-grill-555-11th-st-nw-washington/344690", delivery_fee: 2.99, delivery_min: 10.00, tax: 10)

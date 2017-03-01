@@ -40,7 +40,7 @@
           </a>
         </div>
         <div class="patron_box">
-          <p class="patron_line">Order will be placed at <%= order.time %></p>
+          <p class="patron_line">Order will be placed at <%= order.time.strftime('%I:%M%p') %></p>
           <br>
           <% order.patrons.each do |patron| %>
               <p class="patron_line name_link"><%= link_to patron.name, patron %></p>
