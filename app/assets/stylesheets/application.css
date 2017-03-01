@@ -21,7 +21,7 @@ html {
   left: 0;
   height: 100vh;
   width: 100vw;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -69,6 +69,7 @@ header {
 .center_page {
   width: 100vw;
   height: calc(100vh - 80px);
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,6 +79,7 @@ header {
 .padded_page {
   padding-left: 25px;
   padding-right: 25px;
+  min-height: 600px;
 }
 
 
@@ -493,6 +495,7 @@ header {
   height: 25px;
   max-height: 25px;
   margin-top: 5px;
+  font-size: 14px;
 }
 
 .form_buttons {
@@ -541,10 +544,11 @@ header {
   width: 300px;
   max-width: 300px;
   overflow-y: scroll;
+  font-size: 14px;
 }
 
 .your_post {
-  width: 200px;
+  width: 250px;
   margin-left: auto;
   border-radius: 10px;
   padding-left: 10px;
@@ -554,7 +558,7 @@ header {
 }
 
 .other_post {
-  width: 200px;
+  width: 250px;
   margin-right: auto;
   border-radius: 10px;
   padding-left: 10px;
