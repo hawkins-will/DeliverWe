@@ -108,7 +108,7 @@
         </div>
       <% end %>
       <% if @order.patrons.first.user == current_user %>
-        <a href="/orders/<%= @order.id %>/cancel">
+        <a href="/order/<%= @order.id %>/cancel">
           <div class="orange_button orange_link">
             <p>CANCEL</p>
           </div>
