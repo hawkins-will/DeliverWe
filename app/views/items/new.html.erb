@@ -1,7 +1,5 @@
 <div class="center_page">
-  <h1>Add to <%= @patron.name %>'s Order</h1>
-
-  <p><a target="_blank" href="<%= @patron.order.restaurant.menu_link %>"><%= @patron.order.restaurant.name %> Menu</a></p>
+  <h1>Add to <%= @patron.name %>'s Order from <%= @patron.order.restaurant.name %></h1>
 
   <%= form_for [@patron, @item] do |f| %>
     <%= f.label "What's the Name of the Item You'd Like to Order?" %>
@@ -37,5 +35,18 @@
 
     <br>
 
-  <%= link_to "BACK", patron_path(@patron) %>
+  <div class="edit_screen_buttons">
+    <%= link_to patron_path(@patron) do %>
+      <div class="blue_button blue_link">
+        <p>BACK</p>
+      </div>
+    <% end %>
+
+    <a target="_blank" href="<%= @patron.order.restaurant.menu_link %>">
+      <div class="blue_button blue_link">
+        <p>MENU</p>
+      </div>
+    </a>
+
+  </div>
 </div>
