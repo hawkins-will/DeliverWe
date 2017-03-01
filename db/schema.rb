@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20170227231630) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string  "time"
-    t.integer "restaurant_id"
+    t.string   "time"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["restaurant_id"], name: "index_orders_on_restaurant_id", using: :btree
   end
 

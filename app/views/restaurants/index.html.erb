@@ -41,9 +41,6 @@
         </div>
         <div class="patron_box">
           <p class="patron_line">Order will be placed at <%= order.time %></p>
-          <% if @order_min > @order_price*(1+(@order_tax/100)) %>
-            <p class="red patron_line"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
-          <% end %>
           <br>
           <% order.patrons.each do |patron| %>
               <p class="patron_line">
@@ -54,6 +51,10 @@
                   <% @order_price = @order_price + item.modifications_price %>
                 <% end %>
               <% end %>
+          <% end %>
+          <% if @order_min > @order_price*(1+(@order_tax/100)) %>
+            <br>
+            <p class="red patron_line"><%= number_to_currency(@order_min - @order_price*(1+(@order_tax/100))) %> short of Minimum</p>
           <% end %>
           <br>
         </div>

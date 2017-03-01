@@ -3,6 +3,8 @@ class CreateOrders < ActiveRecord::Migration[5.0]
     create_table :orders do |t|
       t.string :time
       t.belongs_to :restaurant
+
+      t.timestamps
     end
   end
 end
