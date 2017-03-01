@@ -494,6 +494,7 @@ header {
 
 .forum {
   width: 400px;
+  height: 300px;
   border: 1px solid grey;
   background-color: white;
   padding: 10px;
@@ -501,12 +502,19 @@ header {
   overflow-y: scroll;
 }
 
+.forum_new textarea {
+  height: 100px;
+  max-height: 100px;
+  width: 300px;
+  max-width: 300px;
+  overflow-y: scroll;
+}
+
 .your_post {
   width: 200px;
-  text-align: right;
   margin-left: auto;
   border-radius: 10px;
-  padding-right: 10px;
+  padding-left: 10px;
   flex-wrap: wrap;
   background-color: rgba(255,140,0,.5);
   margin-bottom: -5px;

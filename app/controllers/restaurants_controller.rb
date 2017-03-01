@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
 
   def index
-    @orders = Order.where("created_at > ?", Time.now-1.hour)
+    @orders = Order.where("created_at > ?", Time.now-12.hours)
     @restaurants = Restaurant.all
   end
 ##########

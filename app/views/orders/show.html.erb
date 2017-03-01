@@ -125,7 +125,7 @@
 
   <div class="comment_section">
     <div class="forum_header">
-      <h2>Forum</h2>
+      <h2>MessageBoard</h2>
     </div>
     <div class="hidden_comment"></div>
     <div class="forum">
@@ -144,15 +144,18 @@
       <% end %>
     </div>
     <br>
-    <%= form_for [@order, @post] do |f| %>
-      <%= f.label "What would you like to say?" %>
-      <br>
-      <%= f.text_area :content %>
+    <div class="forum_new">
+      <%= form_for [@order, @post] do |f| %>
+        <%= f.label "What would you like to say?" %>
+        <br>
+        <%= f.text_area :content %>
 
-      <br>
-      <br>
+        <br>
+        <br>
 
-      <%= f.submit %>
-    <% end %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+    <br>
   </div>
 </div>
