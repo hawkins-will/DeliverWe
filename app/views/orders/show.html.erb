@@ -63,7 +63,7 @@
             <p class="price"><%= number_to_currency(item.price) %></p>
             <% unless item.modifications == "" %>
               <p class="modifications">+ <%= item.modifications %></p>
-              <% if item.modifications_price != 0 %>
+              <% if item.modifications_price != 0 && item.modifications_price != nil %>
                 <p class="price"><%= number_to_currency(item.modifications_price) %></p>
               <% else %>
                 <div class="empty_price"></div>
