@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
 ##########
   def cancel
     @order = Order.find(params[:id])
-    unless @order.patrons.first.user == current_user
+    unless @order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       flash[:alert] = "You're not authorized to Cancel this order"
       redirect_to order_path(@order)
     end
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
 ##########
   def destroy
     @order = Order.find(params[:id])
-    if @order.patrons.first.user == current_user
+    if @order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       @order.destroy
       redirect_to root_path
     else
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
 ##########
   def edit
     @order = Order.find(params[:id])
-    unless @order.patrons.first.user == current_user
+    unless @order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       flash[:alert] = "You're not authorized to Edit this order"
       redirect_to order_path(@order)
     end

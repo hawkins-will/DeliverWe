@@ -21,7 +21,7 @@ class PatronsController < ApplicationController
 ##########
   def edit
     @patron = Patron.find(params[:id])
-    unless @patron.user == current_user || @patron.order.patrons.first.user == current_user
+    unless @patron.user == current_user || @patron.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       flash[:alert] = "You're not authorized to Edit other peoples' orders"
       redirect_to order_path(@patron.order)
     end
@@ -43,7 +43,7 @@ class PatronsController < ApplicationController
 ##########
   def cancel
     @patron = Patron.find(params[:id])
-    unless @patron.user == current_user || @patron.order.patrons.first.user == current_user
+    unless @patron.user == current_user || @patron.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       flash[:alert] = "You're not authorized to Cancel other peoples' orders"
       redirect_to order_path(@patron.order)
     end
@@ -51,7 +51,7 @@ class PatronsController < ApplicationController
 ##########
   def destroy
     @patron = Patron.find(params[:id])
-    if @patron.user == current_user || @patron.order.patrons.first.user == current_user
+    if @patron.user == current_user || @patron.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       @patron.destroy
       redirect_to order_path(@patron.order)
     else

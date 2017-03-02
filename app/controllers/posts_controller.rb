@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 ##########
   def edit
     @post = Post.find(params[:id])
-    unless @post.user == current_user || @post.order.patrons.first.user == current_user
+    unless @post.user == current_user || @post.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       flash[:alert] = "You are not authorized to Edit other peoples' posts"
       redirect_to order_path(@post.order)
     end
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
 ##########
   def destroy
     @post = Post.find(params[:id])
-    if @post.user == current_user || @post.order.patrons.first.user == current_user
+    if @post.user == current_user || @post.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       @post.destroy
       redirect_to order_path(@post.order)
     else

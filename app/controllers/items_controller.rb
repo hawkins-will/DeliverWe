@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   def new
     @patron = Patron.find(params[:patron_id])
-    unless @patron.user == current_user || @patron.order.patrons.first.user == current_user
+    unless @patron.user == current_user || @patron.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       flash[:alert] = "You're not authorized to Add Items to other peoples' orders"
       redirect_to order_path(@patron.order)
     end
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 ##########
   def edit
     @item = Item.find(params[:id])
-    unless @item.patron.user == current_user || @item.patron.order.patrons.first.user == current_user
+    unless @item.patron.user == current_user || @item.patron.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       flash[:alert] = "You're not authorized to Edit other peoples' orders"
       redirect_to order_path(@item.patron.order)
     end
@@ -69,7 +69,7 @@ class ItemsController < ApplicationController
 ##########
   def destroy
     @item = Item.find(params[:id])
-    if @item.patron.user == current_user || @item.patron.order.patrons.first.user == current_user
+    if @item.patron.user == current_user || @item.patron.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com"
       @item.destroy
       redirect_to order_path(@item.patron.order)
     else
