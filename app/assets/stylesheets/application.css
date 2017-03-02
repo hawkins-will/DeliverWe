@@ -25,6 +25,7 @@ html {
   left: 0;
   height: 100vh;
   width: 100vw;
+  min-width: 1000px;
 }
 
 body {
@@ -64,6 +65,7 @@ header {
   position: fixed;
   height: 60px;
   width: 100%;
+  min-width: 1000px;
   font-size: 25px;
   color: white;
   background-color: rgba(255,140,0,1);
@@ -176,7 +178,7 @@ header {
   flex-wrap: wrap;
   flex-grow: 1;
   width: calc(100vw - 320px);
-  min-width: 500px;
+  min-width: 698px;
   height: calc(100vh - 80px);
   overflow-y: scroll;
 }
@@ -349,6 +351,7 @@ header {
 .second_header {
   height: 200px;
   width: 100vw;
+  min-width: 1000px;
   display: flex;
   border-bottom: 1px solid black;
 }
@@ -412,8 +415,8 @@ header {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 420px;
   width: calc(100vw - 540px);
-  min-width: 500px;
   height: calc(100vh - 80px);
   overflow-y: scroll;
   padding-left: 100px;
@@ -508,6 +511,7 @@ header {
 
 .comment_section {
   width: 500px;
+  min-width: 378px;
   height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
@@ -533,7 +537,7 @@ header {
 }
 
 .forum {
-  width: 400px;
+  width: 350px;
   height: 300px;
   border: 1px solid grey;
   background-color: white;
