@@ -1,6 +1,6 @@
 <div class="center_page">
   <h1>Edit <%= @restaurant.name %></h1>
-  <form class="form">
+  <div class="form">
     <%= form_for @restaurant do |f| %>
       <%= f.label "What's the Name of this Restaurant?" %>
       <br>
@@ -48,7 +48,7 @@
           <%= f.submit %>
         <% end %>
         </div>
-        <%= link_to @patron, method: :delete, class: "delete" do %>
+        <%= link_to @restaurant, method: :delete, class: "delete" do %>
           <div class="orange_button orange_link">
             <p>Delete Restaurant</p>
           </div>
