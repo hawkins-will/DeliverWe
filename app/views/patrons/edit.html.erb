@@ -13,7 +13,7 @@
         <%= f.submit %>
       <% end %>
     </div>
-    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user %>
+    <% if @patron.user == current_user || @patron.order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com" %>
       <a href="/patrons/<%= @patron.id %>/cancel">
         <div class="orange_button orange_link">
           <p>Cancel Order</p>

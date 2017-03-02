@@ -37,3 +37,5 @@ Restaurant.create(name: "Buredo", logo_url: "https://www.zagat.com/proxy/v1.4?m=
 Restaurant.create(name: "Soupergirl", logo_url: "http://jbforrest.com/wp-content/themes/echo/timthumb.php?src=http://jbforrest.com/wp-content/uploads/2011/08/soupergirl-logo.jpg&h=9999&w=660&q=60", menu_link: "https://www.grubhub.com/restaurant/soupergirl-1829-m-st-nw-washington/331706", delivery_fee: 2.99, delivery_min: 10.00, tax: 10)
 Restaurant.create(name: "Subway", logo_url: "http://www.gogoosecreek.com/portals/0/images/Subway%20Logo.png", menu_link: "https://www.grubhub.com/restaurant/subway-57669-1010-massachusetts-ave-nw-washington/339650", delivery_fee: 2.99, delivery_min: 10.00, tax: 10)
 Restaurant.create(name: "Tonton Chicken", logo_url: "https://pbs.twimg.com/profile_images/509447639201374209/0I-3LzOK_400x400.png", menu_link: "https://www.grubhub.com/restaurant/tonton-chicken-1018-vermont-ave-nw-washington/296252", delivery_fee: 2.99, delivery_min: 15.00, tax: 10)
+
+User.create(email: "admin@deliverwe.com", password: "scourge123")

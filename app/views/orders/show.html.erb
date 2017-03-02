@@ -35,7 +35,7 @@
     <% @order_price = 0.00 + Restaurant.find(@order.restaurant_id).delivery_fee %>
     <% @price_check = 0.00 %>
     <br>
-    <% if @order.patrons.length >= 1 && @order.patrons.first.user == current_user %>
+    <% if @order.patrons.length >= 1 && @order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com" %>
       <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %><%=link_to edit_order_path(@order) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="large_pencil"><% end %></p>
     <% elsif @order.patrons.length >= 1 %>
       <p class="announcement"><%= @order.patrons.first.name %> will place this Order at <%= @order.time %></p>
@@ -52,13 +52,13 @@
       <% @order.patrons.each do |patron| %>
         <div>
         <% @patron_price = 0.00 %>
-          <% if patron.user == current_user || @order.patrons.first.user == current_user %>
+          <% if patron.user == current_user || @order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com" %>
             <p><%= patron.name %><%=link_to edit_patron_path(patron) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="edit_pencil"><% end %></p>
           <% else %>
             <p><%= patron.name %></p>
           <% end %>
           <% patron.items.each do |item| %>
-            <% if patron.user == current_user || @order.patrons.first.user == current_user %>
+            <% if patron.user == current_user || @order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com" %>
               <p class="item"><%= item.name %><%=link_to edit_item_path(item) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="edit_pencil"><% end %></p>
             <% else %>
               <p class="item"><%= item.name %></p>
@@ -92,7 +92,7 @@
           <p class="price">Total: <%= number_to_currency(@patron_price) %></p>
           <p class="price">+ Tip: <%= number_to_currency(5.00/@order.patrons.length) %></p>
           <p class="price">Personal Total: <%= number_to_currency(@patron_price+(5.00/@order.patrons.length)) %></p>
-          <% if patron.user == current_user || @order.patrons.first.user == current_user %>
+          <% if patron.user == current_user || @order.patrons.first.user == current_user || current_user.email == "admin@deliverwe.com" %>
             <%= link_to new_patron_item_path(patron) do %>
               <div class="blue_button blue_link">
                 <p>Add Item</p>
@@ -126,12 +126,12 @@
     <div class="hidden_comment"></div>
     <div class="forum">
       <% @order.posts.each do |post| %>
-        <% if current_user && post.user == current_user %>
-            <div class="your_post">
-              <p class="post_author"><%= post.author %> <%=link_to edit_post_path(post) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="edit_pencil"><% end %></p>
-              <p><%= post.content %></p>
-            </div>
-            <p class="right time"><%= post.created_at %></p>
+        <% if post.user == current_user %>
+          <div class="your_post">
+            <p class="post_author"><%= post.author %> <%=link_to edit_post_path(post) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="edit_pencil"><% end %></p>
+            <p><%= post.content %></p>
+          </div>
+          <p class="right time"><%= post.created_at %></p>
         <% else %>
           <div class="other_post">
             <p class="post_author"><%= post.author %></p>
