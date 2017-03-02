@@ -53,14 +53,16 @@
         <div>
         <% @patron_price = 0.00 %>
           <% if patron.user == current_user || @order.patrons.first.user == current_user %>
-            <%= link_to patron do %>
-              <p class="name_link"><%= patron.name %></p>
-            <% end %>
+            <p><%= patron.name %><%=link_to edit_patron_path(patron) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="edit_pencil"><% end %></p>
           <% else %>
             <p><%= patron.name %></p>
           <% end %>
           <% patron.items.each do |item| %>
-            <p class="item"><%= item.name %></p>
+            <% if patron.user == current_user || @order.patrons.first.user == current_user %>
+              <p class="item"><%= item.name %><%=link_to edit_item_path(item) do %><img src="http://downloadicons.net/sites/default/files/pencil-icon-63783.png" alt="Edit Icon" class="edit_pencil"><% end %></p>
+            <% else %>
+              <p class="item"><%= item.name %></p>
+            <% end %>
             <p class="price"><%= number_to_currency(item.price) %></p>
             <% unless item.modifications == "" %>
               <p class="modifications">+ <%= item.modifications %></p>
@@ -90,6 +92,13 @@
           <p class="price">Total: <%= number_to_currency(@patron_price) %></p>
           <p class="price">+ Tip: <%= number_to_currency(5.00/@order.patrons.length) %></p>
           <p class="price">Personal Total: <%= number_to_currency(@patron_price+(5.00/@order.patrons.length)) %></p>
+          <% if patron.user == current_user || @order.patrons.first.user == current_user %>
+            <%= link_to new_patron_item_path(patron) do %>
+              <div class="blue_button blue_link">
+                <p>Add Item</p>
+              </div>
+            <% end %>
+          <% end %>
           <hr>
         </div>
       <br>
