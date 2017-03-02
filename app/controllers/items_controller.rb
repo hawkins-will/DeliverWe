@@ -69,7 +69,7 @@ class ItemsController < ApplicationController
 ##########
   def destroy
     @item = Item.find(params[:id])
-    unless @item.patron.user == current_user || @item.patron.order.patrons.first.user == current_user
+    if @item.patron.user == current_user || @item.patron.order.patrons.first.user == current_user
       @item.destroy
       redirect_to order_path(@item.patron.order)
     else

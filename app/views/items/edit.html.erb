@@ -34,8 +34,13 @@
           <%= f.submit %>
         <% end %>
         </div>
+        <%= link_to @item, method: :delete, class: "delete" do %>
+          <div class="orange_button orange_link">
+            <p>Cancel Item</p>
+          </div>
+        <% end %>
       </div>
   </div>
     <br>
-  <%= link_to "<< Back", patron_path(@item.patron) %>
+  <%= link_to "<< Back", order_path(@item.patron.order) %>
 </div>
